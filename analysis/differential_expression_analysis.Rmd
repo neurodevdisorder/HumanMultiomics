@@ -1,0 +1,100 @@
+---
+title: "differential_expression_analysis"
+author: "neurodevdisorder"
+date: "2022-07-15"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+
+## Introduction
+
+This is the differential expression analysis from the total RNA sequencing experiment performed on postmortem hippocampus and cortex obtained from Down syndrome and control individuals.
+
+
+```{r setup, include = FALSE}
+library(ggplot2)
+library(dplyr)
+library(edgeR)
+library(openxlsx)
+library(ggrepel)
+library(ggplot2)
+library(DBI)
+library(org.Hs.eg.db)
+library(dplyr)
+library("pcaExplorer")
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+library(rtracklayer)
+library(ggbio)
+library(clusterProfiler)
+library(enrichplot)
+library(ggridges)
+library(karyoploteR)
+library(tidyverse)
+library(forcats)
+library(pathview)
+library(ComplexHeatmap)
+library(circlize)
+```
+
+```{r}
+#read the raw count matrix for hippocampus samples
+count_human_total_hippocampus_coding<- read.table(file= "data/raw_counts_human_hippo_matrix_coding.txt", header=T, row.names=1)
+head(count_human_total_hippocampus_coding)
+meta_counts_human_total_hippocampus_coding<-data.frame(row.names = colnames(count_human_total_hippocampus_coding),condition_human_total_hippocampus_coding=c("Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS","DS","DS","DS"))
+group_human_total_hippocampus_coding<-relevel(factor(meta_counts_human_total_hippocampus_coding$condition_human_total_hippocampus_coding),ref="Cont")
+group_human_total_hippocampus_coding
+
+#design the model for the differential expression
+design_human_total_hippocampus_coding = model.matrix(~group_human_total_hippocampus_coding)
+y_human_total_hippocampus_coding<-DGEList(count_human_total_hippocampus_coding,group = group_human_total_hippocampus_coding)
+
+#calculate counts per million in log
+cpm_log_human_total_hippocampus_coding<-cpm(y_human_total_hippocampus_coding,log=TRUE)
+
+#visualize the log cpm as a heatmap
+heatmap(cor(cpm_log_human_total_hippocampus_coding))
+
+#perform PCA
+sample_hippo<- read.xlsx("data/human_hippo_samplesheet.xlsx", sheet=1)
+row.names(sample_hippo)<-sample_hippo$SampleName
+all(colnames(cpm_log_human_total_hippocampus_coding) == rownames(sample_hippo))
+p <- PCAtools::pca(cpm_log_human_total_hippocampus_coding, metadata = sample_hippo, removeVar = 0.1)
+PCAtools::screeplot(p)
+PCAtools::biplot(p)
+
+#Looking at the heatmap, PCA and RIN values, remove the following samples:
+#C6,C7,C8,C9,C10,Ds2,Ds6,Ds7
+count_hth_filt_coding2<-count_human_total_hippocampus_coding[,-c(6,7,8,9,10,13,17,18)]
+head(count_hth_filt_coding2)
+meta_counts_hth_filt_coding2<-data.frame(row.names = colnames(count_hth_filt_coding2),condition_hth_filt_coding2=c("Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS"))
+group_hth_filt_coding2<-relevel(factor(meta_counts_hth_filt_coding2$condition_hth_filt_coding2),ref="Cont")
+group_hth_filt_coding2
+design_hth_filt_coding2 = model.matrix(~group_hth_filt_coding2)
+y_hth_filt_coding2<-DGEList(count_hth_filt_coding2,group = group_hth_filt_coding2)
+cpm_log_hth_filt_coding2<-cpm(y_hth_filt_coding2,log=TRUE)
+heatmap(cor(cpm_log_hth_filt_coding2))
+#perform PCA
+sample_hippo<- read.xlsx("data/human_hippo_samplesheet.xlsx", sheet=2)
+row.names(sample_hippo)<-sample_hippo$SampleName
+all(colnames(cpm_log_hth_filt_coding2) == rownames(sample_hippo))
+p <- PCAtools::pca(cpm_log_hth_filt_coding2, metadata = sample_hippo, removeVar = 0.1)
+PCAtools::screeplot(p)
+PCAtools::biplot(p)
+
+cpm_y_hth_filt_coding2<-cpm(y_hth_filt_coding2)
+keep_hth_filt_coding2<-rowSums((cpm_y_hth_filt_coding2)>1)>5
+table(keep_hth_filt_coding2)
+y_hth_filt_coding2<-DGEList(count_hth_filt_coding2,group = group_hth_filt_coding2)
+y_hth_filt_coding2 <- y_hth_filt_coding2[keep_hth_filt_coding2, , keep.lib.sizes=FALSE]
+y_hth_filt_coding2 <- calcNormFactors(y_hth_filt_coding2)
+y_hth_filt_coding2$samples
+y_hth_filt_coding2 <- estimateGLMRobustDisp(y_hth_filt_coding2,design_hth_filt_coding2, verbose = TRUE)
+fit_hth_filt_coding2 <- glmFit(y_hth_filt_coding2, design_hth_filt_coding2)
+lrt_hth_filt_coding2<-glmLRT(fit_hth_filt_coding2,coef = 2)
+de_hth_filt_coding2 <- decideTestsDGE(lrt_hth_filt_coding2, adjust.method="BH", p.value = 0.05)
+summary(de_hth_filt_coding2)
+```
+

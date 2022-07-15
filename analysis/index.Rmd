@@ -1,11 +1,24 @@
 ---
-title: "Home"
+title: "DS Human multiomics"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
-    toc: false
+    toc: TRUE
 editor_options:
   chunk_output_type: console
 ---
 
 This website contains the analysis and the data from the Total RNA sequencing, small RNA sequencing, and protoemics performed on post-mortem hiipocampus and cortex obtained form Down syndrome and control individuals.
+
+Please feel free to explore and share. Here are some useful links for the final paper:
+
+* [Integrative Multi-omics Analysis Reveals Conserved Cell-projection Deficits in Human Down syndrome Brains]
+
+
+# Analysis
+
+## Total RNA sequencing
+
+* Perform differential expression analysis
+  * [Hippocampus] (differential_expression_analysis.html)
+  * Cortex

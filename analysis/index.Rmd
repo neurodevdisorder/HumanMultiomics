@@ -23,3 +23,19 @@ Please feel free to explore and share. Here are some useful links for the final 
   * [Hippocampus](differential_expression_analysis.html)
   * Cortex
 
+* Perform KEGG pathway analysis
+  * [Hippocampus](KEGG.html)
+  * Cortex
+
+* Gene ontology (GO) analysis using DAVID
+
+* Cell-type enrichment (EWCE)
+
+* Weighted gene co-expression network analysis (WGCNA)
+
+* Other investigations
+  * [GABA and AMPA receptors](GABA_AMPA.html)
+  
+
+
+

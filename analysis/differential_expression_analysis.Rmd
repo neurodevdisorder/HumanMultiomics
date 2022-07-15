@@ -181,15 +181,7 @@ plotGrandLinear(top200 , aes(y = logFC))
 mcols(top200)$UpRegulated <- mcols(top200)$logFC > 0
 mcols(top200)$DownRegulated <- mcols(top200)$logFC < 0
 autoplot(top200,layout="karyogram",aes(color=DownRegulated,fill=DownRegulated))
-```
-
-#### Results from differential expression analysis
-```{r, echo = FALSE,}
 results_hippo_RNA<-as_tibble(results_rna_annotated_hth_filt_coding2)
 row.names(results_hippo_RNA)<-results_hippo_RNA$ENSEMBL
-kbl(results_hippo_RNA)
-results_hippo_RNA%>%
-  kbl() %>%
-  kable_styling()
 saveRDS(results_hippo_RNA, file = "results_hippo_RNA.rds")
 ```

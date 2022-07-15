@@ -14,7 +14,7 @@ editor_options:
 This is the differential expression analysis from the total RNA sequencing experiment performed on postmortem hippocampus and cortex obtained from Down syndrome and control individuals.
 
 
-```{r setup, message = FALSE}
+```{r setup, message = FALSE, warning=FALSE}
 library(ggplot2)
 library(dplyr)
 library(edgeR)
@@ -41,6 +41,7 @@ library(circlize)
 
 ```{r, echo = FALSE}
 #read the raw count matrix for hippocampus samples
+### Read data
 count_human_total_hippocampus_coding<- read.table(file= "data/raw_counts_human_hippo_matrix_coding.txt", header=T, row.names=1)
 head(count_human_total_hippocampus_coding)
 meta_counts_human_total_hippocampus_coding<-data.frame(row.names = colnames(count_human_total_hippocampus_coding),condition_human_total_hippocampus_coding=c("Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS","DS","DS","DS"))

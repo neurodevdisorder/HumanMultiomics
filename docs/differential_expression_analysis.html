@@ -472,16 +472,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongd1cf5b7"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> d1cf5b7 </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong9bf2d51"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 9bf2d51 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongd1cf5b7" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrong9bf2d51" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version d1cf5b7. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version 9bf2d51. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -495,6 +495,8 @@ Untracked files:
     Untracked:  HumanMultiomics.R
     Untracked:  data/human_hippo_samplesheet.xlsx
     Untracked:  data/raw_counts_human_hippo_matrix_coding.txt
+    Untracked:  figure/
+    Untracked:  topHitshuman_hippo.bed
 
 </code></pre>
 <p>
@@ -533,6 +535,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+9bf2d51
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+<td>
+Differential expression analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+80ecc5e
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -730,28 +766,8 @@ Differential expression analysis
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>This is the differential expression analysis from the total RNA sequencing experiment performed on postmortem hippocampus and cortex obtained from Down syndrome and control individuals.</p>
-<pre class="r"><code>library(ggplot2)
-library(dplyr)
-library(edgeR)
-library(openxlsx)
-library(ggrepel)
-library(ggplot2)
-library(DBI)
-library(org.Hs.eg.db)
-library(dplyr)
-library(&quot;pcaExplorer&quot;)
-library(TxDb.Hsapiens.UCSC.hg38.knownGene)
-library(rtracklayer)
-library(ggbio)
-library(clusterProfiler)
-library(enrichplot)
-library(ggridges)
-library(karyoploteR)
-library(tidyverse)
-library(forcats)
-library(pathview)
-library(ComplexHeatmap)
-library(circlize)</code></pre>
+<div id="read-the-raw-count-matrix-for-hippocampus-samples" class="section level3">
+<h3>Read the raw count matrix for hippocampus samples</h3>
 <pre><code>                 C1  C2   C3   C4  C5  C6   C7   C8  C9 C10 C11  Ds1 Ds2 Ds3
 ENSG00000186092   0   0    0    0   0   0    0    0   0   0   0    0   0   0
 ENSG00000284733   0   0    0    0   0   0    0    0   0   0   0    0   0   0
@@ -769,124 +785,18 @@ ENSG00000187961   95  98  82  47  32  100</code></pre>
 <pre><code> [1] Cont Cont Cont Cont Cont Cont Cont Cont Cont Cont Cont DS   DS   DS   DS  
 [16] DS   DS   DS   DS   DS  
 Levels: Cont DS</code></pre>
-<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
-Past versions of unnamed-chunk-1-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-e6b258c
-</td>
-<td>
-neurodevdisorder
-</td>
-<td>
-2022-07-15
-</td>
-</tr>
-</tbody>
-</table>
+<div id="visualize-the-log-counts-per-million-cpm-as-a-heatmap" class="section level4">
+<h4>Visualize the log counts per million (cpm) as a heatmap</h4>
+<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-</div>
+<div id="perform-pca" class="section level4">
+<h4>Perform PCA</h4>
 <pre><code>[1] TRUE</code></pre>
 <pre><code>-- removing the lower 10% of variables based on variance</code></pre>
-<pre><code>Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
-Past versions of unnamed-chunk-1-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-e6b258c
-</td>
-<td>
-neurodevdisorder
-</td>
-<td>
-2022-07-15
-</td>
-</tr>
-</tbody>
-</table>
+<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-</div>
-<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-3">
-Past versions of unnamed-chunk-1-3.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-e6b258c
-</td>
-<td>
-neurodevdisorder
-</td>
-<td>
-2022-07-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<div id="filter-the-data-based-on-heatmap-pca-and-rin-values" class="section level4">
+<h4>Filter the data based on heatmap, PCA and RIN values</h4>
 <pre><code>                 C1  C2   C3   C4  C5 C11  Ds1 Ds3  Ds4 Ds5 Ds8  Ds9
 ENSG00000186092   0   0    0    0   0   0    0   0    0   0   0    0
 ENSG00000284733   0   0    0    0   0   0    0   0    0   0   0    0
@@ -896,125 +806,23 @@ ENSG00000188976 496 624 1482 1417 558 799 1313 629 1051 798 887 1260
 ENSG00000187961  13  20   89   66  12  25  105  45   95  98  32  100</code></pre>
 <pre><code> [1] Cont Cont Cont Cont Cont Cont DS   DS   DS   DS   DS   DS  
 Levels: Cont DS</code></pre>
-<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-4.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-4">
-Past versions of unnamed-chunk-1-4.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-4" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-e6b258c
-</td>
-<td>
-neurodevdisorder
-</td>
-<td>
-2022-07-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>####Perform PCA on the filtered samples</p>
 <pre><code>[1] TRUE</code></pre>
 <pre><code>-- removing the lower 10% of variables based on variance</code></pre>
-<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-5.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-5">
-Past versions of unnamed-chunk-1-5.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-e6b258c
-</td>
-<td>
-neurodevdisorder
-</td>
-<td>
-2022-07-15
-</td>
-</tr>
-</tbody>
-</table>
+<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-7-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-</div>
-<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-6.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-6">
-Past versions of unnamed-chunk-1-6.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-6" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-e6b258c
-</td>
-<td>
-neurodevdisorder
-</td>
-<td>
-2022-07-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<div id="filter-the-genes-based-on-their-expression-in-n-1-samples" class="section level4">
+<h4>Filter the genes based on their expression in n-1 samples</h4>
 <pre><code>keep_hth_filt_coding2
 FALSE  TRUE 
  5747 14221 </code></pre>
+</div>
+<div id="perform-normalization-using-tmm" class="section level4">
+<h4>Perform normalization using TMM</h4>
+</div>
+<div id="estimate-differential-expression-using-glm" class="section level4">
+<h4>Estimate differential expression using GLM</h4>
 <pre><code>    group lib.size norm.factors
 C1   Cont 26747264    0.9014953
 C2   Cont 28753065    0.9295325
@@ -1028,10 +836,9 @@ Ds4    DS 27713628    1.0497314
 Ds5    DS 25307466    1.1031263
 Ds8    DS 26297451    0.9796220
 Ds9    DS 24491826    1.0163664</code></pre>
-<pre><code>Iteration 1: Re-fitting GLM.</code></pre>
-<pre><code>Re-estimating trended dispersion.</code></pre>
-<pre><code>Re-estimating tagwise dispersion.</code></pre>
-<pre><code>Iteration 2: Re-fitting GLM. Re-estimating trended dispersion.
+<pre><code>Iteration 1: Re-fitting GLM. Re-estimating trended dispersion.
+Re-estimating tagwise dispersion.
+Iteration 2: Re-fitting GLM. Re-estimating trended dispersion.
 Re-estimating tagwise dispersion.
 Iteration 3: Re-fitting GLM. Re-estimating trended dispersion.
 Re-estimating tagwise dispersion.
@@ -1041,10 +848,466 @@ Iteration 5: Re-fitting GLM. Re-estimating trended dispersion.
 Re-estimating tagwise dispersion.
 Iteration 6: Re-fitting GLM. Re-estimating trended dispersion.
 Re-estimating tagwise dispersion.</code></pre>
+</div>
+<div id="number-of-differentially-expressed-genes-in-the-hippocampus" class="section level4">
+<h4>Number of differentially expressed genes in the hippocampus</h4>
 <pre><code>       group_hth_filt_coding2DS
 Down                       2205
 NotSig                     9394
 Up                         2622</code></pre>
+</div>
+<div id="here-we-annotated-the-data-from-the-previous-differential-expression-analysis-using-ensembl-information-for-each-gene-and-mapped-the-degs-onto-their-chromosomal-location." class="section level4">
+<h4>Here, we annotated the data from the previous differential expression analysis using ENSEMBL information for each gene and mapped the DEGs onto their chromosomal location.</h4>
+<pre><code>[1] &quot;ENSG00000188976&quot; &quot;ENSG00000187961&quot; &quot;ENSG00000188290&quot; &quot;ENSG00000187608&quot;
+[5] &quot;ENSG00000188157&quot; &quot;ENSG00000131591&quot;</code></pre>
+<pre><code>&#39;select()&#39; returned 1:many mapping between keys and columns</code></pre>
+<pre><code>GRanges object with 4809 ranges and 12 metadata columns:
+                 seqnames            ranges strand |     logFC    logCPM
+                    &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt; &lt;numeric&gt;
+  339451             chr1     960584-965719      + |  1.444466   1.13402
+  375790             chr1   1020120-1056118      + |  1.428524   4.58160
+   54991             chr1   1081818-1116361      - |  1.179575   2.41598
+   51150             chr1   1216909-1232067      - |  0.452477   5.35276
+    6339             chr1   1280436-1292029      + |  1.051756   2.24617
+     ...              ...               ...    ... .       ...       ...
+   54058            chr21 46300181-46323875      - |  1.744116   1.84115
+    5116            chr21 46324141-46445769      + |  0.772067   6.81541
+   23181            chr21 46458891-46570015      + |  0.921378   6.25343
+    3275            chr21 46635595-46665124      + |  0.485232   6.94981
+  389831 chrUn_GL000195v1       42939-49164      - | -1.191513   2.15811
+                LR      PValue         FDR         ENSEMBL    ENTREZID
+         &lt;numeric&gt;   &lt;numeric&gt;   &lt;numeric&gt;     &lt;character&gt; &lt;character&gt;
+  339451  12.01408 5.28001e-04 0.003696271 ENSG00000187961      339451
+  375790  16.37063 5.20862e-05 0.000684321 ENSG00000188157      375790
+   54991  11.76935 6.02139e-04 0.004066014 ENSG00000131591       54991
+   51150   7.51441 6.12073e-03 0.023149708 ENSG00000078808       51150
+    6339   8.46603 3.61840e-03 0.015531915 ENSG00000162572        6339
+     ...       ...         ...         ...             ...         ...
+   54058  24.20717 8.65097e-07 3.45406e-05 ENSG00000160298       54058
+    5116  25.68207 4.02551e-07 1.96724e-05 ENSG00000160299        5116
+   23181  33.96882 5.60024e-09 7.80794e-07 ENSG00000160305       23181
+    3275  11.57174 6.69616e-04 4.42441e-03 ENSG00000160310        3275
+  389831   6.09842 1.35303e-02 4.21130e-02 ENSG00000276256      389831
+              SYMBOL               GENENAME         CHR     UNIPROT       ALIAS
+         &lt;character&gt;            &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt;
+  339451      KLHL17 kelch like family me..           1      Q6TDP4          AF
+  375790        AGRN                  agrin           1      O00468       AGRIN
+   54991    C1orf159 chromosome 1 open re..           1      Q96HA4    C1orf159
+   51150        SDF4 stromal cell derived..           1  A0A024R084       Cab45
+    6339      SCNN1D sodium channel epith..           1      A6NNF7       ENaCd
+     ...         ...                    ...         ...         ...         ...
+   54058    C21orf58 chromosome 21 open r..          21      P58505    C21orf58
+    5116        PCNT            pericentrin          21      O95613         KEN
+   23181       DIP2A disco interacting pr..          21      Q14689   C21orf106
+    3275       PRMT2 protein arginine met..          21      P55345     HRMT1L1
+  389831   LOC389831 uncharacterized LOC3..          14        &lt;NA&gt;   LOC389831
+  -------
+  seqinfo: 595 sequences (1 circular) from hg38 genome</code></pre>
+<pre><code>GRanges object with 4809 ranges and 12 metadata columns:
+        seqnames              ranges strand |     logFC    logCPM        LR
+           &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+  64005     chr7   44962662-44979088      - |   3.67879  0.606683   66.0467
+   7052    chr20   38127385-38166578      - |   2.25840  4.274056   65.9522
+   3339     chr1   21822244-21937310      - |   2.44714  3.740847   65.5580
+     12    chr14   94592058-94624646      + |   3.16526  0.988412   64.9642
+   3691    chr17   75721328-75757818      + |   2.18007  5.528861   64.2538
+    ...      ...                 ...    ... .       ...       ...       ...
+  10745     chr1 113696831-113759489      - | -0.361545   5.48447   5.71151
+   8495    chr11     7513298-7657127      + |  0.496606   4.93888   5.71125
+  54039    chr21   45643694-45942454      + |  0.639404   3.11438   5.70519
+  57592     chr1 151281618-151292176      + |  0.795094   3.55223   5.70267
+   8708     chr2 167293171-167558333      + | -0.444137   5.26416   5.70133
+             PValue         FDR         ENSEMBL    ENTREZID      SYMBOL
+          &lt;numeric&gt;   &lt;numeric&gt;     &lt;character&gt; &lt;character&gt; &lt;character&gt;
+  64005 4.40354e-16 2.67493e-12 ENSG00000136286       64005       MYO1G
+   7052 4.61983e-16 2.67493e-12 ENSG00000198959        7052        TGM2
+   3339 5.64291e-16 2.67493e-12 ENSG00000142798        3339       HSPG2
+     12 7.62729e-16 2.71169e-12 ENSG00000196136          12    SERPINA3
+   3691 1.09383e-15 3.11108e-12 ENSG00000132470        3691       ITGB4
+    ...         ...         ...             ...         ...         ...
+  10745   0.0168541   0.0496926 ENSG00000116793       10745       PHTF1
+   8495   0.0168566   0.0496926 ENSG00000166387        8495     PPFIBP2
+  54039   0.0169148   0.0498541 ENSG00000183570       54039       PCBP3
+  57592   0.0169391   0.0499154 ENSG00000143373       57592      ZNF687
+   8708   0.0169521   0.0499431 ENSG00000172318        8708     B3GALT1
+                      GENENAME         CHR     UNIPROT       ALIAS
+                   &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt;
+  64005              myosin IG           7      B0I1T2         HA2
+   7052     transglutaminase 2          20      P21980        G(h)
+   3339 heparan sulfate prot..           1      P98160        HSPG
+     12 serpin family A memb..          14  A0A024R6P0        AACT
+   3691 integrin subunit bet..          17  A0A024R8T0       CD104
+    ...                    ...         ...         ...         ...
+  10745 putative homeodomain..           1      Q9UMS5        PHTF
+   8495 PPFIA binding protei..          11      Q8ND30       Cclp1
+  54039 poly(rC) binding pro..          21      P57721   ALPHA-CP3
+  57592 zinc finger protein ..           1      Q8N1G0        PDB6
+   8708 beta-1,3-galactosylt..           2      Q9Y5Z6 beta3Gal-T1
+  -------
+  seqinfo: 595 sequences (1 circular) from hg38 genome</code></pre>
+<pre><code>  [1] &quot;chr1&quot;                    &quot;chr2&quot;                   
+  [3] &quot;chr3&quot;                    &quot;chr4&quot;                   
+  [5] &quot;chr5&quot;                    &quot;chr6&quot;                   
+  [7] &quot;chr7&quot;                    &quot;chr8&quot;                   
+  [9] &quot;chr9&quot;                    &quot;chr10&quot;                  
+ [11] &quot;chr11&quot;                   &quot;chr12&quot;                  
+ [13] &quot;chr13&quot;                   &quot;chr14&quot;                  
+ [15] &quot;chr15&quot;                   &quot;chr16&quot;                  
+ [17] &quot;chr17&quot;                   &quot;chr18&quot;                  
+ [19] &quot;chr19&quot;                   &quot;chr20&quot;                  
+ [21] &quot;chr21&quot;                   &quot;chr22&quot;                  
+ [23] &quot;chrX&quot;                    &quot;chrY&quot;                   
+ [25] &quot;chrM&quot;                    &quot;chr1_GL383518v1_alt&quot;    
+ [27] &quot;chr1_GL383519v1_alt&quot;     &quot;chr1_GL383520v2_alt&quot;    
+ [29] &quot;chr1_KI270706v1_random&quot;  &quot;chr1_KI270707v1_random&quot; 
+ [31] &quot;chr1_KI270708v1_random&quot;  &quot;chr1_KI270709v1_random&quot; 
+ [33] &quot;chr1_KI270710v1_random&quot;  &quot;chr1_KI270711v1_random&quot; 
+ [35] &quot;chr1_KI270712v1_random&quot;  &quot;chr1_KI270713v1_random&quot; 
+ [37] &quot;chr1_KI270714v1_random&quot;  &quot;chr1_KI270759v1_alt&quot;    
+ [39] &quot;chr1_KI270760v1_alt&quot;     &quot;chr1_KI270761v1_alt&quot;    
+ [41] &quot;chr1_KI270762v1_alt&quot;     &quot;chr1_KI270763v1_alt&quot;    
+ [43] &quot;chr1_KI270764v1_alt&quot;     &quot;chr1_KI270765v1_alt&quot;    
+ [45] &quot;chr1_KI270766v1_alt&quot;     &quot;chr1_KI270892v1_alt&quot;    
+ [47] &quot;chr1_KN196472v1_fix&quot;     &quot;chr1_KN196473v1_fix&quot;    
+ [49] &quot;chr1_KN196474v1_fix&quot;     &quot;chr1_KN538360v1_fix&quot;    
+ [51] &quot;chr1_KN538361v1_fix&quot;     &quot;chr1_KQ031383v1_fix&quot;    
+ [53] &quot;chr1_KQ458382v1_alt&quot;     &quot;chr1_KQ458383v1_alt&quot;    
+ [55] &quot;chr1_KQ458384v1_alt&quot;     &quot;chr1_KQ983255v1_alt&quot;    
+ [57] &quot;chr1_KV880763v1_alt&quot;     &quot;chr1_KZ208904v1_alt&quot;    
+ [59] &quot;chr1_KZ208905v1_alt&quot;     &quot;chr1_KZ208906v1_fix&quot;    
+ [61] &quot;chr1_KZ559100v1_fix&quot;     &quot;chr2_GL383521v1_alt&quot;    
+ [63] &quot;chr2_GL383522v1_alt&quot;     &quot;chr2_GL582966v2_alt&quot;    
+ [65] &quot;chr2_KI270715v1_random&quot;  &quot;chr2_KI270716v1_random&quot; 
+ [67] &quot;chr2_KI270767v1_alt&quot;     &quot;chr2_KI270768v1_alt&quot;    
+ [69] &quot;chr2_KI270769v1_alt&quot;     &quot;chr2_KI270770v1_alt&quot;    
+ [71] &quot;chr2_KI270771v1_alt&quot;     &quot;chr2_KI270772v1_alt&quot;    
+ [73] &quot;chr2_KI270773v1_alt&quot;     &quot;chr2_KI270774v1_alt&quot;    
+ [75] &quot;chr2_KI270775v1_alt&quot;     &quot;chr2_KI270776v1_alt&quot;    
+ [77] &quot;chr2_KI270893v1_alt&quot;     &quot;chr2_KI270894v1_alt&quot;    
+ [79] &quot;chr2_KN538362v1_fix&quot;     &quot;chr2_KN538363v1_fix&quot;    
+ [81] &quot;chr2_KQ031384v1_fix&quot;     &quot;chr2_KQ983256v1_alt&quot;    
+ [83] &quot;chr2_KZ208907v1_alt&quot;     &quot;chr2_KZ208908v1_alt&quot;    
+ [85] &quot;chr3_GL000221v1_random&quot;  &quot;chr3_GL383526v1_alt&quot;    
+ [87] &quot;chr3_JH636055v2_alt&quot;     &quot;chr3_KI270777v1_alt&quot;    
+ [89] &quot;chr3_KI270778v1_alt&quot;     &quot;chr3_KI270779v1_alt&quot;    
+ [91] &quot;chr3_KI270780v1_alt&quot;     &quot;chr3_KI270781v1_alt&quot;    
+ [93] &quot;chr3_KI270782v1_alt&quot;     &quot;chr3_KI270783v1_alt&quot;    
+ [95] &quot;chr3_KI270784v1_alt&quot;     &quot;chr3_KI270895v1_alt&quot;    
+ [97] &quot;chr3_KI270924v1_alt&quot;     &quot;chr3_KI270934v1_alt&quot;    
+ [99] &quot;chr3_KI270935v1_alt&quot;     &quot;chr3_KI270936v1_alt&quot;    
+[101] &quot;chr3_KI270937v1_alt&quot;     &quot;chr3_KN196475v1_fix&quot;    
+[103] &quot;chr3_KN196476v1_fix&quot;     &quot;chr3_KN538364v1_fix&quot;    
+[105] &quot;chr3_KQ031385v1_fix&quot;     &quot;chr3_KQ031386v1_fix&quot;    
+[107] &quot;chr3_KV766192v1_fix&quot;     &quot;chr3_KZ208909v1_alt&quot;    
+[109] &quot;chr3_KZ559101v1_alt&quot;     &quot;chr3_KZ559102v1_alt&quot;    
+[111] &quot;chr3_KZ559103v1_alt&quot;     &quot;chr3_KZ559104v1_fix&quot;    
+[113] &quot;chr3_KZ559105v1_alt&quot;     &quot;chr4_GL000008v2_random&quot; 
+[115] &quot;chr4_GL000257v2_alt&quot;     &quot;chr4_GL383527v1_alt&quot;    
+[117] &quot;chr4_GL383528v1_alt&quot;     &quot;chr4_KI270785v1_alt&quot;    
+[119] &quot;chr4_KI270786v1_alt&quot;     &quot;chr4_KI270787v1_alt&quot;    
+[121] &quot;chr4_KI270788v1_alt&quot;     &quot;chr4_KI270789v1_alt&quot;    
+[123] &quot;chr4_KI270790v1_alt&quot;     &quot;chr4_KI270896v1_alt&quot;    
+[125] &quot;chr4_KI270925v1_alt&quot;     &quot;chr4_KQ090013v1_alt&quot;    
+[127] &quot;chr4_KQ090014v1_alt&quot;     &quot;chr4_KQ090015v1_alt&quot;    
+[129] &quot;chr4_KQ983257v1_fix&quot;     &quot;chr4_KQ983258v1_alt&quot;    
+[131] &quot;chr4_KV766193v1_alt&quot;     &quot;chr5_GL000208v1_random&quot; 
+[133] &quot;chr5_GL339449v2_alt&quot;     &quot;chr5_GL383530v1_alt&quot;    
+[135] &quot;chr5_GL383531v1_alt&quot;     &quot;chr5_GL383532v1_alt&quot;    
+[137] &quot;chr5_GL949742v1_alt&quot;     &quot;chr5_KI270791v1_alt&quot;    
+[139] &quot;chr5_KI270792v1_alt&quot;     &quot;chr5_KI270793v1_alt&quot;    
+[141] &quot;chr5_KI270794v1_alt&quot;     &quot;chr5_KI270795v1_alt&quot;    
+[143] &quot;chr5_KI270796v1_alt&quot;     &quot;chr5_KI270897v1_alt&quot;    
+[145] &quot;chr5_KI270898v1_alt&quot;     &quot;chr5_KN196477v1_alt&quot;    
+[147] &quot;chr5_KV575243v1_alt&quot;     &quot;chr5_KV575244v1_fix&quot;    
+[149] &quot;chr5_KZ208910v1_alt&quot;     &quot;chr6_GL000250v2_alt&quot;    
+[151] &quot;chr6_GL000251v2_alt&quot;     &quot;chr6_GL000252v2_alt&quot;    
+[153] &quot;chr6_GL000253v2_alt&quot;     &quot;chr6_GL000254v2_alt&quot;    
+[155] &quot;chr6_GL000255v2_alt&quot;     &quot;chr6_GL000256v2_alt&quot;    
+[157] &quot;chr6_GL383533v1_alt&quot;     &quot;chr6_KB021644v2_alt&quot;    
+[159] &quot;chr6_KI270758v1_alt&quot;     &quot;chr6_KI270797v1_alt&quot;    
+[161] &quot;chr6_KI270798v1_alt&quot;     &quot;chr6_KI270799v1_alt&quot;    
+[163] &quot;chr6_KI270800v1_alt&quot;     &quot;chr6_KI270801v1_alt&quot;    
+[165] &quot;chr6_KI270802v1_alt&quot;     &quot;chr6_KN196478v1_fix&quot;    
+[167] &quot;chr6_KQ031387v1_fix&quot;     &quot;chr6_KQ090016v1_fix&quot;    
+[169] &quot;chr6_KQ090017v1_alt&quot;     &quot;chr6_KV766194v1_fix&quot;    
+[171] &quot;chr6_KZ208911v1_fix&quot;     &quot;chr7_GL383534v2_alt&quot;    
+[173] &quot;chr7_KI270803v1_alt&quot;     &quot;chr7_KI270804v1_alt&quot;    
+[175] &quot;chr7_KI270805v1_alt&quot;     &quot;chr7_KI270806v1_alt&quot;    
+[177] &quot;chr7_KI270807v1_alt&quot;     &quot;chr7_KI270808v1_alt&quot;    
+[179] &quot;chr7_KI270809v1_alt&quot;     &quot;chr7_KI270899v1_alt&quot;    
+[181] &quot;chr7_KQ031388v1_fix&quot;     &quot;chr7_KV880764v1_fix&quot;    
+[183] &quot;chr7_KV880765v1_fix&quot;     &quot;chr7_KZ208912v1_fix&quot;    
+[185] &quot;chr7_KZ208913v1_alt&quot;     &quot;chr7_KZ559106v1_alt&quot;    
+[187] &quot;chr8_KI270810v1_alt&quot;     &quot;chr8_KI270811v1_alt&quot;    
+[189] &quot;chr8_KI270812v1_alt&quot;     &quot;chr8_KI270813v1_alt&quot;    
+[191] &quot;chr8_KI270814v1_alt&quot;     &quot;chr8_KI270815v1_alt&quot;    
+[193] &quot;chr8_KI270816v1_alt&quot;     &quot;chr8_KI270817v1_alt&quot;    
+[195] &quot;chr8_KI270818v1_alt&quot;     &quot;chr8_KI270819v1_alt&quot;    
+[197] &quot;chr8_KI270820v1_alt&quot;     &quot;chr8_KI270821v1_alt&quot;    
+[199] &quot;chr8_KI270822v1_alt&quot;     &quot;chr8_KI270900v1_alt&quot;    
+[201] &quot;chr8_KI270901v1_alt&quot;     &quot;chr8_KI270926v1_alt&quot;    
+[203] &quot;chr8_KV880766v1_fix&quot;     &quot;chr8_KV880767v1_fix&quot;    
+[205] &quot;chr8_KZ208914v1_fix&quot;     &quot;chr8_KZ208915v1_fix&quot;    
+[207] &quot;chr8_KZ559107v1_alt&quot;     &quot;chr9_GL383539v1_alt&quot;    
+[209] &quot;chr9_GL383540v1_alt&quot;     &quot;chr9_GL383541v1_alt&quot;    
+[211] &quot;chr9_GL383542v1_alt&quot;     &quot;chr9_KI270717v1_random&quot; 
+[213] &quot;chr9_KI270718v1_random&quot;  &quot;chr9_KI270719v1_random&quot; 
+[215] &quot;chr9_KI270720v1_random&quot;  &quot;chr9_KI270823v1_alt&quot;    
+[217] &quot;chr9_KN196479v1_fix&quot;     &quot;chr9_KQ090018v1_alt&quot;    
+[219] &quot;chr9_KQ090019v1_alt&quot;     &quot;chr10_GL383545v1_alt&quot;   
+[221] &quot;chr10_GL383546v1_alt&quot;    &quot;chr10_KI270824v1_alt&quot;   
+[223] &quot;chr10_KI270825v1_alt&quot;    &quot;chr10_KN196480v1_fix&quot;   
+[225] &quot;chr10_KN538365v1_fix&quot;    &quot;chr10_KN538366v1_fix&quot;   
+[227] &quot;chr10_KN538367v1_fix&quot;    &quot;chr10_KQ090020v1_alt&quot;   
+[229] &quot;chr10_KQ090021v1_fix&quot;    &quot;chr11_GL383547v1_alt&quot;   
+[231] &quot;chr11_JH159136v1_alt&quot;    &quot;chr11_JH159137v1_alt&quot;   
+[233] &quot;chr11_KI270721v1_random&quot; &quot;chr11_KI270826v1_alt&quot;   
+[235] &quot;chr11_KI270827v1_alt&quot;    &quot;chr11_KI270829v1_alt&quot;   
+[237] &quot;chr11_KI270830v1_alt&quot;    &quot;chr11_KI270831v1_alt&quot;   
+[239] &quot;chr11_KI270832v1_alt&quot;    &quot;chr11_KI270902v1_alt&quot;   
+[241] &quot;chr11_KI270903v1_alt&quot;    &quot;chr11_KI270927v1_alt&quot;   
+[243] &quot;chr11_KN196481v1_fix&quot;    &quot;chr11_KN538368v1_alt&quot;   
+[245] &quot;chr11_KQ090022v1_fix&quot;    &quot;chr11_KQ759759v1_fix&quot;   
+[247] &quot;chr11_KV766195v1_fix&quot;    &quot;chr11_KZ559108v1_fix&quot;   
+[249] &quot;chr11_KZ559109v1_fix&quot;    &quot;chr11_KZ559110v1_alt&quot;   
+[251] &quot;chr11_KZ559111v1_alt&quot;    &quot;chr12_GL383549v1_alt&quot;   
+[253] &quot;chr12_GL383550v2_alt&quot;    &quot;chr12_GL383551v1_alt&quot;   
+[255] &quot;chr12_GL383552v1_alt&quot;    &quot;chr12_GL383553v2_alt&quot;   
+[257] &quot;chr12_GL877875v1_alt&quot;    &quot;chr12_GL877876v1_alt&quot;   
+[259] &quot;chr12_KI270833v1_alt&quot;    &quot;chr12_KI270834v1_alt&quot;   
+[261] &quot;chr12_KI270835v1_alt&quot;    &quot;chr12_KI270836v1_alt&quot;   
+[263] &quot;chr12_KI270837v1_alt&quot;    &quot;chr12_KI270904v1_alt&quot;   
+[265] &quot;chr12_KN196482v1_fix&quot;    &quot;chr12_KN538369v1_fix&quot;   
+[267] &quot;chr12_KN538370v1_fix&quot;    &quot;chr12_KQ090023v1_alt&quot;   
+[269] &quot;chr12_KQ759760v1_fix&quot;    &quot;chr12_KZ208916v1_fix&quot;   
+[271] &quot;chr12_KZ208917v1_fix&quot;    &quot;chr12_KZ208918v1_alt&quot;   
+[273] &quot;chr12_KZ559112v1_alt&quot;    &quot;chr13_KI270838v1_alt&quot;   
+[275] &quot;chr13_KI270839v1_alt&quot;    &quot;chr13_KI270840v1_alt&quot;   
+[277] &quot;chr13_KI270841v1_alt&quot;    &quot;chr13_KI270842v1_alt&quot;   
+[279] &quot;chr13_KI270843v1_alt&quot;    &quot;chr13_KN196483v1_fix&quot;   
+[281] &quot;chr13_KN538371v1_fix&quot;    &quot;chr13_KN538372v1_fix&quot;   
+[283] &quot;chr13_KN538373v1_fix&quot;    &quot;chr13_KQ090024v1_alt&quot;   
+[285] &quot;chr13_KQ090025v1_alt&quot;    &quot;chr14_GL000009v2_random&quot;
+[287] &quot;chr14_GL000194v1_random&quot; &quot;chr14_GL000225v1_random&quot;
+[289] &quot;chr14_KI270722v1_random&quot; &quot;chr14_KI270723v1_random&quot;
+[291] &quot;chr14_KI270724v1_random&quot; &quot;chr14_KI270725v1_random&quot;
+[293] &quot;chr14_KI270726v1_random&quot; &quot;chr14_KI270844v1_alt&quot;   
+[295] &quot;chr14_KI270845v1_alt&quot;    &quot;chr14_KI270846v1_alt&quot;   
+[297] &quot;chr14_KI270847v1_alt&quot;    &quot;chr14_KZ208919v1_alt&quot;   
+[299] &quot;chr14_KZ208920v1_fix&quot;    &quot;chr15_GL383554v1_alt&quot;   
+[301] &quot;chr15_GL383555v2_alt&quot;    &quot;chr15_KI270727v1_random&quot;
+[303] &quot;chr15_KI270848v1_alt&quot;    &quot;chr15_KI270849v1_alt&quot;   
+[305] &quot;chr15_KI270850v1_alt&quot;    &quot;chr15_KI270851v1_alt&quot;   
+[307] &quot;chr15_KI270852v1_alt&quot;    &quot;chr15_KI270905v1_alt&quot;   
+[309] &quot;chr15_KI270906v1_alt&quot;    &quot;chr15_KN538374v1_fix&quot;   
+[311] &quot;chr15_KQ031389v1_alt&quot;    &quot;chr16_GL383556v1_alt&quot;   
+[313] &quot;chr16_GL383557v1_alt&quot;    &quot;chr16_KI270728v1_random&quot;
+[315] &quot;chr16_KI270853v1_alt&quot;    &quot;chr16_KI270854v1_alt&quot;   
+[317] &quot;chr16_KI270855v1_alt&quot;    &quot;chr16_KI270856v1_alt&quot;   
+[319] &quot;chr16_KQ031390v1_alt&quot;    &quot;chr16_KQ090026v1_alt&quot;   
+[321] &quot;chr16_KQ090027v1_alt&quot;    &quot;chr16_KV880768v1_fix&quot;   
+[323] &quot;chr16_KZ208921v1_alt&quot;    &quot;chr16_KZ559113v1_fix&quot;   
+[325] &quot;chr17_GL000205v2_random&quot; &quot;chr17_GL000258v2_alt&quot;   
+[327] &quot;chr17_GL383563v3_alt&quot;    &quot;chr17_GL383564v2_alt&quot;   
+[329] &quot;chr17_GL383565v1_alt&quot;    &quot;chr17_GL383566v1_alt&quot;   
+[331] &quot;chr17_JH159146v1_alt&quot;    &quot;chr17_JH159147v1_alt&quot;   
+[333] &quot;chr17_JH159148v1_alt&quot;    &quot;chr17_KI270729v1_random&quot;
+[335] &quot;chr17_KI270730v1_random&quot; &quot;chr17_KI270857v1_alt&quot;   
+[337] &quot;chr17_KI270858v1_alt&quot;    &quot;chr17_KI270859v1_alt&quot;   
+[339] &quot;chr17_KI270860v1_alt&quot;    &quot;chr17_KI270861v1_alt&quot;   
+[341] &quot;chr17_KI270862v1_alt&quot;    &quot;chr17_KI270907v1_alt&quot;   
+[343] &quot;chr17_KI270908v1_alt&quot;    &quot;chr17_KI270909v1_alt&quot;   
+[345] &quot;chr17_KI270910v1_alt&quot;    &quot;chr17_KV575245v1_fix&quot;   
+[347] &quot;chr17_KV766196v1_fix&quot;    &quot;chr17_KV766197v1_alt&quot;   
+[349] &quot;chr17_KV766198v1_alt&quot;    &quot;chr17_KZ559114v1_alt&quot;   
+[351] &quot;chr18_GL383567v1_alt&quot;    &quot;chr18_GL383568v1_alt&quot;   
+[353] &quot;chr18_GL383569v1_alt&quot;    &quot;chr18_GL383570v1_alt&quot;   
+[355] &quot;chr18_GL383571v1_alt&quot;    &quot;chr18_GL383572v1_alt&quot;   
+[357] &quot;chr18_KI270863v1_alt&quot;    &quot;chr18_KI270864v1_alt&quot;   
+[359] &quot;chr18_KI270911v1_alt&quot;    &quot;chr18_KI270912v1_alt&quot;   
+[361] &quot;chr18_KQ090028v1_fix&quot;    &quot;chr18_KQ458385v1_alt&quot;   
+[363] &quot;chr18_KZ208922v1_fix&quot;    &quot;chr18_KZ559115v1_fix&quot;   
+[365] &quot;chr18_KZ559116v1_alt&quot;    &quot;chr19_GL000209v2_alt&quot;   
+[367] &quot;chr19_GL383573v1_alt&quot;    &quot;chr19_GL383574v1_alt&quot;   
+[369] &quot;chr19_GL383575v2_alt&quot;    &quot;chr19_GL383576v1_alt&quot;   
+[371] &quot;chr19_GL949746v1_alt&quot;    &quot;chr19_GL949747v2_alt&quot;   
+[373] &quot;chr19_GL949748v2_alt&quot;    &quot;chr19_GL949749v2_alt&quot;   
+[375] &quot;chr19_GL949750v2_alt&quot;    &quot;chr19_GL949751v2_alt&quot;   
+[377] &quot;chr19_GL949752v1_alt&quot;    &quot;chr19_GL949753v2_alt&quot;   
+[379] &quot;chr19_KI270865v1_alt&quot;    &quot;chr19_KI270866v1_alt&quot;   
+[381] &quot;chr19_KI270867v1_alt&quot;    &quot;chr19_KI270868v1_alt&quot;   
+[383] &quot;chr19_KI270882v1_alt&quot;    &quot;chr19_KI270883v1_alt&quot;   
+[385] &quot;chr19_KI270884v1_alt&quot;    &quot;chr19_KI270885v1_alt&quot;   
+[387] &quot;chr19_KI270886v1_alt&quot;    &quot;chr19_KI270887v1_alt&quot;   
+[389] &quot;chr19_KI270888v1_alt&quot;    &quot;chr19_KI270889v1_alt&quot;   
+[391] &quot;chr19_KI270890v1_alt&quot;    &quot;chr19_KI270891v1_alt&quot;   
+[393] &quot;chr19_KI270914v1_alt&quot;    &quot;chr19_KI270915v1_alt&quot;   
+[395] &quot;chr19_KI270916v1_alt&quot;    &quot;chr19_KI270917v1_alt&quot;   
+[397] &quot;chr19_KI270918v1_alt&quot;    &quot;chr19_KI270919v1_alt&quot;   
+[399] &quot;chr19_KI270920v1_alt&quot;    &quot;chr19_KI270921v1_alt&quot;   
+[401] &quot;chr19_KI270922v1_alt&quot;    &quot;chr19_KI270923v1_alt&quot;   
+[403] &quot;chr19_KI270929v1_alt&quot;    &quot;chr19_KI270930v1_alt&quot;   
+[405] &quot;chr19_KI270931v1_alt&quot;    &quot;chr19_KI270932v1_alt&quot;   
+[407] &quot;chr19_KI270933v1_alt&quot;    &quot;chr19_KI270938v1_alt&quot;   
+[409] &quot;chr19_KN196484v1_fix&quot;    &quot;chr19_KQ458386v1_fix&quot;   
+[411] &quot;chr19_KV575246v1_alt&quot;    &quot;chr19_KV575247v1_alt&quot;   
+[413] &quot;chr19_KV575248v1_alt&quot;    &quot;chr19_KV575249v1_alt&quot;   
+[415] &quot;chr19_KV575250v1_alt&quot;    &quot;chr19_KV575251v1_alt&quot;   
+[417] &quot;chr19_KV575252v1_alt&quot;    &quot;chr19_KV575253v1_alt&quot;   
+[419] &quot;chr19_KV575254v1_alt&quot;    &quot;chr19_KV575255v1_alt&quot;   
+[421] &quot;chr19_KV575256v1_alt&quot;    &quot;chr19_KV575257v1_alt&quot;   
+[423] &quot;chr19_KV575258v1_alt&quot;    &quot;chr19_KV575259v1_alt&quot;   
+[425] &quot;chr19_KV575260v1_alt&quot;    &quot;chr20_GL383577v2_alt&quot;   
+[427] &quot;chr20_KI270869v1_alt&quot;    &quot;chr20_KI270870v1_alt&quot;   
+[429] &quot;chr20_KI270871v1_alt&quot;    &quot;chr21_GL383578v2_alt&quot;   
+[431] &quot;chr21_GL383579v2_alt&quot;    &quot;chr21_GL383580v2_alt&quot;   
+[433] &quot;chr21_GL383581v2_alt&quot;    &quot;chr21_KI270872v1_alt&quot;   
+[435] &quot;chr21_KI270873v1_alt&quot;    &quot;chr21_KI270874v1_alt&quot;   
+[437] &quot;chr22_GL383582v2_alt&quot;    &quot;chr22_GL383583v2_alt&quot;   
+[439] &quot;chr22_KB663609v1_alt&quot;    &quot;chr22_KI270731v1_random&quot;
+[441] &quot;chr22_KI270732v1_random&quot; &quot;chr22_KI270733v1_random&quot;
+[443] &quot;chr22_KI270734v1_random&quot; &quot;chr22_KI270735v1_random&quot;
+[445] &quot;chr22_KI270736v1_random&quot; &quot;chr22_KI270737v1_random&quot;
+[447] &quot;chr22_KI270738v1_random&quot; &quot;chr22_KI270739v1_random&quot;
+[449] &quot;chr22_KI270875v1_alt&quot;    &quot;chr22_KI270876v1_alt&quot;   
+[451] &quot;chr22_KI270877v1_alt&quot;    &quot;chr22_KI270878v1_alt&quot;   
+[453] &quot;chr22_KI270879v1_alt&quot;    &quot;chr22_KI270928v1_alt&quot;   
+[455] &quot;chr22_KN196485v1_alt&quot;    &quot;chr22_KN196486v1_alt&quot;   
+[457] &quot;chr22_KQ458387v1_alt&quot;    &quot;chr22_KQ458388v1_alt&quot;   
+[459] &quot;chr22_KQ759761v1_alt&quot;    &quot;chr22_KQ759762v1_fix&quot;   
+[461] &quot;chrX_KI270880v1_alt&quot;     &quot;chrX_KI270881v1_alt&quot;    
+[463] &quot;chrX_KI270913v1_alt&quot;     &quot;chrX_KV766199v1_alt&quot;    
+[465] &quot;chrY_KI270740v1_random&quot;  &quot;chrY_KN196487v1_fix&quot;    
+[467] &quot;chrY_KZ208923v1_fix&quot;     &quot;chrY_KZ208924v1_fix&quot;    
+[469] &quot;chrUn_GL000195v1&quot;        &quot;chrUn_GL000213v1&quot;       
+[471] &quot;chrUn_GL000214v1&quot;        &quot;chrUn_GL000216v2&quot;       
+[473] &quot;chrUn_GL000218v1&quot;        &quot;chrUn_GL000219v1&quot;       
+[475] &quot;chrUn_GL000220v1&quot;        &quot;chrUn_GL000224v1&quot;       
+[477] &quot;chrUn_GL000226v1&quot;        &quot;chrUn_KI270302v1&quot;       
+[479] &quot;chrUn_KI270303v1&quot;        &quot;chrUn_KI270304v1&quot;       
+[481] &quot;chrUn_KI270305v1&quot;        &quot;chrUn_KI270310v1&quot;       
+[483] &quot;chrUn_KI270311v1&quot;        &quot;chrUn_KI270312v1&quot;       
+[485] &quot;chrUn_KI270315v1&quot;        &quot;chrUn_KI270316v1&quot;       
+[487] &quot;chrUn_KI270317v1&quot;        &quot;chrUn_KI270320v1&quot;       
+[489] &quot;chrUn_KI270322v1&quot;        &quot;chrUn_KI270329v1&quot;       
+[491] &quot;chrUn_KI270330v1&quot;        &quot;chrUn_KI270333v1&quot;       
+[493] &quot;chrUn_KI270334v1&quot;        &quot;chrUn_KI270335v1&quot;       
+[495] &quot;chrUn_KI270336v1&quot;        &quot;chrUn_KI270337v1&quot;       
+[497] &quot;chrUn_KI270338v1&quot;        &quot;chrUn_KI270340v1&quot;       
+[499] &quot;chrUn_KI270362v1&quot;        &quot;chrUn_KI270363v1&quot;       
+[501] &quot;chrUn_KI270364v1&quot;        &quot;chrUn_KI270366v1&quot;       
+[503] &quot;chrUn_KI270371v1&quot;        &quot;chrUn_KI270372v1&quot;       
+[505] &quot;chrUn_KI270373v1&quot;        &quot;chrUn_KI270374v1&quot;       
+[507] &quot;chrUn_KI270375v1&quot;        &quot;chrUn_KI270376v1&quot;       
+[509] &quot;chrUn_KI270378v1&quot;        &quot;chrUn_KI270379v1&quot;       
+[511] &quot;chrUn_KI270381v1&quot;        &quot;chrUn_KI270382v1&quot;       
+[513] &quot;chrUn_KI270383v1&quot;        &quot;chrUn_KI270384v1&quot;       
+[515] &quot;chrUn_KI270385v1&quot;        &quot;chrUn_KI270386v1&quot;       
+[517] &quot;chrUn_KI270387v1&quot;        &quot;chrUn_KI270388v1&quot;       
+[519] &quot;chrUn_KI270389v1&quot;        &quot;chrUn_KI270390v1&quot;       
+[521] &quot;chrUn_KI270391v1&quot;        &quot;chrUn_KI270392v1&quot;       
+[523] &quot;chrUn_KI270393v1&quot;        &quot;chrUn_KI270394v1&quot;       
+[525] &quot;chrUn_KI270395v1&quot;        &quot;chrUn_KI270396v1&quot;       
+[527] &quot;chrUn_KI270411v1&quot;        &quot;chrUn_KI270412v1&quot;       
+[529] &quot;chrUn_KI270414v1&quot;        &quot;chrUn_KI270417v1&quot;       
+[531] &quot;chrUn_KI270418v1&quot;        &quot;chrUn_KI270419v1&quot;       
+[533] &quot;chrUn_KI270420v1&quot;        &quot;chrUn_KI270422v1&quot;       
+[535] &quot;chrUn_KI270423v1&quot;        &quot;chrUn_KI270424v1&quot;       
+[537] &quot;chrUn_KI270425v1&quot;        &quot;chrUn_KI270429v1&quot;       
+[539] &quot;chrUn_KI270435v1&quot;        &quot;chrUn_KI270438v1&quot;       
+[541] &quot;chrUn_KI270442v1&quot;        &quot;chrUn_KI270448v1&quot;       
+[543] &quot;chrUn_KI270465v1&quot;        &quot;chrUn_KI270466v1&quot;       
+[545] &quot;chrUn_KI270467v1&quot;        &quot;chrUn_KI270468v1&quot;       
+[547] &quot;chrUn_KI270507v1&quot;        &quot;chrUn_KI270508v1&quot;       
+[549] &quot;chrUn_KI270509v1&quot;        &quot;chrUn_KI270510v1&quot;       
+[551] &quot;chrUn_KI270511v1&quot;        &quot;chrUn_KI270512v1&quot;       
+[553] &quot;chrUn_KI270515v1&quot;        &quot;chrUn_KI270516v1&quot;       
+[555] &quot;chrUn_KI270517v1&quot;        &quot;chrUn_KI270518v1&quot;       
+[557] &quot;chrUn_KI270519v1&quot;        &quot;chrUn_KI270521v1&quot;       
+[559] &quot;chrUn_KI270522v1&quot;        &quot;chrUn_KI270528v1&quot;       
+[561] &quot;chrUn_KI270529v1&quot;        &quot;chrUn_KI270530v1&quot;       
+[563] &quot;chrUn_KI270538v1&quot;        &quot;chrUn_KI270539v1&quot;       
+[565] &quot;chrUn_KI270544v1&quot;        &quot;chrUn_KI270548v1&quot;       
+[567] &quot;chrUn_KI270579v1&quot;        &quot;chrUn_KI270580v1&quot;       
+[569] &quot;chrUn_KI270581v1&quot;        &quot;chrUn_KI270582v1&quot;       
+[571] &quot;chrUn_KI270583v1&quot;        &quot;chrUn_KI270584v1&quot;       
+[573] &quot;chrUn_KI270587v1&quot;        &quot;chrUn_KI270588v1&quot;       
+[575] &quot;chrUn_KI270589v1&quot;        &quot;chrUn_KI270590v1&quot;       
+[577] &quot;chrUn_KI270591v1&quot;        &quot;chrUn_KI270593v1&quot;       
+[579] &quot;chrUn_KI270741v1&quot;        &quot;chrUn_KI270742v1&quot;       
+[581] &quot;chrUn_KI270743v1&quot;        &quot;chrUn_KI270744v1&quot;       
+[583] &quot;chrUn_KI270745v1&quot;        &quot;chrUn_KI270746v1&quot;       
+[585] &quot;chrUn_KI270747v1&quot;        &quot;chrUn_KI270748v1&quot;       
+[587] &quot;chrUn_KI270749v1&quot;        &quot;chrUn_KI270750v1&quot;       
+[589] &quot;chrUn_KI270751v1&quot;        &quot;chrUn_KI270752v1&quot;       
+[591] &quot;chrUn_KI270753v1&quot;        &quot;chrUn_KI270754v1&quot;       
+[593] &quot;chrUn_KI270755v1&quot;        &quot;chrUn_KI270756v1&quot;       
+[595] &quot;chrUn_KI270757v1&quot;       </code></pre>
+<pre><code> [1] &quot;chr1&quot;  &quot;chr2&quot;  &quot;chr3&quot;  &quot;chr4&quot;  &quot;chr5&quot;  &quot;chr6&quot;  &quot;chr7&quot;  &quot;chr8&quot;  &quot;chr9&quot; 
+[10] &quot;chr10&quot; &quot;chr11&quot; &quot;chr12&quot; &quot;chr13&quot; &quot;chr14&quot; &quot;chr15&quot; &quot;chr16&quot; &quot;chr17&quot; &quot;chr18&quot;
+[19] &quot;chr19&quot; &quot;chr20&quot; &quot;chr21&quot; &quot;chr22&quot; &quot;chrX&quot;  &quot;chrY&quot; </code></pre>
+<pre><code>GRanges object with 4808 ranges and 14 metadata columns:
+         seqnames            ranges strand |     logFC    logCPM        LR
+            &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+  339451     chr1     960584-965719      + |  1.444466   1.13402  12.01408
+  375790     chr1   1020120-1056118      + |  1.428524   4.58160  16.37063
+   54991     chr1   1081818-1116361      - |  1.179575   2.41598  11.76935
+   51150     chr1   1216909-1232067      - |  0.452477   5.35276   7.51441
+    6339     chr1   1280436-1292029      + |  1.051756   2.24617   8.46603
+     ...      ...               ...    ... .       ...       ...       ...
+    8888    chr21 46235133-46286297      - |  0.658232   6.40840   18.0945
+   54058    chr21 46300181-46323875      - |  1.744116   1.84115   24.2072
+    5116    chr21 46324141-46445769      + |  0.772067   6.81541   25.6821
+   23181    chr21 46458891-46570015      + |  0.921378   6.25343   33.9688
+    3275    chr21 46635595-46665124      + |  0.485232   6.94981   11.5717
+              PValue         FDR         ENSEMBL    ENTREZID      SYMBOL
+           &lt;numeric&gt;   &lt;numeric&gt;     &lt;character&gt; &lt;character&gt; &lt;character&gt;
+  339451 5.28001e-04 0.003696271 ENSG00000187961      339451      KLHL17
+  375790 5.20862e-05 0.000684321 ENSG00000188157      375790        AGRN
+   54991 6.02139e-04 0.004066014 ENSG00000131591       54991    C1orf159
+   51150 6.12073e-03 0.023149708 ENSG00000078808       51150        SDF4
+    6339 3.61840e-03 0.015531915 ENSG00000162572        6339      SCNN1D
+     ...         ...         ...             ...         ...         ...
+    8888 2.10209e-05 3.49228e-04 ENSG00000160294        8888      MCM3AP
+   54058 8.65097e-07 3.45406e-05 ENSG00000160298       54058    C21orf58
+    5116 4.02551e-07 1.96724e-05 ENSG00000160299        5116        PCNT
+   23181 5.60024e-09 7.80794e-07 ENSG00000160305       23181       DIP2A
+    3275 6.69616e-04 4.42441e-03 ENSG00000160310        3275       PRMT2
+                       GENENAME         CHR     UNIPROT       ALIAS     score
+                    &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;numeric&gt;
+  339451 kelch like family me..           1      Q6TDP4          AF   2.43224
+  375790                  agrin           1      O00468       AGRIN   3.16474
+   54991 chromosome 1 open re..           1      Q96HA4    C1orf159   2.39083
+   51150 stromal cell derived..           1  A0A024R084       Cab45   1.63545
+    6339 sodium channel epith..           1      A6NNF7       ENaCd   1.80877
+     ...                    ...         ...         ...         ...       ...
+    8888 minichromosome maint..          21      O60318        GANP   3.45689
+   54058 chromosome 21 open r..          21      P58505    C21orf58   4.46167
+    5116            pericentrin          21      O95613         KEN   4.70614
+   23181 disco interacting pr..          21      Q14689   C21orf106   6.10746
+    3275 protein arginine met..          21      P55345     HRMT1L1   2.35414
+             itemRgb
+         &lt;character&gt;
+  339451     #AA0055
+  375790     #AA0055
+   54991     #8D0071
+   51150     #71008D
+    6339     #8D0071
+     ...         ...
+    8888     #8D0071
+   54058     #AA0055
+    5116     #8D0071
+   23181     #8D0071
+    3275     #71008D
+  -------
+  seqinfo: 24 sequences from hg38 genome</code></pre>
+<pre><code>using coord:genome to parse x scale</code></pre>
+<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
+replace the existing scale.</code></pre>
+<pre><code>Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
+replace the existing scale.</code></pre>
+<p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-12-2.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1218,6 +1481,8 @@ loaded via a namespace (and not attached):
 [217] jpeg_0.1-9                  MatrixGenerics_1.4.3       
 [219] ggraph_2.0.5                pkgconfig_2.0.3            
 [221] knitr_1.37                 </code></pre>
+</div>
+</div>
 </div>
 </div>
 

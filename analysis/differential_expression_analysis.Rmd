@@ -23,7 +23,6 @@ library(ggrepel)
 library(ggplot2)
 library(DBI)
 library(org.Hs.eg.db)
-library(dplyr)
 library("pcaExplorer")
 library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 library(rtracklayer)
@@ -37,13 +36,18 @@ library(forcats)
 library(pathview)
 library(ComplexHeatmap)
 library(circlize)
+library(kableExtra)
 ```
 
-### Read the raw count matrix for hippocampus samples
+#### Read the raw count matrix for hippocampus samples
 ```{r, echo = FALSE, warning=FALSE}
 count_human_total_hippocampus_coding<- read.table(file= "data/raw_counts_human_hippo_matrix_coding.txt", header=T, row.names=1)
 head(count_human_total_hippocampus_coding)
 meta_counts_human_total_hippocampus_coding<-data.frame(row.names = colnames(count_human_total_hippocampus_coding),condition_human_total_hippocampus_coding=c("Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS","DS","DS","DS"))
+```
+
+
+```{r, echo = FALSE, warning=FALSE,include=FALSE}
 group_human_total_hippocampus_coding<-relevel(factor(meta_counts_human_total_hippocampus_coding$condition_human_total_hippocampus_coding),ref="Cont")
 group_human_total_hippocampus_coding
 ```
@@ -67,10 +71,14 @@ heatmap(cor(cpm_log_human_total_hippocampus_coding))
 ```
 
 #### Perform PCA
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = FALSE, warning=FALSE,include=FALSE}
 sample_hippo<- read.xlsx("data/human_hippo_samplesheet.xlsx", sheet=1)
 row.names(sample_hippo)<-sample_hippo$SampleName
 all(colnames(cpm_log_human_total_hippocampus_coding) == rownames(sample_hippo))
+```
+
+
+```{r, echo = FALSE, warning=FALSE}
 p <- PCAtools::pca(cpm_log_human_total_hippocampus_coding, metadata = sample_hippo, removeVar = 0.1)
 PCAtools::screeplot(p)
 PCAtools::biplot(p)
@@ -83,6 +91,10 @@ PCAtools::biplot(p)
 count_hth_filt_coding2<-count_human_total_hippocampus_coding[,-c(6,7,8,9,10,13,17,18)]
 head(count_hth_filt_coding2)
 meta_counts_hth_filt_coding2<-data.frame(row.names = colnames(count_hth_filt_coding2),condition_hth_filt_coding2=c("Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS"))
+```
+
+
+```{r, echo = FALSE, warning=FALSE,include=FALSE}
 group_hth_filt_coding2<-relevel(factor(meta_counts_hth_filt_coding2$condition_hth_filt_coding2),ref="Cont")
 group_hth_filt_coding2
 design_hth_filt_coding2 = model.matrix(~group_hth_filt_coding2)
@@ -92,10 +104,14 @@ heatmap(cor(cpm_log_hth_filt_coding2))
 ```
 
 ####Perform PCA on the filtered samples
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = FALSE, warning=FALSE,include=FALSE}
 sample_hippo<- read.xlsx("data/human_hippo_samplesheet.xlsx", sheet=2)
 row.names(sample_hippo)<-sample_hippo$SampleName
 all(colnames(cpm_log_hth_filt_coding2) == rownames(sample_hippo))
+```
+
+
+```{r, echo = FALSE, warning=FALSE}
 p <- PCAtools::pca(cpm_log_hth_filt_coding2, metadata = sample_hippo, removeVar = 0.1)
 PCAtools::screeplot(p)
 PCAtools::biplot(p)
@@ -113,11 +129,11 @@ table(keep_hth_filt_coding2)
 y_hth_filt_coding2<-DGEList(count_hth_filt_coding2,group = group_hth_filt_coding2)
 y_hth_filt_coding2 <- y_hth_filt_coding2[keep_hth_filt_coding2, , keep.lib.sizes=FALSE]
 y_hth_filt_coding2 <- calcNormFactors(y_hth_filt_coding2)
+y_hth_filt_coding2$samples
 ```
 
 #### Estimate differential expression using GLM
 ```{r, echo = FALSE, warning=FALSE}
-y_hth_filt_coding2$samples
 y_hth_filt_coding2 <- estimateGLMRobustDisp(y_hth_filt_coding2,design_hth_filt_coding2, verbose = TRUE)
 fit_hth_filt_coding2 <- glmFit(y_hth_filt_coding2, design_hth_filt_coding2)
 lrt_hth_filt_coding2<-glmLRT(fit_hth_filt_coding2,coef = 2)
@@ -129,12 +145,12 @@ de_hth_filt_coding2 <- decideTestsDGE(lrt_hth_filt_coding2, adjust.method="BH", 
 summary(de_hth_filt_coding2)
 ```
 
-#### Here, we annotated the data from the previous differential expression analysis using ENSEMBL information for each gene and mapped the DEGs onto their chromosomal location.
+
+#### Here, we annotated the data from the previous using ENSEMBL information for each gene and mapped the DEGs onto their chromosomal location.
 
 ```{r, echo = FALSE, warning=FALSE}
 OrgDb <- org.Hs.eg.db
 results_edgeR_hth_filt_coding2<- topTags(lrt_hth_filt_coding2, n = nrow(count_hth_filt_coding2), sort.by = "none")
-head(row.names(results_edgeR_hth_filt_coding2))
 k<-row.names(results_edgeR_hth_filt_coding2)
 ann_hth_filt_coding2<-AnnotationDbi::select(org.Hs.eg.db,keys=k,keytype = "ENSEMBL",columns=c("ENTREZID","SYMBOL","GENENAME","CHR","UNIPROT","ALIAS","GENENAME"))
 idx<-match(row.names(results_edgeR_hth_filt_coding2),ann_hth_filt_coding2$ENSEMBL)
@@ -146,14 +162,12 @@ exo <- exonsBy(tx,"gene")
 exoRanges <- unlist(range(exo))
 sigRegions <- exoRanges[na.omit(match(sigGenes$ENTREZID, names(exoRanges)))]
 mcols(sigRegions) <- sigGenes[match(names(sigRegions), sigGenes$ENTREZID),]
-sigRegions
 sigRegions[order(sigRegions$LR,decreasing = TRUE)]
-seqlevels(sigRegions)
 sigRegions <- keepSeqlevels(sigRegions, value = c("chr1","chr2","chr3","chr4","chr5","chr6","chr7",
 "chr8","chr9","chr10","chr11","chr12","chr13","chr14",
 "chr15","chr16","chr17","chr18","chr19","chr20",
 "chr21","chr22","chrX","chrY"),pruning.mode="tidy")
-seqlevels(sigRegions)
+#seqlevels(sigRegions)
 Score <- -log10(sigRegions$FDR)
 rbPal <-colorRampPalette(c("blue", "red"))
 logfc <- pmax(sigRegions$logFC, -5)
@@ -161,8 +175,7 @@ logfc <- pmin(logfc , 5)
 Col <- rbPal(10)[as.numeric(cut(logfc, breaks = 10))]
 mcols(sigRegions)$score <- Score
 mcols(sigRegions)$itemRgb <- Col
-sigRegions
-export(sigRegions , con = "topHitshuman_hippo.bed")
+#export(sigRegions , con = "topHitshuman_hippo.bed")
 top200 <- sigRegions[order(sigRegions$LR,decreasing = TRUE)]
 plotGrandLinear(top200 , aes(y = logFC))
 mcols(top200)$UpRegulated <- mcols(top200)$logFC > 0
@@ -170,5 +183,13 @@ mcols(top200)$DownRegulated <- mcols(top200)$logFC < 0
 autoplot(top200,layout="karyogram",aes(color=DownRegulated,fill=DownRegulated))
 ```
 
-
-
+#### Results from differential expression analysis
+```{r, echo = FALSE,}
+results_hippo_RNA<-as_tibble(results_rna_annotated_hth_filt_coding2)
+row.names(results_hippo_RNA)<-results_hippo_RNA$ENSEMBL
+kbl(results_hippo_RNA)
+results_hippo_RNA%>%
+  kbl() %>%
+  kable_styling()
+saveRDS(results_hippo_RNA, file = "results_hippo_RNA.rds")
+```

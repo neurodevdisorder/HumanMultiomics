@@ -1,0 +1,50 @@
+---
+title: "KEGG"
+author: "neurodevdisorder"
+date: "2022-07-15"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+KEGG pathway analysis
+
+```{r setup, message = FALSE, warning=FALSE,include=FALSE}
+library(ggplot2)
+library(openxlsx)
+library(ggrepel)
+library(ggplot2)
+library(dplyr)
+library(clusterProfiler)
+library(enrichplot)
+library(ggridges)
+library(karyoploteR)
+library(tidyverse)
+library(forcats)
+library(pathview)
+library(org.Hs.eg.db)
+
+```
+
+```{r,echo=FALSE,include=FALSE}
+results_hippo_RNA<- readRDS("output/results_hippo_RNA.rds")
+results_hippo_RNA<-results_hippo_RNA[order(-results_hippo_RNA$logFC),]
+head(results_hippo_RNA)
+geneList4<-na.omit(results_hippo_RNA)
+geneList5<-geneList4 %>% distinct(geneList4$ENTREZID,.keep_all = TRUE)
+geneList2 <- as.vector(geneList5$logFC)
+names(geneList2) <- geneList5$ENTREZID
+de <- names(geneList2)[abs(geneList2) > 0.5]
+length(de)
+OrgDb <- org.Hs.eg.db
+kk<- gseKEGG(geneList2,nPerm=10000,pvalueCutoff = 0.05)
+```
+
+
+```{r,echo=FALSE}
+p8 <- ridgeplot(kk, showCategory = 100,fill = "p.adjust",core_enrichment = TRUE)
+p8
+```
+

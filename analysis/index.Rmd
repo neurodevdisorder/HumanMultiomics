@@ -20,5 +20,5 @@ Please feel free to explore and share. Here are some useful links for the final 
 ## Total RNA sequencing
 
 * Perform differential expression analysis
-  * [Hippocampus] (differential_expression_analysis.html)
+  * [Hippocampus](differential_expression_analysis.html)
   * Cortex

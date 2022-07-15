@@ -8,4 +8,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+This website contains the analysis and the data from the Total RNA sequencing, small RNA sequencing, and protoemics performed on post-mortem hiipocampus and cortex obtained form Down syndrome and control individuals.

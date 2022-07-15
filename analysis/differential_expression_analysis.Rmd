@@ -39,7 +39,7 @@ library(ComplexHeatmap)
 library(circlize)
 ```
 
-```{r}
+```{r, echo = FALSE}
 #read the raw count matrix for hippocampus samples
 count_human_total_hippocampus_coding<- read.table(file= "data/raw_counts_human_hippo_matrix_coding.txt", header=T, row.names=1)
 head(count_human_total_hippocampus_coding)

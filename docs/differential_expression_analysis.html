@@ -472,16 +472,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong155f31d"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 155f31d </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge1a04c1"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> e1a04c1 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrong155f31d" class="panel-collapse collapse">
+<div id="strongRepositoryversionstronge1a04c1" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version 155f31d. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version e1a04c1. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -538,6 +538,40 @@ Message
 Rmd
 </td>
 <td>
+e1a04c1
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+<td>
+Differential expression analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e6b258c
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 155f31d
 </td>
 <td>
@@ -560,9 +594,6 @@ Differential expression analysis
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>This is the differential expression analysis from the total RNA sequencing experiment performed on postmortem hippocampus and cortex obtained from Down syndrome and control individuals.</p>
-<pre class="r"><code>#read the raw count matrix for hippocampus samples
-count_human_total_hippocampus_coding&lt;- read.table(file= &quot;data/raw_counts_human_hippo_matrix_coding.txt&quot;, header=T, row.names=1)
-head(count_human_total_hippocampus_coding)</code></pre>
 <pre><code>                 C1  C2   C3   C4  C5  C6   C7   C8  C9 C10 C11  Ds1 Ds2 Ds3
 ENSG00000186092   0   0    0    0   0   0    0    0   0   0   0    0   0   0
 ENSG00000284733   0   0    0    0   0   0    0    0   0   0   0    0   0   0
@@ -577,39 +608,127 @@ ENSG00000284662    0   0   0   0   0    0
 ENSG00000187634   46  47  21  41  26   22
 ENSG00000188976 1051 798 755 570 887 1260
 ENSG00000187961   95  98  82  47  32  100</code></pre>
-<pre class="r"><code>meta_counts_human_total_hippocampus_coding&lt;-data.frame(row.names = colnames(count_human_total_hippocampus_coding),condition_human_total_hippocampus_coding=c(&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;))
-group_human_total_hippocampus_coding&lt;-relevel(factor(meta_counts_human_total_hippocampus_coding$condition_human_total_hippocampus_coding),ref=&quot;Cont&quot;)
-group_human_total_hippocampus_coding</code></pre>
 <pre><code> [1] Cont Cont Cont Cont Cont Cont Cont Cont Cont Cont Cont DS   DS   DS   DS  
 [16] DS   DS   DS   DS   DS  
 Levels: Cont DS</code></pre>
-<pre class="r"><code>#design the model for the differential expression
-design_human_total_hippocampus_coding = model.matrix(~group_human_total_hippocampus_coding)
-y_human_total_hippocampus_coding&lt;-DGEList(count_human_total_hippocampus_coding,group = group_human_total_hippocampus_coding)
-
-#calculate counts per million in log
-cpm_log_human_total_hippocampus_coding&lt;-cpm(y_human_total_hippocampus_coding,log=TRUE)
-
-#visualize the log cpm as a heatmap
-heatmap(cor(cpm_log_human_total_hippocampus_coding))</code></pre>
 <p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#perform PCA
-sample_hippo&lt;- read.xlsx(&quot;data/human_hippo_samplesheet.xlsx&quot;, sheet=1)
-row.names(sample_hippo)&lt;-sample_hippo$SampleName
-all(colnames(cpm_log_human_total_hippocampus_coding) == rownames(sample_hippo))</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
+Past versions of unnamed-chunk-1-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+e6b258c
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] TRUE</code></pre>
-<pre class="r"><code>p &lt;- PCAtools::pca(cpm_log_human_total_hippocampus_coding, metadata = sample_hippo, removeVar = 0.1)</code></pre>
 <pre><code>-- removing the lower 10% of variables based on variance</code></pre>
-<pre class="r"><code>PCAtools::screeplot(p)</code></pre>
 <pre><code>Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
 <pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>PCAtools::biplot(p)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
+Past versions of unnamed-chunk-1-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+e6b258c
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#Looking at the heatmap, PCA and RIN values, remove the following samples:
-#C6,C7,C8,C9,C10,Ds2,Ds6,Ds7
-count_hth_filt_coding2&lt;-count_human_total_hippocampus_coding[,-c(6,7,8,9,10,13,17,18)]
-head(count_hth_filt_coding2)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-3">
+Past versions of unnamed-chunk-1-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+e6b258c
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>                 C1  C2   C3   C4  C5 C11  Ds1 Ds3  Ds4 Ds5 Ds8  Ds9
 ENSG00000186092   0   0    0    0   0   0    0   0    0   0   0    0
 ENSG00000284733   0   0    0    0   0   0    0   0    0   0   0    0
@@ -617,37 +736,127 @@ ENSG00000284662   0   0    0    0   0   0    0   0    0   0   0    0
 ENSG00000187634   9   9   36   40   8  12   26  29   46  47  26   22
 ENSG00000188976 496 624 1482 1417 558 799 1313 629 1051 798 887 1260
 ENSG00000187961  13  20   89   66  12  25  105  45   95  98  32  100</code></pre>
-<pre class="r"><code>meta_counts_hth_filt_coding2&lt;-data.frame(row.names = colnames(count_hth_filt_coding2),condition_hth_filt_coding2=c(&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;Cont&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;,&quot;DS&quot;))
-group_hth_filt_coding2&lt;-relevel(factor(meta_counts_hth_filt_coding2$condition_hth_filt_coding2),ref=&quot;Cont&quot;)
-group_hth_filt_coding2</code></pre>
 <pre><code> [1] Cont Cont Cont Cont Cont Cont DS   DS   DS   DS   DS   DS  
 Levels: Cont DS</code></pre>
-<pre class="r"><code>design_hth_filt_coding2 = model.matrix(~group_hth_filt_coding2)
-y_hth_filt_coding2&lt;-DGEList(count_hth_filt_coding2,group = group_hth_filt_coding2)
-cpm_log_hth_filt_coding2&lt;-cpm(y_hth_filt_coding2,log=TRUE)
-heatmap(cor(cpm_log_hth_filt_coding2))</code></pre>
 <p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-4.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#perform PCA
-sample_hippo&lt;- read.xlsx(&quot;data/human_hippo_samplesheet.xlsx&quot;, sheet=2)
-row.names(sample_hippo)&lt;-sample_hippo$SampleName
-all(colnames(cpm_log_hth_filt_coding2) == rownames(sample_hippo))</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-4">
+Past versions of unnamed-chunk-1-4.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+e6b258c
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] TRUE</code></pre>
-<pre class="r"><code>p &lt;- PCAtools::pca(cpm_log_hth_filt_coding2, metadata = sample_hippo, removeVar = 0.1)</code></pre>
 <pre><code>-- removing the lower 10% of variables based on variance</code></pre>
-<pre class="r"><code>PCAtools::screeplot(p)</code></pre>
 <p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-5.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>PCAtools::biplot(p)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-5">
+Past versions of unnamed-chunk-1-5.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+e6b258c
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/differential_expression_analysis.Rmd/unnamed-chunk-1-6.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>cpm_y_hth_filt_coding2&lt;-cpm(y_hth_filt_coding2)
-keep_hth_filt_coding2&lt;-rowSums((cpm_y_hth_filt_coding2)&gt;1)&gt;5
-table(keep_hth_filt_coding2)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-6">
+Past versions of unnamed-chunk-1-6.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+e6b258c
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-07-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>keep_hth_filt_coding2
 FALSE  TRUE 
  5747 14221 </code></pre>
-<pre class="r"><code>y_hth_filt_coding2&lt;-DGEList(count_hth_filt_coding2,group = group_hth_filt_coding2)
-y_hth_filt_coding2 &lt;- y_hth_filt_coding2[keep_hth_filt_coding2, , keep.lib.sizes=FALSE]
-y_hth_filt_coding2 &lt;- calcNormFactors(y_hth_filt_coding2)
-y_hth_filt_coding2$samples</code></pre>
 <pre><code>    group lib.size norm.factors
 C1   Cont 26747264    0.9014953
 C2   Cont 28753065    0.9295325
@@ -661,7 +870,6 @@ Ds4    DS 27713628    1.0497314
 Ds5    DS 25307466    1.1031263
 Ds8    DS 26297451    0.9796220
 Ds9    DS 24491826    1.0163664</code></pre>
-<pre class="r"><code>y_hth_filt_coding2 &lt;- estimateGLMRobustDisp(y_hth_filt_coding2,design_hth_filt_coding2, verbose = TRUE)</code></pre>
 <pre><code>Iteration 1: Re-fitting GLM.</code></pre>
 <pre><code>Re-estimating trended dispersion.</code></pre>
 <pre><code>Re-estimating tagwise dispersion.</code></pre>
@@ -675,10 +883,6 @@ Iteration 5: Re-fitting GLM. Re-estimating trended dispersion.
 Re-estimating tagwise dispersion.
 Iteration 6: Re-fitting GLM. Re-estimating trended dispersion.
 Re-estimating tagwise dispersion.</code></pre>
-<pre class="r"><code>fit_hth_filt_coding2 &lt;- glmFit(y_hth_filt_coding2, design_hth_filt_coding2)
-lrt_hth_filt_coding2&lt;-glmLRT(fit_hth_filt_coding2,coef = 2)
-de_hth_filt_coding2 &lt;- decideTestsDGE(lrt_hth_filt_coding2, adjust.method=&quot;BH&quot;, p.value = 0.05)
-summary(de_hth_filt_coding2)</code></pre>
 <pre><code>       group_hth_filt_coding2DS
 Down                       2205
 NotSig                     9394

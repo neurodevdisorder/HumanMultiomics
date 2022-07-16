@@ -1,0 +1,105 @@
+---
+title: "GEDD"
+author: "neurodevdisorder"
+date: "2022-07-15"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Genome wide dysregulation domains
+
+```{r setup, message = FALSE, warning=FALSE,include=FALSE}
+library(edgeR)
+library(openxlsx)
+library(ggrepel)
+library(ggplot2)
+library(DBI)
+library(org.Hs.eg.db)
+library(dplyr)
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+library(rtracklayer)
+library(ggbio)
+library(ggridges)
+library(karyoploteR)
+OrgDb <- org.Hs.eg.db
+library(tidyverse)
+library(rsample)
+library(magrittr)
+```
+
+```{r,echo=FALSE,include=FALSE, warning=FALSE}
+results_hippo_RNA<- readRDS("output/results_hippo_RNA.rds")
+sigGenes <- results_hippo_RNA
+tx<-TxDb.Hsapiens.UCSC.hg38.knownGene
+exo <- exonsBy(tx,"gene")
+exoRanges <- unlist(range(exo))
+sigRegions <- exoRanges[na.omit(match(sigGenes$ENTREZID, names(exoRanges)))]
+mcols(sigRegions) <- sigGenes[match(names(sigRegions), sigGenes$ENTREZID),]
+sigRegions
+sigRegions[order(sigRegions$LR,decreasing = TRUE)]
+filtered.sigRegions <- sigRegions[!is.na(sigRegions$FDR)]
+log.pval <- -log10(filtered.sigRegions$FDR)
+mcols(filtered.sigRegions)$log.pval <- log.pval
+filtered.sigRegions
+range(filtered.sigRegions$logFC)
+fc.ymax <- ceiling(max(abs(range(filtered.sigRegions$logFC))))
+fc.ymin <- -fc.ymax
+col.over <- "#DB5256"
+col.under <- "#219EBC"
+col.non <- "#95A3A6"
+#sign.col <- rep(col.over, length(filtered.sigRegions$FDR<0.05))
+#sign.col[filtered.sigRegions$FDR>=0.05] <- col.under
+sign.col <- rep(col.over, length(filtered.sigRegions$logFC>0.3 & filtered.sigRegions$FDR<0.05))
+sign.col[filtered.sigRegions$FDR<0.05 & filtered.sigRegions$logFC<(-0.3)] <- col.under
+sign.col[filtered.sigRegions$FDR>=0.05] <- col.non
+pp <- getDefaultPlotParams(plot.type = 2)
+
+
+filtered.sigRegions_chr1<-subset(filtered.sigRegions,filtered.sigRegions$CHR=="1")
+fit2 <- loess(filtered.sigRegions_chr1$logFC ~ start(filtered.sigRegions_chr1),span = 0.03)
+tibbe_chr1<-tibble(logFC=filtered.sigRegions_chr1$logFC,FDR=filtered.sigRegions_chr1$FDR,ENSEMBL=filtered.sigRegions_chr1$ENSEMBL,SYMBOL=filtered.sigRegions_chr1$SYMBOL,start=start(filtered.sigRegions_chr1))
+bootstrap_samples <- bootstraps(tibbe_chr1, times = 25)
+summary(fit2)
+lowess_fit <- function(split){
+lowess(analysis(split)$start,analysis(split)$logFC, f=3/100)
+}
+bootstrap_samples %>%
+mutate(lowess_points = map(splits, lowess_fit)) %>%
+select(id, lowess_points) %>%
+mutate_if(is.list, map, as_tibble) %>%
+unnest(cols = c(lowess_points))
+lowess_25 <- bootstrap_samples %>%
+mutate(lowess_points = map(splits, lowess_fit)) %>%
+select(id, lowess_points) %>%
+mutate_if(is.list, map, as_tibble) %>%
+unnest(cols = c(lowess_points)) %>%
+distinct()
+```
+
+
+```{r,echo=FALSE,include=FALSE}
+base_plot<-ggplot(tibbe_chr1, aes(x = start, y = logFC)) +
+geom_point(alpha=0.4, size=1) +
+xlab("start position") + ylab("logFC")+ ggtitle("chromosome 1")+
+theme_bw() + theme(legend.position="none")
+```
+
+
+```{r,echo=FALSE,fig.dim = c(8, 5)}
+base_plot+geom_line(data = lowess_25, aes(x = x, y = y, color = id),alpha = 0.5) +
+theme(legend.position = 'none')
+```
+
+
+```{r,echo=FALSE,fig.dim = c(8, 5)}
+kp1 <- plotKaryotype(genome = "hg38",chromosomes = "chr1",plot.type = 2, plot.params = pp) %>%
+kpAddMainTitle(main = "Chr1") %>%
+kpPoints(data=filtered.sigRegions, y=filtered.sigRegions$logFC, ymax=fc.ymax, ymin=fc.ymin, col=sign.col) %>%
+kpPlotLoess(data=filtered.sigRegions, y=filtered.sigRegions$logFC, ymin=fc.ymin, ymax=fc.ymax,span = 0.03, conf.interval = (0.95),col="#000000") %>%
+kpAxis(ymax=fc.ymax, ymin=fc.ymin) %>%
+kpAddLabels(labels = "logFC", srt=90, pos=1, label.margin = 0.06, ymax=fc.ymax, ymin=fc.ymin) %>%
+kpPlotDensity(data=exoRanges, window.size = 10e4, data.panel = 2)
+```

@@ -26,14 +26,20 @@ GABA_family$Group <- factor(GABA_family$Group,levels = c("Hippocampus Ctrl", "Hi
 GABA_01 <- ggplot(GABA_family, aes(Symbol, CPM))+
   geom_boxplot(aes(color=factor(Group))) +
   scale_color_manual(values = c("#3B429F","#AA7DCE","#A8577E","#F4A5AE")) +
-  theme(axis.text.x = element_text(angle=65, vjust=0.6)) +
+  theme(axis.text.x = element_text(angle=65, vjust=0.6,color ="black"),text=element_text(size=10),axis.text.y = element_text(color="black")) +
   labs(title="Brain gene expression of GABA receptor subunits",
        subtitle="in Human DS Hippocampus and Cortex",
        x="GABA subunits",
        y="Counts per Million")+
   labs(color="Brain Region")+theme_bw()
-GABA_01
+```
 
+```{r, echo=FALSE, fig.dim = c(12, 8)}
+GABA_01
+```
+
+
+```{r, echo=FALSE}
 AMPA_family<-read.xlsx("data/GABA_AMPA_family.xlsx",sheet=2)
 AMPA_family$Group <- factor(AMPA_family$Group,levels = c("Hippocampus Ctrl", "Hippocampus DS", "Cortex Ctrl", "Cortex DS"))
 AMPA_01 <- ggplot(AMPA_family, aes(Symbol, CPM))+
@@ -45,6 +51,10 @@ AMPA_01 <- ggplot(AMPA_family, aes(Symbol, CPM))+
        x="AMPA subunits",
        y="Counts per Million")+
   labs(color="Brain Region")+theme_bw()
+```
+
+
+```{r, echo=FALSE,fig.dim = c(8, 6)}
 AMPA_01
 ```
 

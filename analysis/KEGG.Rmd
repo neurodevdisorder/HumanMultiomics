@@ -43,8 +43,8 @@ kk<- gseKEGG(geneList2,nPerm=10000,pvalueCutoff = 0.05)
 ```
 
 
-```{r,echo=FALSE}
-p8 <- ridgeplot(kk, showCategory = 100,fill = "p.adjust",core_enrichment = TRUE)
+```{r,echo=FALSE,fig.dim = c(10, 15)}
+p8 <- ridgeplot(kk, showCategory = 50,fill = "p.adjust",core_enrichment = TRUE)
 p8
 ```
 

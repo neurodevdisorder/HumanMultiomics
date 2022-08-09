@@ -20,7 +20,6 @@ library(dplyr)
 library(edgeR)
 library(openxlsx)
 library(ggrepel)
-library(ggplot2)
 library(DBI)
 library(org.Hs.eg.db)
 library("pcaExplorer")
@@ -143,6 +142,8 @@ de_hth_filt_coding2 <- decideTestsDGE(lrt_hth_filt_coding2, adjust.method="BH", 
 #### Number of differentially expressed genes in the hippocampus
 ```{r, echo = FALSE, warning=FALSE}
 summary(de_hth_filt_coding2)
+cpm_y_hth_filt_coding22<-cpm(y_hth_filt_coding2)
+write.table(cpm_y_hth_filt_coding22,"output/cpm_y_hth_filt_coding22_after_PCA.txt",sep = "\t")
 ```
 
 

@@ -14,7 +14,7 @@ editor_options:
 This is the differential expression analysis from the total RNA sequencing experiment performed on postmortem hippocampus and cortex obtained from Down syndrome and control individuals.
 
 
-```{r setup, message = FALSE, warning=FALSE,include=FALSE}
+```{r setup, message = FALSE, warning=FALSE,include=TRUE}
 library(ggplot2)
 library(dplyr)
 library(edgeR)

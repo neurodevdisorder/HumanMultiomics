@@ -15,7 +15,7 @@
 
 <title>GEDD</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -156,11 +156,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -385,7 +389,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-08-09
+<strong>Last updated:</strong> 2022-09-13
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -516,13 +520,13 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong876863e">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong446ad1e">
 <span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong> 876863e
+aria-hidden="true"></span> <strong>Repository version:</strong> 446ad1e
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrong876863e"
+<div id="strongRepositoryversionstrong446ad1e"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -531,7 +535,7 @@ and connecting the code version to the results is critical for
 reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version 876863e.
+The results in this page were generated with repository version 446ad1e.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -610,6 +614,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+9d7930b
+</td>
+<td>
+neurodevdisorder
+</td>
+<td>
+2022-08-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -759,15 +780,15 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] magrittr_2.0.2                          
- [2] rsample_0.1.1                           
- [3] forcats_0.5.1                           
- [4] stringr_1.4.0                           
+ [1] magrittr_2.0.3                          
+ [2] rsample_1.1.0                           
+ [3] forcats_0.5.2                           
+ [4] stringr_1.4.1                           
  [5] purrr_0.3.4                             
  [6] readr_2.1.2                             
- [7] tidyr_1.2.0                             
- [8] tibble_3.1.6                            
- [9] tidyverse_1.3.1                         
+ [7] tidyr_1.2.1                             
+ [8] tibble_3.1.8                            
+ [9] tidyverse_1.3.2                         
 [10] karyoploteR_1.18.0                      
 [11] regioneR_1.24.0                         
 [12] ggridges_0.5.3                          
@@ -777,16 +798,16 @@ other attached packages:
 [16] GenomicFeatures_1.44.2                  
 [17] GenomicRanges_1.44.0                    
 [18] GenomeInfoDb_1.28.4                     
-[19] dplyr_1.0.8                             
+[19] dplyr_1.0.10                            
 [20] org.Hs.eg.db_3.13.0                     
 [21] AnnotationDbi_1.54.1                    
 [22] IRanges_2.28.0                          
 [23] S4Vectors_0.32.3                        
 [24] Biobase_2.54.0                          
 [25] BiocGenerics_0.40.0                     
-[26] DBI_1.1.2                               
+[26] DBI_1.1.3                               
 [27] ggrepel_0.9.1                           
-[28] ggplot2_3.3.5                           
+[28] ggplot2_3.3.6                           
 [29] openxlsx_4.2.5                          
 [30] edgeR_3.34.1                            
 [31] limma_3.50.1                            
@@ -794,77 +815,80 @@ other attached packages:
 
 loaded via a namespace (and not attached):
   [1] utf8_1.2.2                  tidyselect_1.1.2           
-  [3] RSQLite_2.2.10              htmlwidgets_1.5.4          
+  [3] RSQLite_2.2.16              htmlwidgets_1.5.4          
   [5] grid_4.1.0                  BiocParallel_1.28.3        
   [7] munsell_0.5.0               codetools_0.2-18           
-  [9] future_1.24.0               withr_2.5.0                
- [11] colorspace_2.0-3            filelock_1.0.2             
- [13] OrganismDbi_1.34.0          highr_0.9                  
- [15] knitr_1.37                  rstudioapi_0.13            
- [17] listenv_0.8.0               labeling_0.4.2             
- [19] MatrixGenerics_1.4.3        git2r_0.30.1               
- [21] GenomeInfoDbData_1.2.6      farver_2.1.0               
- [23] bit64_4.0.5                 rprojroot_2.0.2            
- [25] parallelly_1.30.0           vctrs_0.3.8                
- [27] generics_0.1.2              xfun_0.30                  
- [29] biovizBase_1.40.0           BiocFileCache_2.0.0        
- [31] R6_2.5.1                    locfit_1.5-9.5             
- [33] AnnotationFilter_1.16.0     bitops_1.0-7               
- [35] cachem_1.0.6                reshape_0.8.8              
- [37] DelayedArray_0.18.0         assertthat_0.2.1           
- [39] promises_1.2.0.1            BiocIO_1.2.0               
- [41] scales_1.1.1                nnet_7.3-17                
- [43] gtable_0.3.0                globals_0.14.0             
- [45] processx_3.5.2              ensembldb_2.16.4           
- [47] rlang_1.0.2                 splines_4.1.0              
- [49] lazyeval_0.2.2              dichromat_2.0-0            
- [51] broom_0.7.12                checkmate_2.0.0            
- [53] BiocManager_1.30.16         yaml_2.3.5                 
- [55] reshape2_1.4.4              modelr_0.1.8               
- [57] backports_1.4.1             httpuv_1.6.5               
- [59] Hmisc_4.6-0                 RBGL_1.68.0                
- [61] tools_4.1.0                 ellipsis_0.3.2             
- [63] jquerylib_0.1.4             RColorBrewer_1.1-2         
- [65] Rcpp_1.0.8.3                plyr_1.8.6                 
- [67] base64enc_0.1-3             progress_1.2.2             
- [69] zlibbioc_1.40.0             RCurl_1.98-1.6             
- [71] ps_1.6.0                    prettyunits_1.1.1          
- [73] rpart_4.1.16                SummarizedExperiment_1.22.0
- [75] haven_2.4.3                 cluster_2.1.2              
- [77] fs_1.5.2                    furrr_0.2.3                
- [79] data.table_1.14.2           reprex_2.0.1               
- [81] whisker_0.4                 ProtGenerics_1.26.0        
- [83] matrixStats_0.61.0          hms_1.1.1                  
- [85] evaluate_0.15               XML_3.99-0.9               
- [87] jpeg_0.1-9                  readxl_1.3.1               
- [89] gridExtra_2.3               compiler_4.1.0             
- [91] biomaRt_2.48.3              crayon_1.5.0               
- [93] htmltools_0.5.2             later_1.3.0                
- [95] tzdb_0.2.0                  Formula_1.2-4              
- [97] lubridate_1.8.0             dbplyr_2.1.1               
- [99] rappdirs_0.3.3              Matrix_1.4-0               
-[101] cli_3.2.0                   parallel_4.1.0             
-[103] pkgconfig_2.0.3             getPass_0.2-2              
-[105] GenomicAlignments_1.28.0    foreign_0.8-82             
-[107] xml2_1.3.3                  bslib_0.3.1                
-[109] XVector_0.32.0              rvest_1.0.2                
-[111] bezier_1.1.2                VariantAnnotation_1.38.0   
-[113] callr_3.7.0                 digest_0.6.29              
-[115] graph_1.70.0                Biostrings_2.60.2          
-[117] rmarkdown_2.13              cellranger_1.1.0           
-[119] htmlTable_2.4.0             restfulr_0.0.13            
-[121] curl_4.3.2                  Rsamtools_2.8.0            
-[123] rjson_0.2.21                lifecycle_1.0.1            
-[125] jsonlite_1.8.0              BSgenome_1.60.0            
-[127] fansi_1.0.2                 pillar_1.7.0               
-[129] lattice_0.20-45             GGally_2.1.2               
-[131] KEGGREST_1.32.0             fastmap_1.1.0              
-[133] httr_1.4.2                  survival_3.3-1             
-[135] glue_1.6.2                  zip_2.2.0                  
-[137] bamsignals_1.24.0           png_0.1-7                  
-[139] bit_4.0.4                   stringi_1.7.6              
-[141] sass_0.4.0                  blob_1.2.2                 
-[143] latticeExtra_0.6-29         memoise_2.0.1              </code></pre>
+  [9] interp_1.1-3                future_1.28.0              
+ [11] withr_2.5.0                 colorspace_2.0-3           
+ [13] filelock_1.0.2              OrganismDbi_1.34.0         
+ [15] highr_0.9                   knitr_1.40                 
+ [17] rstudioapi_0.14             listenv_0.8.0              
+ [19] labeling_0.4.2              MatrixGenerics_1.4.3       
+ [21] git2r_0.30.1                GenomeInfoDbData_1.2.6     
+ [23] farver_2.1.1                bit64_4.0.5                
+ [25] rprojroot_2.0.3             parallelly_1.32.1          
+ [27] vctrs_0.4.1                 generics_0.1.3             
+ [29] xfun_0.32                   biovizBase_1.40.0          
+ [31] BiocFileCache_2.0.0         R6_2.5.1                   
+ [33] locfit_1.5-9.6              AnnotationFilter_1.16.0    
+ [35] bitops_1.0-7                cachem_1.0.6               
+ [37] reshape_0.8.9               DelayedArray_0.18.0        
+ [39] assertthat_0.2.1            promises_1.2.0.1           
+ [41] BiocIO_1.2.0                scales_1.2.1               
+ [43] nnet_7.3-17                 googlesheets4_1.0.1        
+ [45] gtable_0.3.1                globals_0.16.1             
+ [47] processx_3.7.0              ensembldb_2.16.4           
+ [49] rlang_1.0.5                 splines_4.1.0              
+ [51] lazyeval_0.2.2              gargle_1.2.1               
+ [53] dichromat_2.0-0.1           broom_1.0.1                
+ [55] checkmate_2.1.0             BiocManager_1.30.18        
+ [57] yaml_2.3.5                  reshape2_1.4.4             
+ [59] modelr_0.1.9                backports_1.4.1            
+ [61] httpuv_1.6.6                Hmisc_4.7-1                
+ [63] RBGL_1.68.0                 tools_4.1.0                
+ [65] ellipsis_0.3.2              jquerylib_0.1.4            
+ [67] RColorBrewer_1.1-3          Rcpp_1.0.9                 
+ [69] plyr_1.8.7                  base64enc_0.1-3            
+ [71] progress_1.2.2              zlibbioc_1.40.0            
+ [73] RCurl_1.98-1.8              ps_1.7.1                   
+ [75] prettyunits_1.1.1           rpart_4.1.16               
+ [77] deldir_1.0-6                SummarizedExperiment_1.22.0
+ [79] haven_2.5.1                 cluster_2.1.4              
+ [81] fs_1.5.2                    furrr_0.3.1                
+ [83] data.table_1.14.2           reprex_2.0.2               
+ [85] googledrive_2.0.0           whisker_0.4                
+ [87] ProtGenerics_1.26.0         matrixStats_0.62.0         
+ [89] hms_1.1.2                   evaluate_0.16              
+ [91] XML_3.99-0.10               jpeg_0.1-9                 
+ [93] readxl_1.4.1                gridExtra_2.3              
+ [95] compiler_4.1.0              biomaRt_2.48.3             
+ [97] crayon_1.5.1                htmltools_0.5.3            
+ [99] later_1.3.0                 tzdb_0.3.0                 
+[101] Formula_1.2-4               lubridate_1.8.0            
+[103] dbplyr_2.2.1                rappdirs_0.3.3             
+[105] Matrix_1.4-1                cli_3.4.0                  
+[107] parallel_4.1.0              pkgconfig_2.0.3            
+[109] getPass_0.2-2               GenomicAlignments_1.28.0   
+[111] foreign_0.8-82              xml2_1.3.3                 
+[113] bslib_0.4.0                 XVector_0.32.0             
+[115] rvest_1.0.3                 bezier_1.1.2               
+[117] VariantAnnotation_1.38.0    callr_3.7.2                
+[119] digest_0.6.29               graph_1.70.0               
+[121] Biostrings_2.60.2           rmarkdown_2.16             
+[123] cellranger_1.1.0            htmlTable_2.4.1            
+[125] restfulr_0.0.15             curl_4.3.2                 
+[127] Rsamtools_2.8.0             rjson_0.2.21               
+[129] lifecycle_1.0.2             jsonlite_1.8.0             
+[131] BSgenome_1.60.0             fansi_1.0.3                
+[133] pillar_1.8.1                lattice_0.20-45            
+[135] GGally_2.1.2                KEGGREST_1.32.0            
+[137] fastmap_1.1.0               httr_1.4.4                 
+[139] survival_3.4-0              glue_1.6.2                 
+[141] zip_2.2.1                   bamsignals_1.24.0          
+[143] png_0.1-7                   bit_4.0.4                  
+[145] stringi_1.7.8               sass_0.4.2                 
+[147] blob_1.2.3                  latticeExtra_0.6-30        
+[149] memoise_2.0.1              </code></pre>
 </div>
 </div>
 

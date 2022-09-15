@@ -1,0 +1,51 @@
+---
+title: "cortex_DET"
+author: "neurodevdisorder"
+date: "2022-09-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+To start the differential expression analysis on the transcript expression information from RSEM, I filtered the data for the
+transcripts which has a protein coding gene as in the paper, we kept only thr protein coding genes and not the non-coding part
+of the genome.
+
+```{r setup, message = FALSE, warning=FALSE,include=TRUE}
+library(openxlsx)
+library(ggrepel)
+library(ggplot2)
+library(EBSeq)
+```
+
+#### Read the raw count matrix for cortex samples
+```{r, echo = FALSE, warning=FALSE}
+Conditions_cortex=as.factor(c("Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS","DS","DS"))
+Conditions_cortex
+IsoMat_cortex<-data.matrix(read.table(file="data/human_cortex_transcripts_protein_coding.txt",header = T,row.names=1))
+Names_cortex<-read.xlsx("data/human_cortex_transcripts_protein_coding.xlsx",sheet=2)
+IsoformNames_cortex<-Names_cortex$transcript
+IsosGeneNames_cortex<-Names_cortex$Gene
+#library size factor calculation
+Isosizes_cortex<-MedianNorm(IsoMat_cortex)
+NgList_cortex<-GetNg(IsoformNames_cortex,IsosGeneNames_cortex)
+IsoNgTrun_cortex<-NgList_cortex$IsoformNgTrun
+IsoEBOut_cortex=EBTest(Data=IsoMat_cortex,NgVector = IsoNgTrun_cortex,Conditions = Conditions_cortex,
+                      sizeFactors = Isosizes_cortex,maxround = 10)
+IsoEBOut_cortex$Alpha
+IsoEBOut_cortex$Beta
+IsoEBOut_cortex$P
+IsoEBDERes_cortex<-GetDEResults(IsoEBOut_cortex,FDR = 0.05)
+str(IsoEBDERes_cortex$DEfound)
+Isoform_FC_cortex<-PostFC(IsoEBOut_cortex)
+```
+
+```{r, echo = FALSE, warning=FALSE}
+write.table(IsoEBDERes_cortex$DEfound,file="DiffExpression_results_cortex.txt",sep="\t")
+write.table(IsoEBDERes_cortex$PPMat,file="DiffExpression_results_cortex_PPMat.txt",sep="\t")
+write.table(IsoEBDERes_cortex$Status,file="DiffExpression_results_cortex_status.txt",sep="\t")
+write.table(Isoform_FC_cortex$PostFC,file="DiffExpression_results_cortex_PostFC.txt",sep="\t")
+write.table(Isoform_FC_cortex$RealFC,file="DiffExpression_results_cortex_RealFC.txt",sep="\t")
+```

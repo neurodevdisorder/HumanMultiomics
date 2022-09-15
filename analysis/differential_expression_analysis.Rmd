@@ -11,9 +11,10 @@ editor_options:
 
 ## Introduction
 
-This is the differential expression analysis from the total RNA sequencing experiment performed on postmortem hippocampus and cortex obtained from Down syndrome and control individuals.
+This is the differential expression analysis from the total RNA sequencing experiment performed on postmortem hippocampus obtained from Down syndrome and control individuals.
 
 
+#### First, we will load all the packages required to perform this analysis
 ```{r setup, message = FALSE, warning=FALSE,include=TRUE}
 library(ggplot2)
 library(dplyr)
@@ -36,9 +37,13 @@ library(pathview)
 library(ComplexHeatmap)
 library(circlize)
 library(kableExtra)
+library(DT)
 ```
 
 #### Read the raw count matrix for hippocampus samples
+
+The count matrix consists of 11 control samples (C1-C11) and 9 Down syndrome samples (Ds1-Ds9)
+
 ```{r, echo = FALSE, warning=FALSE}
 count_human_total_hippocampus_coding<- read.table(file= "data/raw_counts_human_hippo_matrix_coding.txt", header=T, row.names=1)
 head(count_human_total_hippocampus_coding)
@@ -144,6 +149,8 @@ de_hth_filt_coding2 <- decideTestsDGE(lrt_hth_filt_coding2, adjust.method="BH", 
 summary(de_hth_filt_coding2)
 cpm_y_hth_filt_coding22<-cpm(y_hth_filt_coding2)
 write.table(cpm_y_hth_filt_coding22,"output/cpm_y_hth_filt_coding22_after_PCA.txt",sep = "\t")
+cpm_y_hth_filt.dt <- DT::datatable(cpm_y_hth_filt_coding22, rownames=TRUE, class="white-space: nowrap", escape=FALSE) 
+cpm_y_hth_filt.dt
 ```
 
 

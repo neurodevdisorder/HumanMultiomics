@@ -1,5 +1,7 @@
 ---
 title: "DS Human multiomics"
+author: "Mohit Rastogi"
+date: 15-09-2022
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,6 +10,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+## <img src="https://img.icons8.com/ios/250/000000/layers.png" width="60"/> Overview
+
 This website contains the analysis and the data from the Total RNA sequencing, small RNA sequencing, and protoemics performed on post-mortem hiipocampus and cortex obtained form Down syndrome and control individuals.
 
 Please feel free to explore and share. Here are some useful links for the final paper:
@@ -15,13 +19,13 @@ Please feel free to explore and share. Here are some useful links for the final 
 * [Integrative Multi-omics Analysis Reveals Conserved Cell-projection Deficits in Human Down syndrome Brains]
 
 
-# Analysis
+## <img src="https://img.icons8.com/ios/250/000000/notepad.png" width="60"/> Main results and analysis code
 
 ### Total RNA sequencing
 
-* Perform differential expression analysis
+* Perform differential expression analysis for genes
   * [Hippocampus](differential_expression_analysis.html)
-  * Cortex
+  * [Cortex](cortex_differential_expression_analysis.html)
 
 
 * Perform KEGG pathway analysis
@@ -29,7 +33,9 @@ Please feel free to explore and share. Here are some useful links for the final 
   * Cortex
 
 
-* Gene ontology (GO) analysis using DAVID
+* Perform differential expression analysis for transcripts
+  * [Hippocampus](hippo_DET.html)
+  * [Cortex](cortex_DET.html)
 
 * Cell-type enrichment (EWCE)
 

@@ -1,0 +1,53 @@
+---
+title: "hippo_DET"
+author: "neurodevdisorder"
+date: "2022-09-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+To start the differential expression analysis on the transcript expression information from RSEM, I filtered the data for the
+transcripts which has a protein coding gene as in the paper, we kept only thr protein coding genes and not the non-coding part
+of the genome.
+
+```{r setup, message = FALSE, warning=FALSE,include=TRUE}
+library(openxlsx)
+library(ggrepel)
+library(ggplot2)
+library(EBSeq)
+```
+
+
+#### Read the raw count matrix for hippocampus samples
+```{r, echo = FALSE, warning=FALSE}
+Conditions=as.factor(c("Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS"))
+Conditions
+IsoMat_hippo<-data.matrix(read.table(file="data/human_hippo_transcripts_protein_coding.txt",header = T,row.names=1))
+Names_hippo<-read.xlsx("data/human_hippo_transcripts_protein_coding.xlsx",sheet=2)
+IsoformNames_hippo<-Names_hippo$transcript
+IsosGeneNames_hippo<-Names_hippo$Gene
+#library size factor calculation
+Isosizes_hippo<-MedianNorm(IsoMat_hippo)
+NgList_hippo<-GetNg(IsoformNames_hippo,IsosGeneNames_hippo)
+IsoNgTrun_hippo<-NgList_hippo$IsoformNgTrun
+IsoEBOut_hippo=EBTest(Data=IsoMat_hippo,NgVector = IsoNgTrun_hippo,Conditions = Conditions,
+                      sizeFactors = Isosizes_hippo,maxround = 7)
+IsoEBOut_hippo$Alpha
+IsoEBOut_hippo$Beta
+#Changes between each iteration should be less than 10^-3. Otherwise increase the number of iteration until you get it.
+IsoEBOut_hippo$P
+IsoEBDERes_hippo<-GetDEResults(IsoEBOut_hippo,FDR = 0.05)
+str(IsoEBDERes_hippo$DEfound)
+Isoform_FC_hippo<-PostFC(IsoEBOut_hippo)
+```
+
+```{r, echo = FALSE, warning=FALSE}
+write.table(IsoEBDERes_hippo$DEfound,file="DiffExpression_results_hippo.txt",sep="\t")
+write.table(IsoEBDERes_hippo$PPMat,file="DiffExpression_results_hippo_PPMat.txt",sep="\t")
+write.table(IsoEBDERes_hippo$Status,file="DiffExpression_results_hippo_status.txt",sep="\t")
+write.table(Isoform_FC_hippo$PostFC,file="DiffExpression_results_hippo_PostFC.txt",sep="\t")
+write.table(Isoform_FC_hippo$RealFC,file="DiffExpression_results_hippo_RealFC.txt",sep="\t")
+```

@@ -1,7 +1,7 @@
-name: "HumanMultiomics"
+name: HumanMultiomics
 output_dir: ../docs
 navbar:
-  title: "DS-Hs-Multi-omics"
+  title: DS-Hs-Multi-omics
   left:
   - text: Home
     icon: fa-home
@@ -12,12 +12,12 @@ navbar:
   - text: Analyses
     icon: fa-line-chart
     menu:
-      - text: "Gene"
-      - text: "Run differential gene expression analysis"
-        href: differential_expression_analysis.html
-      - text: "---------"
-      - text: "Transcript"
-  - text: "Explore Data"
+    - text: Gene
+    - text: Run differential gene expression analysis
+      href: differential_expression_analysis.html
+    - text: '---------'
+    - text: Transcript
+  - text: Explore Data
     icon: fa-bar-chart
     href: shiny-link.html
   - text: License
@@ -26,6 +26,10 @@ navbar:
     href: https://github.com/neurodevdisorder
   - icon: fa-flask
     href: https://www.iit.it/people-details/-/people/laura-cancedda
+  right:
+  - icon: fab fa-github
+    text: Source code
+    href: https://github.com/neurodevdisorder/HumanMultiomics
 output:
   workflowr::wflow_html:
     toc: yes

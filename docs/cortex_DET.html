@@ -37,6 +37,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -333,18 +335,62 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HumanMultiomics</a>
+      <a class="navbar-brand" href="index.html">DS-Hs-Multi-omics</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
 </li>
 <li>
-  <a href="about.html">About</a>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-line-chart"></span>
+     
+    Analyses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Gene</li>
+    <li>
+      <a href="differential_expression_analysis.html">Run differential gene expression analysis</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Transcript</li>
+  </ul>
+</li>
+<li>
+  <a href="shiny-link.html">
+    <span class="fa fa-bar-chart"></span>
+     
+    Explore Data
+  </a>
 </li>
 <li>
   <a href="license.html">License</a>
+</li>
+<li>
+  <a href="https://github.com/neurodevdisorder">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.iit.it/people-details/-/people/laura-cancedda">
+    <span class="fa fa-flask"></span>
+     
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -520,13 +566,13 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongad242c4">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge5f00c4">
 <span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong> ad242c4
+aria-hidden="true"></span> <strong>Repository version:</strong> e5f00c4
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongad242c4"
+<div id="strongRepositoryversionstronge5f00c4"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -535,7 +581,7 @@ and connecting the code version to the results is critical for
 reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version ad242c4.
+The results in this page were generated with repository version e5f00c4.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -557,6 +603,11 @@ Ignored files:
     Ignored:    data/.DS_Store
 
 Untracked files:
+    Untracked:  DiffExpression_results_cortex.txt
+    Untracked:  DiffExpression_results_cortex_PPMat.txt
+    Untracked:  DiffExpression_results_cortex_PostFC.txt
+    Untracked:  DiffExpression_results_cortex_RealFC.txt
+    Untracked:  DiffExpression_results_cortex_status.txt
     Untracked:  DiffExpression_results_hippo.txt
     Untracked:  DiffExpression_results_hippo_PPMat.txt
     Untracked:  DiffExpression_results_hippo_PostFC.txt
@@ -631,6 +682,23 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+4e1ab3a
+</td>
+<td>
+mohit-rastogi
+</td>
+<td>
+2022-09-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
@@ -673,25 +741,25 @@ Levels: Cont DS</code></pre>
 <pre><code>Removing transcripts with 100 th quantile &lt; = 0 
 138774 transcripts will be tested</code></pre>
 <pre><code>iteration 1 done </code></pre>
-<pre><code>time 613.43 </code></pre>
+<pre><code>time 610.39 </code></pre>
 <pre><code>iteration 2 done </code></pre>
-<pre><code>time 248.6 </code></pre>
+<pre><code>time 251.02 </code></pre>
 <pre><code>iteration 3 done </code></pre>
-<pre><code>time 225.08 </code></pre>
+<pre><code>time 224.12 </code></pre>
 <pre><code>iteration 4 done </code></pre>
-<pre><code>time 108.74 </code></pre>
+<pre><code>time 105.35 </code></pre>
 <pre><code>iteration 5 done </code></pre>
-<pre><code>time 91.98 </code></pre>
+<pre><code>time 89.93 </code></pre>
 <pre><code>iteration 6 done </code></pre>
-<pre><code>time 105.75 </code></pre>
+<pre><code>time 104.19 </code></pre>
 <pre><code>iteration 7 done </code></pre>
-<pre><code>time 89.32 </code></pre>
+<pre><code>time 87.62 </code></pre>
 <pre><code>iteration 8 done </code></pre>
-<pre><code>time 80.5 </code></pre>
+<pre><code>time 77.83 </code></pre>
 <pre><code>iteration 9 done </code></pre>
-<pre><code>time 86.05 </code></pre>
+<pre><code>time 85.91 </code></pre>
 <pre><code>iteration 10 done </code></pre>
-<pre><code>time 84.78 </code></pre>
+<pre><code>time 83.11 </code></pre>
 <pre><code>            [,1]
 iter1  0.6585867
 iter2  0.6756754
@@ -839,7 +907,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

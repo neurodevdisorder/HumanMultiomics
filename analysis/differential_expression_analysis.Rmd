@@ -44,92 +44,84 @@ library(DT)
 
 The count matrix consists of 11 control samples (C1-C11) and 9 Down syndrome samples (Ds1-Ds9)
 
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 count_human_total_hippocampus_coding<- read.table(file= "data/raw_counts_human_hippo_matrix_coding.txt", header=T, row.names=1)
 head(count_human_total_hippocampus_coding)
 meta_counts_human_total_hippocampus_coding<-data.frame(row.names = colnames(count_human_total_hippocampus_coding),condition_human_total_hippocampus_coding=c("Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS","DS","DS","DS"))
 ```
 
+Define the groups
 
-```{r, echo = FALSE, warning=FALSE,include=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 group_human_total_hippocampus_coding<-relevel(factor(meta_counts_human_total_hippocampus_coding$condition_human_total_hippocampus_coding),ref="Cont")
 group_human_total_hippocampus_coding
 ```
 
+Design the model for performing differential expression analysis
 
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 #Design the model for the differential expression
 design_human_total_hippocampus_coding = model.matrix(~group_human_total_hippocampus_coding)
 y_human_total_hippocampus_coding<-DGEList(count_human_total_hippocampus_coding,group = group_human_total_hippocampus_coding)
 ```
 
+Calculate counts per million in log
 
-```{r, echo = FALSE, warning=FALSE}
-#calculate counts per million in log
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 cpm_log_human_total_hippocampus_coding<-cpm(y_human_total_hippocampus_coding,log=TRUE)
 ```
 
 #### Visualize the log counts per million (cpm) as a heatmap
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 heatmap(cor(cpm_log_human_total_hippocampus_coding))
 ```
 
-#### Perform PCA
-```{r, echo = FALSE, warning=FALSE,include=FALSE}
+#### Perform PCA after loading the sample information
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 sample_hippo<- read.xlsx("data/human_hippo_samplesheet.xlsx", sheet=1)
 row.names(sample_hippo)<-sample_hippo$SampleName
 all(colnames(cpm_log_human_total_hippocampus_coding) == rownames(sample_hippo))
-```
-
-
-```{r, echo = FALSE, warning=FALSE}
 p <- PCAtools::pca(cpm_log_human_total_hippocampus_coding, metadata = sample_hippo, removeVar = 0.1)
 PCAtools::screeplot(p)
 PCAtools::biplot(p)
 ```
 
 #### Filter the data based on heatmap, PCA and RIN values
-```{r, echo = FALSE, warning=FALSE}
-#Looking at the heatmap, PCA and RIN values, remove the following samples:
-#C6,C7,C8,C9,C10,Ds2,Ds6,Ds7
+
+Looking at the clustering and PCA plots, we remove few samples which look like outliers: C6,C7,C8,C9,C10,Ds2,Ds6,Ds7
+
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 count_hth_filt_coding2<-count_human_total_hippocampus_coding[,-c(6,7,8,9,10,13,17,18)]
 head(count_hth_filt_coding2)
 meta_counts_hth_filt_coding2<-data.frame(row.names = colnames(count_hth_filt_coding2),condition_hth_filt_coding2=c("Cont","Cont","Cont","Cont","Cont","Cont","DS","DS","DS","DS","DS","DS"))
 ```
 
+####Perform hierarchical clsutering and PCA on the filtered samples
 
-```{r, echo = FALSE, warning=FALSE,include=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 group_hth_filt_coding2<-relevel(factor(meta_counts_hth_filt_coding2$condition_hth_filt_coding2),ref="Cont")
 group_hth_filt_coding2
 design_hth_filt_coding2 = model.matrix(~group_hth_filt_coding2)
 y_hth_filt_coding2<-DGEList(count_hth_filt_coding2,group = group_hth_filt_coding2)
 cpm_log_hth_filt_coding2<-cpm(y_hth_filt_coding2,log=TRUE)
 heatmap(cor(cpm_log_hth_filt_coding2))
-```
-
-####Perform PCA on the filtered samples
-```{r, echo = FALSE, warning=FALSE,include=FALSE}
 sample_hippo<- read.xlsx("data/human_hippo_samplesheet.xlsx", sheet=2)
 row.names(sample_hippo)<-sample_hippo$SampleName
 all(colnames(cpm_log_hth_filt_coding2) == rownames(sample_hippo))
-```
-
-
-```{r, echo = FALSE, warning=FALSE}
 p <- PCAtools::pca(cpm_log_hth_filt_coding2, metadata = sample_hippo, removeVar = 0.1)
 PCAtools::screeplot(p)
 PCAtools::biplot(p)
 ```
 
 #### Filter the genes based on their expression in n-1 samples
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 cpm_y_hth_filt_coding2<-cpm(y_hth_filt_coding2)
 keep_hth_filt_coding2<-rowSums((cpm_y_hth_filt_coding2)>1)>5
 table(keep_hth_filt_coding2)
 ```
 
 #### Perform normalization using TMM
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 y_hth_filt_coding2<-DGEList(count_hth_filt_coding2,group = group_hth_filt_coding2)
 y_hth_filt_coding2 <- y_hth_filt_coding2[keep_hth_filt_coding2, , keep.lib.sizes=FALSE]
 y_hth_filt_coding2 <- calcNormFactors(y_hth_filt_coding2)
@@ -137,7 +129,7 @@ y_hth_filt_coding2$samples
 ```
 
 #### Estimate differential expression using GLM
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 y_hth_filt_coding2 <- estimateGLMRobustDisp(y_hth_filt_coding2,design_hth_filt_coding2, verbose = TRUE)
 fit_hth_filt_coding2 <- glmFit(y_hth_filt_coding2, design_hth_filt_coding2)
 lrt_hth_filt_coding2<-glmLRT(fit_hth_filt_coding2,coef = 2)
@@ -145,10 +137,14 @@ de_hth_filt_coding2 <- decideTestsDGE(lrt_hth_filt_coding2, adjust.method="BH", 
 ```
 
 #### Number of differentially expressed genes in the hippocampus
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 summary(de_hth_filt_coding2)
+```
+
+#### Counts per million (CPM) values for all the genes considered in the differential expression analysis
+
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 cpm_y_hth_filt_coding22<-cpm(y_hth_filt_coding2)
-write.table(cpm_y_hth_filt_coding22,"output/cpm_y_hth_filt_coding22_after_PCA.txt",sep = "\t")
 cpm_y_hth_filt.dt <- DT::datatable(cpm_y_hth_filt_coding22, rownames=TRUE, class="white-space: nowrap", escape=FALSE) 
 cpm_y_hth_filt.dt
 ```
@@ -156,7 +152,7 @@ cpm_y_hth_filt.dt
 
 #### Here, we annotated the data from the previous using ENSEMBL information for each gene and mapped the DEGs onto their chromosomal location.
 
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
 OrgDb <- org.Hs.eg.db
 results_edgeR_hth_filt_coding2<- topTags(lrt_hth_filt_coding2, n = nrow(count_hth_filt_coding2), sort.by = "none")
 k<-row.names(results_edgeR_hth_filt_coding2)
@@ -193,4 +189,11 @@ results_hippo_RNA<-as_tibble(results_rna_annotated_hth_filt_coding2)
 row.names(results_hippo_RNA)<-results_hippo_RNA$ENSEMBL
 saveRDS(results_hippo_RNA, file = "results_hippo_RNA.rds")
 saveRDS(sigGenes,file="sigGenes_hippo.rds")
+```
+
+#### Results from differential expression analysis for hippocampus samples
+
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+results_rna_annotated_hth_filt_coding2.dt <- DT::datatable(results_rna_annotated_hth_filt_coding2, rownames=TRUE, class="white-space: nowrap", escape=FALSE) 
+results_rna_annotated_hth_filt_coding2.dt
 ```

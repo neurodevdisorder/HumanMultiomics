@@ -12,16 +12,28 @@ editor_options:
 
 ## <img src="https://img.icons8.com/ios/250/000000/layers.png" width="60"/> Overview
 
-This website contains the analysis and the data from the Total RNA sequencing, small RNA sequencing, and protoemics performed on post-mortem hiipocampus and cortex obtained form Down syndrome and control individuals.
+This website contains the analysis and the data from the Total RNA sequencing, small RNA sequencing, and proteomics performed on post-mortem hiipocampus and cortex obtained form Down syndrome and control individuals.
 
 Please feel free to explore and share. Here are some useful links for the final paper:
 
+## Publication
 * [Integrative Multi-omics Analysis Reveals Conserved Cell-projection Deficits in Human Down syndrome Brains]
+
+## Abstract
+
+## Data pre-processing
+
+Raw data is available at Gene Expression Omnibus (GEO, NCBI; accession number GSEXXX(https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE)).
+
+## Citation
+
 
 
 ## <img src="https://img.icons8.com/ios/250/000000/notepad.png" width="60"/> Main results and analysis code
 
 ### Total RNA sequencing
+
+## Gene expression
 
 * Perform differential expression analysis for genes
   * [Hippocampus](differential_expression_analysis.html)
@@ -31,15 +43,17 @@ Please feel free to explore and share. Here are some useful links for the final 
 * Perform KEGG pathway analysis
   * [Hippocampus](KEGG.html)
   * Cortex
+  
+* Cell-type enrichment (EWCE)
 
+## Transcript expression
 
 * Perform differential expression analysis for transcripts
   * [Hippocampus](hippo_DET.html)
   * [Cortex](cortex_DET.html)
 
-* Cell-type enrichment (EWCE)
 
-* Other investigations
+## Other investigations
   * [GABA and AMPA receptors](GABA_AMPA.html)
   * We investigated the presence of [Genome wide dysregulation domains](GEDD.html) and here we show chromosome 1 as an example.
   

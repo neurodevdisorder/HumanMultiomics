@@ -1,0 +1,12 @@
+---
+title: "totalRNA alignment"
+author: "neurodevdisorder"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{bash}
+echo "Hello Bash!"
+```

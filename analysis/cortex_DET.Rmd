@@ -42,10 +42,3 @@ str(IsoEBDERes_cortex$DEfound)
 Isoform_FC_cortex<-PostFC(IsoEBOut_cortex)
 ```
 
-```{r, echo = FALSE, warning=FALSE}
-write.table(IsoEBDERes_cortex$DEfound,file="DiffExpression_results_cortex.txt",sep="\t")
-write.table(IsoEBDERes_cortex$PPMat,file="DiffExpression_results_cortex_PPMat.txt",sep="\t")
-write.table(IsoEBDERes_cortex$Status,file="DiffExpression_results_cortex_status.txt",sep="\t")
-write.table(Isoform_FC_cortex$PostFC,file="DiffExpression_results_cortex_PostFC.txt",sep="\t")
-write.table(Isoform_FC_cortex$RealFC,file="DiffExpression_results_cortex_RealFC.txt",sep="\t")
-```

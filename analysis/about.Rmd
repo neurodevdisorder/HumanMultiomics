@@ -9,4 +9,12 @@ editor_options:
 
 Integrative Multi-omics Analysis Reveals Conserved Cell-projection Deficits in Human Down syndrome Brains.
 
-Key Findings:
+## Abstract
+
+### Key Findings:
+
+#### Citation
+
+#### Contact
+
+This website as designed and created by **Mohit Rastogi**

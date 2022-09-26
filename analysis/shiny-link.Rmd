@@ -8,7 +8,7 @@ output: html_document
 <div class="row">
 <div class="col-md-6 text-center">
 <font size="4">
-In order for everyone to look at the expression of their favorite gene in our data, we have created a rudimentary Shiny app. Click the button below to begin making plots like the one on the right!
+We have created a Shiny app for exploring the expression data from different layers of analysis: gene, transcript, protein, miRNA, alternative splicing. 
 </font>
 </br></br></br>
 <a class="btn btn-default" href="https://canceddalab.shinyapps.io/DShuman/" role="button">

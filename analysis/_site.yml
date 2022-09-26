@@ -2,15 +2,16 @@ name: HumanMultiomics
 output_dir: ../docs
 navbar:
   title: DS-Hs-Multi-omics
+  icon: https://img.icons8.com/ios/250/000000/brain.png
   left:
   - text: Home
-    icon: fa-home
+    icon: https://img.icons8.com/ios/250/000000/home.png
     href: index.html
   - text: About
-    icon: fa-info
+    icon: https://img.icons8.com/ios/250/000000/info.png
     href: about.html
   - text: Analyses
-    icon: fa-line-chart
+    icon: https://img.icons8.com/ios/250/000000/combo-chart.png
     menu:
     - text: Gene
     - text: Run differential gene expression analysis
@@ -24,7 +25,7 @@ navbar:
     href: license.html
   - icon: fa-github
     href: https://github.com/neurodevdisorder
-  - icon: fa-flask
+  - icon: https://img.icons8.com/ios/250/000000/test-tube.png
     href: https://www.iit.it/people-details/-/people/laura-cancedda
   right:
   - icon: fab fa-github

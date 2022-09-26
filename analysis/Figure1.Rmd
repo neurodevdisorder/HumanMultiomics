@@ -1,0 +1,281 @@
+---
+title: "Figure1"
+author: "neurodevdisorder"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+These commands were used to generate different panels of Figure 1.
+
+Figure 1A is designed in Adobe Illustrator and Figure 1B, Supp. Figure 1D are prepared with the help of venny2.1 (https://bioinfogp.cnb.csic.es/tools/venny/)
+
+First, we will load all the packages required to perform this analysis
+```{r setup, message = FALSE, warning=FALSE,include=TRUE}
+library(ggplot2)
+library(dplyr)
+library(edgeR)
+library(openxlsx)
+library(ggrepel)
+library(DBI)
+library(org.Hs.eg.db)
+library("pcaExplorer")
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+library(rtracklayer)
+library(ggbio)
+library(clusterProfiler)
+library(enrichplot)
+library(ggridges)
+library(karyoploteR)
+library(tidyverse)
+library(forcats)
+library(pathview)
+library(ComplexHeatmap)
+library(circlize)
+library(rsample)
+library(magrittr)
+library(superheat)
+```
+
+#### Figure 1C
+
+##### Hippocampus
+
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+diff_gene_transcript_hippo<- read.table(file= "data/diff_gene_transcript_hippo.txt", header=T, row.names=1)
+head(diff_gene_transcript_hippo)
+diff_gene_transcript_hippo_density_plot<- ggplot(diff_gene_transcript_hippo, aes(LogFC))+
+  geom_density(aes(fill=factor(Type)), alpha=0.8) +
+  scale_fill_manual(values = c("#AA7DCE","#FEEAFA")) +
+  xlim(-14,14)+
+  ylim(0,0.9)+
+  labs(x="LogFC",
+       fill="#Type")+theme_bw()+
+  theme(text=element_text(size=14),axis.text.x = element_text(color = "black"),axis.text.y = element_text(color="black"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())
+diff_gene_transcript_hippo_density_plot
+```
+
+
+##### Cortex
+
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+diff_gene_transcript_cortex<- read.table(file= "data/diff_gene_transcript_cortex.txt", header=T, row.names=1)
+head(diff_gene_transcript_cortex)
+diff_gene_transcript_cortex_density_plot<- ggplot(diff_gene_transcript_cortex, aes(LogFC))+
+  geom_density(aes(fill=factor(Type)), alpha=0.8) +
+  scale_fill_manual(values = c("#F4A5AE","#F7E5DB")) +
+  xlim(-14,14)+
+  ylim(0,0.9)+
+  labs(x="LogFC",
+       fill="#Type")+theme_bw()+
+  theme(text=element_text(size=14),axis.text.x = element_text(color = "black"),axis.text.y = element_text(color="black"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())
+diff_gene_transcript_cortex_density_plot
+```
+
+#### Figure 1D
+
+We performed the cell type enrichment analysis using EWCE package in R using different set of gene lists such as upregulated genes in hippocampus etc. and the heatmap was generated using "superheat" package in R. 
+
+We are not showing the plotting scripts for this figure.
+
+#### Figure 1E
+
+We will read the data for GO terms which has been already cleaned up by taking the terms for both gene and transcript expression profiles and preparing the table with -log10FDR values from DAVID analysis. 
+
+We will show a heatmap for GO terms for upregulated genes and transcripts from hippocampus only. The others are done similarly.
+
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+human_hippo_gene_transcript_DAVID_up<-read.xlsx("data/GO_terms_figure1E.xlsx",sheet=1)
+row.names(human_hippo_gene_transcript_DAVID_up)<-human_hippo_gene_transcript_DAVID_up$Term
+human_hippo_gene_transcript_DAVID_up_filt<-as.data.frame(human_hippo_gene_transcript_DAVID_up[,-c(1)])
+f3 = colorRamp2(seq(min(human_hippo_gene_transcript_DAVID_up_filt), max(human_hippo_gene_transcript_DAVID_up_filt), length = 3), c("#EEEEEE","blue", "red"), space = "RGB")
+
+Heatmap(human_hippo_gene_transcript_DAVID_up_filt, col = f3, cluster_rows = FALSE,cluster_columns = FALSE,
+        row_order = order(as.numeric(gsub("row", "", rownames(human_hippo_gene_transcript_DAVID_up_filt)))), 
+        column_order = order(as.numeric(gsub("column", "", colnames(human_hippo_gene_transcript_DAVID_up_filt)))),
+        row_names_gp = gpar(fontsize = 8),column_names_gp = gpar(fontsize=9),
+        column_names_centered = TRUE,heatmap_width = unit(3, "in"))
+```
+
+#### Supplementary Figure 1A
+
+The data for preparing this figure in the folder "data" on the github repository. 
+
+#### Supplementary figure 1B
+
+This figure is shown in the differential expression analysis for the hippocampus in Data analysis and results section.
+
+#### Supplementary Figure 1C
+
+##### First, we need to add a column to the result obtained from the differential expression analysis for gene expression, to provide a value for chr21 originated genes, upregulated, downregulated and non differentially expressed.
+
+##### After preparing the volcano plots for individual region, they were overlapped in Adobe Illustrator to prepare the final figure.
+
+##### Hippocampus non chr21 genes
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+non_chr21_hippo_gene<-read.table(file="data/non_chr21_hippo_gene.txt", header=T, row.names=1)
+volcano_non_chr21_hippo_gene<- ggplot(non_chr21_hippo_gene, aes(x = logFC, y = -log10(FDR))) +
+  geom_point(aes(color =  factor(Significance)), alpha=1, size=2.0) +
+  xlim(-3,4)+
+  ylim(0, 13)+
+  scale_color_manual(values = c("#219EBC","#CED4DA","#DB5256")) +
+  xlab("log2 fold change") + ylab("-log10(FDR)")+
+  theme_bw() +
+  theme(text=element_text(size=18),axis.text.x = element_text(color = "black"),axis.text.y = element_text(color="black"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())
+volcano_non_chr21_hippo_gene+geom_hline(yintercept=1.30, linetype="dashed", color = "black")+
+  geom_vline(xintercept = 0,linetype="dashed",color="black")
+```
+
+##### Hippocampus chr21 genes
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+chr21_hippo_gene<-read.table(file="data/chr21_hippo_gene.txt", header=T, row.names=1)
+volcano_chr21_hippo_gene<- ggplot(chr21_hippo_gene, aes(x = logFC, y = -log10(FDR))) +
+  geom_point(aes(color =  factor(Significance)), alpha=1, size=2.0) +
+  xlim(-3,4)+
+  ylim(0, 13)+
+  scale_color_manual(values = c("BLACK")) +
+  xlab("log2 fold change") + ylab("-log10(FDR)")+
+  theme_bw() +
+  theme(text=element_text(size=18),axis.text.x = element_text(color = "black"),axis.text.y = element_text(color="black"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())
+volcano_chr21_hippo_gene+geom_hline(yintercept=1.30, linetype="dashed", color = "black")+
+  geom_vline(xintercept = 0,linetype="dashed",color="black")
+```
+
+#### Supplementary Figure 1E
+
+##### Genome wide dysregulation domains
+
+```{r,echo=TRUE,include=TRUE, warning=FALSE}
+results_hippo_RNA<- readRDS("output/results_hippo_RNA.rds")
+sigGenes <- results_hippo_RNA
+tx<-TxDb.Hsapiens.UCSC.hg38.knownGene
+exo <- exonsBy(tx,"gene")
+exoRanges <- unlist(range(exo))
+sigRegions <- exoRanges[na.omit(match(sigGenes$ENTREZID, names(exoRanges)))]
+mcols(sigRegions) <- sigGenes[match(names(sigRegions), sigGenes$ENTREZID),]
+sigRegions
+sigRegions[order(sigRegions$LR,decreasing = TRUE)]
+filtered.sigRegions <- sigRegions[!is.na(sigRegions$FDR)]
+log.pval <- -log10(filtered.sigRegions$FDR)
+mcols(filtered.sigRegions)$log.pval <- log.pval
+filtered.sigRegions
+range(filtered.sigRegions$logFC)
+fc.ymax <- ceiling(max(abs(range(filtered.sigRegions$logFC))))
+fc.ymin <- -fc.ymax
+col.over <- "#DB5256"
+col.under <- "#219EBC"
+col.non <- "#95A3A6"
+#sign.col <- rep(col.over, length(filtered.sigRegions$FDR<0.05))
+#sign.col[filtered.sigRegions$FDR>=0.05] <- col.under
+sign.col <- rep(col.over, length(filtered.sigRegions$logFC>0.3 & filtered.sigRegions$FDR<0.05))
+sign.col[filtered.sigRegions$FDR<0.05 & filtered.sigRegions$logFC<(-0.3)] <- col.under
+sign.col[filtered.sigRegions$FDR>=0.05] <- col.non
+pp <- getDefaultPlotParams(plot.type = 2)
+```
+
+##### Chromosome 1
+
+```{r,echo=TRUE,include=TRUE, warning=FALSE}
+filtered.sigRegions_chr1<-subset(filtered.sigRegions,filtered.sigRegions$CHR=="1")
+fit2 <- loess(filtered.sigRegions_chr1$logFC ~ start(filtered.sigRegions_chr1),span = 0.03)
+tibbe_chr1<-tibble(logFC=filtered.sigRegions_chr1$logFC,FDR=filtered.sigRegions_chr1$FDR,ENSEMBL=filtered.sigRegions_chr1$ENSEMBL,SYMBOL=filtered.sigRegions_chr1$SYMBOL,start=start(filtered.sigRegions_chr1))
+bootstrap_samples <- bootstraps(tibbe_chr1, times = 25)
+summary(fit2)
+lowess_fit <- function(split){
+lowess(analysis(split)$start,analysis(split)$logFC, f=3/100)
+}
+bootstrap_samples %>%
+mutate(lowess_points = map(splits, lowess_fit)) %>%
+select(id, lowess_points) %>%
+mutate_if(is.list, map, as_tibble) %>%
+unnest(cols = c(lowess_points))
+lowess_25 <- bootstrap_samples %>%
+mutate(lowess_points = map(splits, lowess_fit)) %>%
+select(id, lowess_points) %>%
+mutate_if(is.list, map, as_tibble) %>%
+unnest(cols = c(lowess_points)) %>%
+distinct()
+```
+
+```{r,echo=TRUE,fig.dim = c(8, 5)}
+kp1 <- plotKaryotype(genome = "hg38",chromosomes = "chr1",plot.type = 2, plot.params = pp) %>%
+kpAddMainTitle(main = "Chr1") %>%
+kpPoints(data=filtered.sigRegions_chr1, y=filtered.sigRegions_chr1$logFC, ymax=fc.ymax, ymin=fc.ymin, col=sign.col) %>%
+kpPlotLoess(data=filtered.sigRegions_chr1, y=filtered.sigRegions_chr1$logFC, ymin=fc.ymin, ymax=fc.ymax,span = 0.03, conf.interval = (0.95),col="#000000") %>%
+kpAxis(ymax=fc.ymax, ymin=fc.ymin) %>%
+kpAddLabels(labels = "logFC", srt=90, pos=1, label.margin = 0.06, ymax=fc.ymax, ymin=fc.ymin) %>%
+kpPlotDensity(data=exoRanges, window.size = 10e4, data.panel = 2)
+```
+
+##### Chromosome 11
+
+```{r,echo=TRUE,include=TRUE, warning=FALSE}
+filtered.sigRegions_chr11<-subset(filtered.sigRegions,filtered.sigRegions$CHR=="11")
+fit2 <- loess(filtered.sigRegions_chr11$logFC ~ start(filtered.sigRegions_chr11),span = 0.03)
+tibbe_chr11<-tibble(logFC=filtered.sigRegions_chr11$logFC,FDR=filtered.sigRegions_chr11$FDR,ENSEMBL=filtered.sigRegions_chr11$ENSEMBL,SYMBOL=filtered.sigRegions_chr11$SYMBOL,start=start(filtered.sigRegions_chr11))
+bootstrap_samples <- bootstraps(tibbe_chr11, times = 25)
+summary(fit2)
+lowess_fit <- function(split){
+lowess(analysis(split)$start,analysis(split)$logFC, f=3/100)
+}
+bootstrap_samples %>%
+mutate(lowess_points = map(splits, lowess_fit)) %>%
+select(id, lowess_points) %>%
+mutate_if(is.list, map, as_tibble) %>%
+unnest(cols = c(lowess_points))
+lowess_25 <- bootstrap_samples %>%
+mutate(lowess_points = map(splits, lowess_fit)) %>%
+select(id, lowess_points) %>%
+mutate_if(is.list, map, as_tibble) %>%
+unnest(cols = c(lowess_points)) %>%
+distinct()
+```
+
+```{r,echo=TRUE,fig.dim = c(8, 5)}
+kp11 <- plotKaryotype(genome = "hg38",chromosomes = "chr11",plot.type = 2, plot.params = pp) %>%
+kpAddMainTitle(main = "Chr11") %>%
+kpPoints(data=filtered.sigRegions_chr11, y=filtered.sigRegions_chr11$logFC, ymax=fc.ymax, ymin=fc.ymin, col=sign.col) %>%
+kpPlotLoess(data=filtered.sigRegions_chr11, y=filtered.sigRegions_chr11$logFC, ymin=fc.ymin, ymax=fc.ymax,span = 0.03, conf.interval = (0.95),col="#000000") %>%
+kpAxis(ymax=fc.ymax, ymin=fc.ymin) %>%
+kpAddLabels(labels = "logFC", srt=90, pos=1, label.margin = 0.06, ymax=fc.ymax, ymin=fc.ymin) %>%
+kpPlotDensity(data=exoRanges, window.size = 10e4, data.panel = 2)
+```
+
+#### Supplementary Figure 1F
+
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+diff_gene_transcript_cortex<- read.table(file= "data/diff_gene_transcript_cortex.txt", header=T, row.names=1)
+GABA_family_hippo<-read.xlsx("data/GABA_AMPA_family.xlsx",sheet=1)
+GABA_01 <- ggplot(GABA_family_hippo, aes(CPM, Symbol,fill=Group))+
+  geom_bar(stat="identity",color="black", width = 0.7, position = "dodge") +
+  geom_errorbar(aes(xmin=CPM-sem, xmax=CPM+sem), width=.1,position=position_dodge(.7))+
+  scale_fill_manual(values = c("#B9D47A","#C2A3DC")) +
+  xlim(0,700)+
+  theme_bw()+
+  theme(legend.position="none",axis.text.x = element_text(angle=90, vjust=0.6,color ="black"),text=element_text(size=10),
+        axis.text.y = element_text(color="black"),panel.background = element_blank(),panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  labs(x="Counts per Million",y="GABA subunits")
+GABA_01
+```
+
+
+
+
+
+
+
+
+
+

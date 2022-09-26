@@ -11,6 +11,7 @@
 
 <meta name="author" content="Mohit Rastogi" />
 
+<meta name="date" content="2022-09-23" />
 
 <title>DS Human multiomics</title>
 
@@ -340,21 +341,21 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">
-    <span class="fa fa-home"></span>
+    <span class=" https://img.icons8.com/ios/250/000000/home.png"></span>
      
     Home
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fa fa-info"></span>
+    <span class=" https://img.icons8.com/ios/250/000000/info.png"></span>
      
     About
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-line-chart"></span>
+    <span class="https://img.icons8.com/ios/250/000000/combo https://img.icons8.com/ios/250/000000/combo-chart.png"></span>
      
     Analyses
      
@@ -387,13 +388,19 @@ div.tocify {
 </li>
 <li>
   <a href="https://www.iit.it/people-details/-/people/laura-cancedda">
-    <span class="fa fa-flask"></span>
+    <span class="https://img.icons8.com/ios/250/000000/test https://img.icons8.com/ios/250/000000/test-tube.png"></span>
      
   </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/neurodevdisorder/HumanMultiomics">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -405,7 +412,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">DS Human multiomics</h1>
 <h4 class="author">Mohit Rastogi</h4>
-<h4 class="date">15-09-2022</h4>
+<h4 class="date">September 23, 2022</h4>
 
 </div>
 
@@ -413,7 +420,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -424,8 +431,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -434,13 +441,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-09-15
+<strong>Last updated:</strong> 2022-09-23
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>HumanMultiomics/</code> <span
@@ -463,31 +470,120 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge5f00c4">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
 <span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong> e5f00c4
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220715code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20220715)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220715code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220715)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstronge5f00c4"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -496,7 +592,8 @@ and connecting the code version to the results is critical for
 reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version e5f00c4.
+The results in this page were generated with repository version
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -518,26 +615,27 @@ Ignored files:
     Ignored:    data/.DS_Store
 
 Untracked files:
-    Untracked:  DiffExpression_results_cortex.txt
-    Untracked:  DiffExpression_results_cortex_PPMat.txt
-    Untracked:  DiffExpression_results_cortex_PostFC.txt
-    Untracked:  DiffExpression_results_cortex_RealFC.txt
-    Untracked:  DiffExpression_results_cortex_status.txt
-    Untracked:  DiffExpression_results_hippo.txt
-    Untracked:  DiffExpression_results_hippo_PPMat.txt
-    Untracked:  DiffExpression_results_hippo_PostFC.txt
-    Untracked:  DiffExpression_results_hippo_RealFC.txt
-    Untracked:  DiffExpression_results_hippo_status.txt
+    Untracked:  GABA_AMPA.Rmd
     Untracked:  HumanMultiomics.R
     Untracked:  WGCNA_hippo_genes.Rmd
+    Untracked:  analysis/Figure1.Rmd
+    Untracked:  analysis/Figure2.Rmd
+    Untracked:  analysis/totalRNA_alignment.Rmd
     Untracked:  data/GABA_AMPA_family.xlsx
+    Untracked:  data/GO_terms_figure1E.xlsx
     Untracked:  data/GeneAnnotation_hippo.csv
+    Untracked:  data/chr21_hippo_gene.txt
+    Untracked:  data/diff_gene_transcript_cortex.txt
+    Untracked:  data/diff_gene_transcript_hippo.txt
+    Untracked:  data/gene_protein_correlation.xlsx
+    Untracked:  data/hippo_cortex_RNA_protein.txt
     Untracked:  data/human_cortex_samplesheet.xlsx
     Untracked:  data/human_cortex_transcripts_protein_coding.txt
     Untracked:  data/human_cortex_transcripts_protein_coding.xlsx
     Untracked:  data/human_hippo_samplesheet.xlsx
     Untracked:  data/human_hippo_transcripts_protein_coding.txt
     Untracked:  data/human_hippo_transcripts_protein_coding.xlsx
+    Untracked:  data/non_chr21_hippo_gene.txt
     Untracked:  data/raw_counts_human_cortex_matrix_coding.txt
     Untracked:  data/raw_counts_human_hippo_matrix_coding.txt
     Untracked:  figure/
@@ -550,6 +648,15 @@ Untracked files:
     Untracked:  sigGenes_cortex.rds
     Untracked:  sigGenes_hippo.rds
     Untracked:  topHitshuman_hippo.bed
+
+Unstaged changes:
+    Deleted:    analysis/GABA_AMPA.Rmd
+    Modified:   analysis/_site.yml
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/cortex_DET.Rmd
+    Modified:   analysis/hippo_DET.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/shiny-link.Rmd
 
 </code></pre>
 <p>
@@ -596,27 +703,10 @@ Message
 <tbody>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-e5f00c4
-</td>
-<td>
-mohit-rastogi
-</td>
-<td>
-2022-09-15
-</td>
-<td>
-wflow_publish("analysis/*")
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
-4e1ab3a
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/687a35a2f9dab23a8891caf23b354a3016afb089/docs/index.html" target="_blank">687a35a</a>
 </td>
 <td>
 mohit-rastogi
@@ -633,7 +723,7 @@ Build site.
 Rmd
 </td>
 <td>
-ad242c4
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/e5f00c4435f50a9891ff15b631da0eb41f07c853/analysis/index.Rmd" target="_blank">e5f00c4</a>
 </td>
 <td>
 mohit-rastogi
@@ -650,7 +740,41 @@ wflow_publish("analysis/*")
 html
 </td>
 <td>
-4b8f324
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/4e1ab3a7fa569ee70f50e3542fb90ceedf19db37/docs/index.html" target="_blank">4e1ab3a</a>
+</td>
+<td>
+mohit-rastogi
+</td>
+<td>
+2022-09-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/ad242c4a7e3b50b756e4f872983d62dc4bb56ad4/analysis/index.Rmd" target="_blank">ad242c4</a>
+</td>
+<td>
+mohit-rastogi
+</td>
+<td>
+2022-09-15
+</td>
+<td>
+wflow_publish("analysis/*")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/4b8f324f6cdfb429b8b3c0ad8a89c8defe905d26/docs/index.html" target="_blank">4b8f324</a>
 </td>
 <td>
 mohit-rastogi
@@ -667,7 +791,7 @@ Build site.
 html
 </td>
 <td>
-9d7930b
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/9d7930bedb433a0a71c2754857796e523d8faacb/docs/index.html" target="_blank">9d7930b</a>
 </td>
 <td>
 neurodevdisorder
@@ -684,7 +808,7 @@ Build site.
 Rmd
 </td>
 <td>
-876863e
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/876863ed56040b518a218d490d8d1f2dca127db0/analysis/index.Rmd" target="_blank">876863e</a>
 </td>
 <td>
 neurodevdisorder
@@ -701,7 +825,7 @@ wflow_publish("analysis/*")
 html
 </td>
 <td>
-9bf41c9
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/9bf41c93b1f8f61a7944554d406d2d6621d82921/docs/index.html" target="_blank">9bf41c9</a>
 </td>
 <td>
 neurodevdisorder
@@ -718,7 +842,7 @@ Build site.
 Rmd
 </td>
 <td>
-271f6aa
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/271f6aa3fc32a6b6eec29b67c69da87a3e944c2a/analysis/index.Rmd" target="_blank">271f6aa</a>
 </td>
 <td>
 neurodevdisorder
@@ -735,7 +859,7 @@ wflow_publish("analysis/*")
 html
 </td>
 <td>
-6fa1b4c
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/6fa1b4c1f0726b35dd3195fd3408217cade4baab/docs/index.html" target="_blank">6fa1b4c</a>
 </td>
 <td>
 neurodevdisorder
@@ -752,7 +876,7 @@ Build site.
 Rmd
 </td>
 <td>
-c04fbc4
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/c04fbc451aca0331c08ab4457cb9c94bb85d671a/analysis/index.Rmd" target="_blank">c04fbc4</a>
 </td>
 <td>
 neurodevdisorder
@@ -769,7 +893,7 @@ wflow_publish("analysis/*")
 html
 </td>
 <td>
-c3a80b2
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/c3a80b2127d0b3976c39844618a65d60d94e6451/docs/index.html" target="_blank">c3a80b2</a>
 </td>
 <td>
 neurodevdisorder
@@ -786,7 +910,7 @@ Build site.
 html
 </td>
 <td>
-43af26a
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/43af26a1c65882aa1de731fcf2b763a547e6b12c/docs/index.html" target="_blank">43af26a</a>
 </td>
 <td>
 neurodevdisorder
@@ -803,7 +927,7 @@ Build site.
 html
 </td>
 <td>
-80ecc5e
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/80ecc5e067e8c4464db4e105ba834adedc6d2dd6/docs/index.html" target="_blank">80ecc5e</a>
 </td>
 <td>
 neurodevdisorder
@@ -820,7 +944,7 @@ Build site.
 html
 </td>
 <td>
-fc2eaa2
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/fc2eaa2e3fd29b0d90658039e9d7d83f2afbc929/docs/index.html" target="_blank">fc2eaa2</a>
 </td>
 <td>
 neurodevdisorder
@@ -837,7 +961,7 @@ Build site.
 Rmd
 </td>
 <td>
-ea2d35b
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/ea2d35b94a397e998c312da3f3032f086135e0f7/analysis/index.Rmd" target="_blank">ea2d35b</a>
 </td>
 <td>
 neurodevdisorder
@@ -854,7 +978,7 @@ Differential expression analysis
 html
 </td>
 <td>
-09605c0
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/09605c07faaab5201e4b559d14410802baf1aed0/docs/index.html" target="_blank">09605c0</a>
 </td>
 <td>
 neurodevdisorder
@@ -871,7 +995,7 @@ Build site.
 Rmd
 </td>
 <td>
-d9d498b
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/d9d498b65282a556095c4b822bf70b2c05694472/analysis/index.Rmd" target="_blank">d9d498b</a>
 </td>
 <td>
 neurodevdisorder
@@ -888,7 +1012,7 @@ Differential expression analysis
 html
 </td>
 <td>
-fb514a1
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/fb514a140b1a6a32ee367fde482e8d81f1049ce1/docs/index.html" target="_blank">fb514a1</a>
 </td>
 <td>
 neurodevdisorder
@@ -905,7 +1029,7 @@ Build site.
 Rmd
 </td>
 <td>
-355190f
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/355190fc3df2e6d2c850617d83450b3be3b5c34f/analysis/index.Rmd" target="_blank">355190f</a>
 </td>
 <td>
 neurodevdisorder
@@ -922,7 +1046,7 @@ Differential expression analysis
 html
 </td>
 <td>
-7d8790a
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/7d8790abb3b1fb00314b7edf8135db13a00f30b7/docs/index.html" target="_blank">7d8790a</a>
 </td>
 <td>
 neurodevdisorder
@@ -939,7 +1063,7 @@ Build site.
 Rmd
 </td>
 <td>
-cfa938f
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/cfa938f5852689bdedfe7bb4fb53c0c137985b8b/analysis/index.Rmd" target="_blank">cfa938f</a>
 </td>
 <td>
 neurodevdisorder
@@ -956,7 +1080,7 @@ Differential expression analysis
 html
 </td>
 <td>
-ac97638
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/ac976385439ebc49d253eed1850ebae82cec49d9/docs/index.html" target="_blank">ac97638</a>
 </td>
 <td>
 neurodevdisorder
@@ -973,7 +1097,7 @@ Build site.
 html
 </td>
 <td>
-e6b258c
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/e6b258cff8a0c9b2fa4cd63d7ffa9e35ef1d9556/docs/index.html" target="_blank">e6b258c</a>
 </td>
 <td>
 neurodevdisorder
@@ -990,7 +1114,7 @@ Build site.
 Rmd
 </td>
 <td>
-75c0bb9
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/75c0bb99441a62b17f5fe5fd2d6d33f37b3bae03/analysis/index.Rmd" target="_blank">75c0bb9</a>
 </td>
 <td>
 neurodevdisorder
@@ -1018,36 +1142,34 @@ post-mortem hiipocampus and cortex obtained form Down syndrome and
 control individuals.</p>
 <p>Please feel free to explore and share. Here are some useful links for
 the final paper:</p>
-</div>
-<div id="publication" class="section level2">
-<h2>Publication</h2>
+<div id="publication" class="section level3">
+<h3>Publication</h3>
 <ul>
 <li>[Integrative Multi-omics Analysis Reveals Conserved Cell-projection
 Deficits in Human Down syndrome Brains]</li>
 </ul>
 </div>
-<div id="abstract" class="section level2">
-<h2>Abstract</h2>
+<div id="abstract" class="section level3">
+<h3>Abstract</h3>
 </div>
-<div id="data-pre-processing" class="section level2">
-<h2>Data pre-processing</h2>
+<div id="data-pre-processing" class="section level3">
+<h3>Data pre-processing</h3>
 <p>Raw data is available at Gene Expression Omnibus (GEO, NCBI;
 accession number GSEXXX(<a
 href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE"
 class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE</a>)).</p>
 </div>
-<div id="citation" class="section level2">
-<h2>Citation</h2>
+<div id="citation" class="section level3">
+<h3>Citation</h3>
 </div>
-<div id="main-results-and-analysis-code" class="section level2">
-<h2><img src="https://img.icons8.com/ios/250/000000/notepad.png" width="60"/>
-Main results and analysis code</h2>
+</div>
+<div id="main-results-and-code" class="section level2">
+<h2><img src="https://cdn-icons-png.flaticon.com/512/3281/3281142.png" width="60"/>
+Main results and code</h2>
 <div id="total-rna-sequencing" class="section level3">
 <h3>Total RNA sequencing</h3>
-</div>
-</div>
-<div id="gene-expression" class="section level2">
-<h2>Gene expression</h2>
+<div id="gene-expression" class="section level4">
+<h4>Gene expression</h4>
 <ul>
 <li>Perform differential expression analysis for genes
 <ul>
@@ -1063,8 +1185,8 @@ href="cortex_differential_expression_analysis.html">Cortex</a></li>
 <li>Cell-type enrichment (EWCE)</li>
 </ul>
 </div>
-<div id="transcript-expression" class="section level2">
-<h2>Transcript expression</h2>
+<div id="transcript-expression" class="section level4">
+<h4>Transcript expression</h4>
 <ul>
 <li>Perform differential expression analysis for transcripts
 <ul>
@@ -1073,14 +1195,54 @@ href="cortex_differential_expression_analysis.html">Cortex</a></li>
 </ul></li>
 </ul>
 </div>
-<div id="other-investigations" class="section level2">
-<h2>Other investigations</h2>
+</div>
+</div>
+<div id="figures" class="section level2">
+<h2><img src= "https://cdn-icons-png.flaticon.com/512/2936/2936690.png" width="60"/>
+Figures</h2>
 <ul>
-<li><a href="GABA_AMPA.html">GABA and AMPA receptors</a></li>
-<li>We investigated the presence of <a href="GEDD.html">Genome wide
-dysregulation domains</a> and here we show chromosome 1 as an
-example.</li>
+<li><a href="Figure1.html">Figure1</a></li>
+<li><a href="Figure2.html">Figure2</a></li>
 </ul>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.7.0
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9       compiler_4.1.0   pillar_1.8.1     bslib_0.4.0     
+ [5] later_1.3.0      git2r_0.30.1     jquerylib_0.1.4  tools_4.1.0     
+ [9] getPass_0.2-2    digest_0.6.29    jsonlite_1.8.0   evaluate_0.16   
+[13] tibble_3.1.8     lifecycle_1.0.2  pkgconfig_2.0.3  rlang_1.0.5     
+[17] cli_3.4.0        rstudioapi_0.14  yaml_2.3.5       xfun_0.33       
+[21] fastmap_1.1.0    httr_1.4.4       stringr_1.4.1    knitr_1.40      
+[25] fs_1.5.2         vctrs_0.4.1      sass_0.4.2       rprojroot_2.0.3 
+[29] glue_1.6.2       R6_2.5.1         processx_3.7.0   fansi_1.0.3     
+[33] rmarkdown_2.16   callr_3.7.2      magrittr_2.0.3   whisker_0.4     
+[37] ps_1.7.1         promises_1.2.0.1 htmltools_0.5.3  httpuv_1.6.6    
+[41] utf8_1.2.2       stringi_1.7.8    cachem_1.0.6    </code></pre>
+</div>
 </div>
 
 

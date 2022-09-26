@@ -1,11 +1,13 @@
 ---
 title: "DS Human multiomics"
 author: "Mohit Rastogi"
-date: 15-09-2022
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
     toc: TRUE
+    toc_float: TRUE
+    toc_depth: 4
 editor_options:
   chunk_output_type: console
 ---
@@ -16,24 +18,24 @@ This website contains the analysis and the data from the Total RNA sequencing, s
 
 Please feel free to explore and share. Here are some useful links for the final paper:
 
-## Publication
+### Publication
 * [Integrative Multi-omics Analysis Reveals Conserved Cell-projection Deficits in Human Down syndrome Brains]
 
-## Abstract
+### Abstract
 
-## Data pre-processing
+### Data pre-processing
 
 Raw data is available at Gene Expression Omnibus (GEO, NCBI; accession number GSEXXX(https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE)).
 
-## Citation
+### Citation
 
 
 
-## <img src="https://img.icons8.com/ios/250/000000/notepad.png" width="60"/> Main results and analysis code
+## <img src="https://cdn-icons-png.flaticon.com/512/3281/3281142.png" width="60"/> Main results and code
 
 ### Total RNA sequencing
 
-## Gene expression
+#### Gene expression
 
 * Perform differential expression analysis for genes
   * [Hippocampus](differential_expression_analysis.html)
@@ -46,17 +48,13 @@ Raw data is available at Gene Expression Omnibus (GEO, NCBI; accession number GS
   
 * Cell-type enrichment (EWCE)
 
-## Transcript expression
+#### Transcript expression
 
 * Perform differential expression analysis for transcripts
   * [Hippocampus](hippo_DET.html)
   * [Cortex](cortex_DET.html)
 
-
-## Other investigations
-  * [GABA and AMPA receptors](GABA_AMPA.html)
-  * We investigated the presence of [Genome wide dysregulation domains](GEDD.html) and here we show chromosome 1 as an example.
-  
-
-
+## <img src= "https://cdn-icons-png.flaticon.com/512/2936/2936690.png" width="60"/> Figures
+  * [Figure1](Figure1.html)
+  * [Figure2](Figure2.html)
 

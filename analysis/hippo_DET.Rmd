@@ -43,11 +43,3 @@ IsoEBDERes_hippo<-GetDEResults(IsoEBOut_hippo,FDR = 0.05)
 str(IsoEBDERes_hippo$DEfound)
 Isoform_FC_hippo<-PostFC(IsoEBOut_hippo)
 ```
-
-```{r, echo = FALSE, warning=FALSE}
-write.table(IsoEBDERes_hippo$DEfound,file="DiffExpression_results_hippo.txt",sep="\t")
-write.table(IsoEBDERes_hippo$PPMat,file="DiffExpression_results_hippo_PPMat.txt",sep="\t")
-write.table(IsoEBDERes_hippo$Status,file="DiffExpression_results_hippo_status.txt",sep="\t")
-write.table(Isoform_FC_hippo$PostFC,file="DiffExpression_results_hippo_PostFC.txt",sep="\t")
-write.table(Isoform_FC_hippo$RealFC,file="DiffExpression_results_hippo_RealFC.txt",sep="\t")
-```

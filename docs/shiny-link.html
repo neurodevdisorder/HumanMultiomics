@@ -341,21 +341,21 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">
-    <span class="fa fa-home"></span>
+    <span class=" https://img.icons8.com/ios/250/000000/home.png"></span>
      
     Home
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fa fa-info"></span>
+    <span class=" https://img.icons8.com/ios/250/000000/info.png"></span>
      
     About
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-line-chart"></span>
+    <span class="https://img.icons8.com/ios/250/000000/combo https://img.icons8.com/ios/250/000000/combo-chart.png"></span>
      
     Analyses
      
@@ -388,13 +388,19 @@ div.tocify {
 </li>
 <li>
   <a href="https://www.iit.it/people-details/-/people/laura-cancedda">
-    <span class="fa fa-flask"></span>
+    <span class="https://img.icons8.com/ios/250/000000/test https://img.icons8.com/ios/250/000000/test-tube.png"></span>
      
   </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/neurodevdisorder/HumanMultiomics">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -414,7 +420,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -425,8 +431,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -439,9 +445,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>HumanMultiomics/</code> <span
@@ -464,31 +470,36 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge5f00c4">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada">
 <span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong> e5f00c4
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstronge5f00c4"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -497,7 +508,8 @@ and connecting the code version to the results is critical for
 reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version e5f00c4.
+The results in this page were generated with repository version
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -519,16 +531,6 @@ Ignored files:
     Ignored:    data/.DS_Store
 
 Untracked files:
-    Untracked:  DiffExpression_results_cortex.txt
-    Untracked:  DiffExpression_results_cortex_PPMat.txt
-    Untracked:  DiffExpression_results_cortex_PostFC.txt
-    Untracked:  DiffExpression_results_cortex_RealFC.txt
-    Untracked:  DiffExpression_results_cortex_status.txt
-    Untracked:  DiffExpression_results_hippo.txt
-    Untracked:  DiffExpression_results_hippo_PPMat.txt
-    Untracked:  DiffExpression_results_hippo_PostFC.txt
-    Untracked:  DiffExpression_results_hippo_RealFC.txt
-    Untracked:  DiffExpression_results_hippo_status.txt
     Untracked:  HumanMultiomics.R
     Untracked:  WGCNA_hippo_genes.Rmd
     Untracked:  data/GABA_AMPA_family.xlsx
@@ -551,6 +553,13 @@ Untracked files:
     Untracked:  sigGenes_cortex.rds
     Untracked:  sigGenes_hippo.rds
     Untracked:  topHitshuman_hippo.bed
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/cortex_DET.Rmd
+    Modified:   analysis/hippo_DET.Rmd
+    Modified:   analysis/shiny-link.Rmd
 
 </code></pre>
 <p>
@@ -598,10 +607,27 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/687a35a2f9dab23a8891caf23b354a3016afb089/docs/shiny-link.html" target="_blank">687a35a</a>
+</td>
+<td>
+mohit-rastogi
+</td>
+<td>
+2022-09-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
-e5f00c4
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/e5f00c4435f50a9891ff15b631da0eb41f07c853/analysis/shiny-link.Rmd" target="_blank">e5f00c4</a>
 </td>
 <td>
 mohit-rastogi
@@ -623,10 +649,9 @@ wflow_publish("analysis/*")
 </br></br>
 <div class="row">
 <div class="col-md-6 text-center">
-<p><font size="4"> In order for everyone to look at the expression of
-their favorite gene in our data, we have created a rudimentary Shiny
-app. Click the button below to begin making plots like the one on the
-right! </font> </br></br></br>
+<p><font size="4"> We have created a Shiny app for exploring the
+expression data from different layers of analysis: gene, transcript,
+protein, miRNA, alternative splicing. </font> </br></br></br>
 <a class="btn btn-default" href="https://canceddalab.shinyapps.io/DShuman/" role="button">
 Explore expression data</a> </br> <span style="color:red">Warning: The
 page may take a minute to load</span></p>

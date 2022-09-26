@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="neurodevdisorder" />
+
+<meta name="date" content="2022-09-23" />
+
+<title>Figure2</title>
+
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">DS-Hs-Multi-omics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class=" https://img.icons8.com/ios/250/000000/home.png"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class=" https://img.icons8.com/ios/250/000000/info.png"></span>
+     
+    About
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="https://img.icons8.com/ios/250/000000/combo https://img.icons8.com/ios/250/000000/combo-chart.png"></span>
+     
+    Analyses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Gene</li>
+    <li>
+      <a href="differential_expression_analysis.html">Run differential gene expression analysis</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Transcript</li>
+  </ul>
+</li>
+<li>
+  <a href="shiny-link.html">
+    <span class="fa fa-bar-chart"></span>
+     
+    Explore Data
+  </a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+<li>
+  <a href="https://github.com/neurodevdisorder">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.iit.it/people-details/-/people/laura-cancedda">
+    <span class="https://img.icons8.com/ios/250/000000/test https://img.icons8.com/ios/250/000000/test-tube.png"></span>
+     
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/neurodevdisorder/HumanMultiomics">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Figure2</h1>
+<h4 class="author">neurodevdisorder</h4>
+<h4 class="date">September 23, 2022</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2022-09-23
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>HumanMultiomics/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220715code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20220715)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220715code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220715)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
+    Ignored:    data/.DS_Store
+
+Untracked files:
+    Untracked:  GABA_AMPA.Rmd
+    Untracked:  HumanMultiomics.R
+    Untracked:  WGCNA_hippo_genes.Rmd
+    Untracked:  analysis/Figure1.Rmd
+    Untracked:  analysis/Figure2.Rmd
+    Untracked:  analysis/totalRNA_alignment.Rmd
+    Untracked:  data/GABA_AMPA_family.xlsx
+    Untracked:  data/GO_terms_figure1E.xlsx
+    Untracked:  data/GeneAnnotation_hippo.csv
+    Untracked:  data/chr21_hippo_gene.txt
+    Untracked:  data/diff_gene_transcript_cortex.txt
+    Untracked:  data/diff_gene_transcript_hippo.txt
+    Untracked:  data/gene_protein_correlation.xlsx
+    Untracked:  data/hippo_cortex_RNA_protein.txt
+    Untracked:  data/human_cortex_samplesheet.xlsx
+    Untracked:  data/human_cortex_transcripts_protein_coding.txt
+    Untracked:  data/human_cortex_transcripts_protein_coding.xlsx
+    Untracked:  data/human_hippo_samplesheet.xlsx
+    Untracked:  data/human_hippo_transcripts_protein_coding.txt
+    Untracked:  data/human_hippo_transcripts_protein_coding.xlsx
+    Untracked:  data/non_chr21_hippo_gene.txt
+    Untracked:  data/raw_counts_human_cortex_matrix_coding.txt
+    Untracked:  data/raw_counts_human_hippo_matrix_coding.txt
+    Untracked:  figure/
+    Untracked:  output/cpm_y_cth_filt_coding22_after_PCA.txt
+    Untracked:  output/cpm_y_hth_filt_coding22_after_PCA.txt
+    Untracked:  output/geneInfo_cpm_y_hth_filt_coding22_after_PCA.csv
+    Untracked:  output/results_hippo_RNA.rds
+    Untracked:  results_cortex_RNA.rds
+    Untracked:  results_hippo_RNA.rds
+    Untracked:  sigGenes_cortex.rds
+    Untracked:  sigGenes_hippo.rds
+    Untracked:  topHitshuman_hippo.bed
+
+Unstaged changes:
+    Deleted:    analysis/GABA_AMPA.Rmd
+    Modified:   analysis/_site.yml
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/cortex_DET.Rmd
+    Modified:   analysis/hippo_DET.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/shiny-link.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>These commands were used to generate different panels of Figure
+2.</p>
+<p>First, we will load all the packages required to perform this
+analysis</p>
+<pre class="r"><code>library(ggplot2)
+library(dplyr)
+library(edgeR)
+library(openxlsx)
+library(ggrepel)
+library(DBI)
+library(org.Hs.eg.db)
+library(&quot;pcaExplorer&quot;)
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+library(rtracklayer)
+library(ggbio)
+library(clusterProfiler)
+library(enrichplot)
+library(ggridges)
+library(karyoploteR)
+library(tidyverse)
+library(forcats)
+library(pathview)
+library(ComplexHeatmap)
+library(circlize)
+library(rsample)
+library(magrittr)
+library(superheat)
+library(ggcorrplot)</code></pre>
+<div id="figure-2a" class="section level4">
+<h4>Figure 2A</h4>
+<div id="hippocampus" class="section level5">
+<h5>Hippocampus</h5>
+<pre class="r"><code>hippo_rna_protein_overlap&lt;-read.xlsx(&quot;data/gene_protein_correlation.xlsx&quot;,sheet=1)
+require(stats)
+reg&lt;-lm(logFC_RNA ~ logFC_prot, data = hippo_rna_protein_overlap)
+reg</code></pre>
+<pre><code>
+Call:
+lm(formula = logFC_RNA ~ logFC_prot, data = hippo_rna_protein_overlap)
+
+Coefficients:
+(Intercept)   logFC_prot  
+  -0.001667     0.099842  </code></pre>
+<pre class="r"><code>ggplot(hippo_rna_protein_overlap, aes(x = logFC_prot, y = logFC_RNA)) +
+  geom_point(aes(color =  factor(DE)), alpha=1, size=2) +
+  scale_color_manual(values = c(&quot;#EF233C&quot;,&quot;#CED4DA&quot;,&quot;#05668D&quot;,&quot;#FB8500&quot;)) +
+  xlab(&quot;Proteome logFC&quot;) + ylab(&quot;Transcriptome logFC&quot;)+
+  theme_bw() +
+  xlim(-5,5)+
+  ylim(-2,4)+
+  theme(text=element_text(size=18),axis.text.x = element_text(color = &quot;black&quot;),axis.text.y = element_text(color=&quot;black&quot;),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())+ 
+  geom_abline(intercept = -0.001667, slope = 0.099842, color=&quot;black&quot;, linetype=&quot;dashed&quot;, size=0.5)</code></pre>
+<p><img src="figure/Figure2.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>cor(hippo_rna_protein_overlap$logFC_prot,hippo_rna_protein_overlap$logFC_RNA,method = &quot;pearson&quot;)</code></pre>
+<pre><code>[1] 0.1293366</code></pre>
+</div>
+<div id="cortex" class="section level5">
+<h5>Cortex</h5>
+<pre class="r"><code>cortex_rna_protein_overlap&lt;-read.xlsx(&quot;data/gene_protein_correlation.xlsx&quot;,sheet=2)
+require(stats)
+reg&lt;-lm(logFC_RNA ~ logFC_prot, data = cortex_rna_protein_overlap)
+reg</code></pre>
+<pre><code>
+Call:
+lm(formula = logFC_RNA ~ logFC_prot, data = cortex_rna_protein_overlap)
+
+Coefficients:
+(Intercept)   logFC_prot  
+    -0.1244       0.1551  </code></pre>
+<pre class="r"><code>ggplot(cortex_rna_protein_overlap, aes(x = logFC_prot, y = logFC_RNA)) +
+  geom_point(aes(color =  factor(DE)), alpha=1, size=2) +
+  scale_color_manual(values = c(&quot;#EF233C&quot;,&quot;#CED4DA&quot;,&quot;#05668D&quot;,&quot;#FB8500&quot;)) +
+  xlab(&quot;Proteome logFC&quot;) + ylab(&quot;Transcriptome logFC&quot;)+
+  theme_bw() +
+  xlim(-5,5)+
+  ylim(-2,4)+
+  theme(text=element_text(size=18),axis.text.x = element_text(color = &quot;black&quot;),axis.text.y = element_text(color=&quot;black&quot;),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())+ 
+  geom_abline(intercept = -0.1244, slope = 0.1551, color=&quot;black&quot;, linetype=&quot;dashed&quot;, size=0.5)</code></pre>
+<p><img src="figure/Figure2.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>cor(cortex_rna_protein_overlap$logFC_prot,cortex_rna_protein_overlap$logFC_RNA,method = &quot;pearson&quot;)</code></pre>
+<pre><code>[1] 0.198909</code></pre>
+</div>
+</div>
+<div id="figure-2b" class="section level4">
+<h4>Figure 2B</h4>
+<pre class="r"><code>hippo_cortex_RNA_protein_corr&lt;- read.table(file= &quot;data/hippo_cortex_RNA_protein.txt&quot;, header=T, row.names=1)
+corr &lt;- round(cor(hippo_cortex_RNA_protein_corr), 1)
+ggcorrplot(corr, hc.order = TRUE, 
+           type = &quot;lower&quot;, 
+           lab = TRUE, 
+           lab_size = 3, 
+           method=&quot;circle&quot;, 
+           colors = c( &quot;springgreen3&quot;,&quot;white&quot;, &quot;tomato2&quot;), 
+           lab_col = &quot;black&quot;,
+           outline.color = &quot;black&quot;,
+           title=&quot;Correlogram of Hippocampus and Cortex for RNA &amp; Protein&quot;, 
+           ggtheme=theme_bw)+
+           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank())</code></pre>
+<p><img src="figure/Figure2.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Figure 2C is prepared with the help of venny2.1 (<a
+href="https://bioinfogp.cnb.csic.es/tools/venny/"
+class="uri">https://bioinfogp.cnb.csic.es/tools/venny/</a>)</p>
+</div>
+<div id="figure-2d" class="section level4">
+<h4>Figure 2D</h4>
+<div id="hippocampus-1" class="section level5">
+<h5>Hippocampus</h5>
+<pre class="r"><code>hippo_rna_protein_overlap_DE&lt;-read.xlsx(&quot;data/gene_protein_correlation.xlsx&quot;,sheet=3)
+reg&lt;-lm(logFC_RNA ~ logFC_prot, data = hippo_rna_protein_overlap_DE)
+reg</code></pre>
+<pre><code>
+Call:
+lm(formula = logFC_RNA ~ logFC_prot, data = hippo_rna_protein_overlap_DE)
+
+Coefficients:
+(Intercept)   logFC_prot  
+   -0.02815      0.18837  </code></pre>
+<pre class="r"><code>ggplot(hippo_rna_protein_overlap_DE, aes(x = logFC_prot, y = logFC_RNA)) +
+  geom_point(aes(color =  factor(direction)), alpha=1, size=2) +
+  scale_color_manual(values = c(&quot;#FFB703&quot;,&quot;#2A9D8F&quot;)) +
+  xlab(&quot;Proteome logFC&quot;) + ylab(&quot;Transcriptome logFC&quot;)+
+  theme_bw() +
+  xlim(-5,5)+
+  ylim(-2,4)+
+  theme(text=element_text(size=18),axis.text.x = element_text(color = &quot;black&quot;),axis.text.y = element_text(color=&quot;black&quot;),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())+ 
+  geom_hline(yintercept=0, linetype=&quot;dashed&quot;, color = &quot;black&quot;)+
+  geom_vline(xintercept = 0,linetype=&quot;dashed&quot;,color=&quot;black&quot;)</code></pre>
+<p><img src="figure/Figure2.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="cortex-1" class="section level5">
+<h5>Cortex</h5>
+<pre class="r"><code>cortex_rna_protein_overlap_DE&lt;-read.xlsx(&quot;data/gene_protein_correlation.xlsx&quot;,sheet=4)
+reg&lt;-lm(logFC_RNA ~ logFC_prot, data = cortex_rna_protein_overlap_DE)
+reg</code></pre>
+<pre><code>
+Call:
+lm(formula = logFC_RNA ~ logFC_prot, data = cortex_rna_protein_overlap_DE)
+
+Coefficients:
+(Intercept)   logFC_prot  
+   -0.05469      0.31896  </code></pre>
+<pre class="r"><code>ggplot(cortex_rna_protein_overlap_DE, aes(x = logFC_prot, y = logFC_RNA)) +
+  geom_point(aes(color =  factor(direction)), alpha=1, size=2) +
+  scale_color_manual(values = c(&quot;#FFB703&quot;,&quot;#2A9D8F&quot;)) +
+  xlab(&quot;Proteome logFC&quot;) + ylab(&quot;Transcriptome logFC&quot;)+
+  theme_bw() +
+  xlim(-5,5)+
+  ylim(-2,4)+
+  theme(text=element_text(size=18),axis.text.x = element_text(color = &quot;black&quot;),axis.text.y = element_text(color=&quot;black&quot;),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())+ 
+  geom_hline(yintercept=0, linetype=&quot;dashed&quot;, color = &quot;black&quot;)+
+  geom_vline(xintercept = 0,linetype=&quot;dashed&quot;,color=&quot;black&quot;)</code></pre>
+<p><img src="figure/Figure2.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="figure-2e" class="section level4">
+<h4>Figure 2E</h4>
+<pre class="r"><code>hippo_cortex_RNA_protein_DAVID_BP&lt;-read.xlsx(&quot;data/gene_protein_correlation.xlsx&quot;,sheet=6)
+row.names(hippo_cortex_RNA_protein_DAVID_BP)&lt;-hippo_cortex_RNA_protein_DAVID_BP$Sample
+
+hippo_cortex_RNA_protein_DAVID_BP_filt&lt;-as.data.frame(hippo_cortex_RNA_protein_DAVID_BP[,-c(1)])
+f2 = colorRamp2(seq(min(hippo_cortex_RNA_protein_DAVID_BP_filt), max(hippo_cortex_RNA_protein_DAVID_BP_filt), length = 3), c(&quot;#EEEEEE&quot;,&quot;blue&quot;, &quot;red&quot;), space = &quot;RGB&quot;)
+
+Heatmap(hippo_cortex_RNA_protein_DAVID_BP_filt, col = f2, cluster_rows = FALSE,cluster_columns = FALSE,
+        row_order = order(as.numeric(gsub(&quot;row&quot;, &quot;&quot;, rownames(hippo_cortex_RNA_protein_DAVID_BP_filt)))), 
+        column_order = order(as.numeric(gsub(&quot;column&quot;, &quot;&quot;, colnames(hippo_cortex_RNA_protein_DAVID_BP_filt)))),
+        row_names_gp = gpar(fontsize = 6),column_names_gp = gpar(fontsize=6),
+        column_names_centered = TRUE)</code></pre>
+<p><img src="figure/Figure2.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] grid      stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ggcorrplot_0.1.3                        
+ [2] superheat_0.1.0                         
+ [3] magrittr_2.0.3                          
+ [4] rsample_1.1.0                           
+ [5] circlize_0.4.15                         
+ [6] ComplexHeatmap_2.8.0                    
+ [7] pathview_1.32.0                         
+ [8] forcats_0.5.2                           
+ [9] stringr_1.4.1                           
+[10] purrr_0.3.4                             
+[11] readr_2.1.2                             
+[12] tidyr_1.2.1                             
+[13] tibble_3.1.8                            
+[14] tidyverse_1.3.2                         
+[15] karyoploteR_1.18.0                      
+[16] regioneR_1.24.0                         
+[17] ggridges_0.5.3                          
+[18] enrichplot_1.12.3                       
+[19] clusterProfiler_4.0.5                   
+[20] ggbio_1.40.0                            
+[21] rtracklayer_1.52.1                      
+[22] TxDb.Hsapiens.UCSC.hg38.knownGene_3.13.0
+[23] GenomicFeatures_1.44.2                  
+[24] GenomicRanges_1.44.0                    
+[25] GenomeInfoDb_1.28.4                     
+[26] pcaExplorer_2.18.0                      
+[27] org.Hs.eg.db_3.13.0                     
+[28] AnnotationDbi_1.54.1                    
+[29] IRanges_2.28.0                          
+[30] S4Vectors_0.32.3                        
+[31] Biobase_2.54.0                          
+[32] BiocGenerics_0.40.0                     
+[33] DBI_1.1.3                               
+[34] ggrepel_0.9.1                           
+[35] openxlsx_4.2.5                          
+[36] edgeR_3.34.1                            
+[37] limma_3.50.1                            
+[38] dplyr_1.0.10                            
+[39] ggplot2_3.3.6                           
+[40] workflowr_1.7.0                         
+
+loaded via a namespace (and not attached):
+  [1] Hmisc_4.7-1                 ps_1.7.1                   
+  [3] Rsamtools_2.8.0             foreach_1.5.2              
+  [5] rprojroot_2.0.3             crayon_1.5.1               
+  [7] MASS_7.3-58.1               nlme_3.1-159               
+  [9] backports_1.4.1             reprex_2.0.2               
+ [11] GOSemSim_2.18.1             rlang_1.0.5                
+ [13] XVector_0.32.0              readxl_1.4.1               
+ [15] SparseM_1.81                callr_3.7.2                
+ [17] filelock_1.0.2              GOstats_2.58.0             
+ [19] BiocParallel_1.28.3         rjson_0.2.21               
+ [21] bit64_4.0.5                 glue_1.6.2                 
+ [23] pheatmap_1.0.12             rngtools_1.5.2             
+ [25] parallel_4.1.0              processx_3.7.0             
+ [27] shinyAce_0.4.2              shinydashboard_0.7.2       
+ [29] DOSE_3.18.3                 haven_2.5.1                
+ [31] tidyselect_1.1.2            SummarizedExperiment_1.22.0
+ [33] XML_3.99-0.10               GenomicAlignments_1.28.0   
+ [35] xtable_1.8-4                evaluate_0.16              
+ [37] cli_3.4.0                   zlibbioc_1.40.0            
+ [39] rstudioapi_0.14             furrr_0.3.1                
+ [41] whisker_0.4                 bslib_0.4.0                
+ [43] rpart_4.1.16                fastmatch_1.1-3            
+ [45] ensembldb_2.16.4            treeio_1.16.2              
+ [47] shiny_1.7.2                 xfun_0.33                  
+ [49] clue_0.3-61                 cluster_2.1.4              
+ [51] tidygraph_1.2.2             TSP_1.2-1                  
+ [53] KEGGREST_1.32.0             biovizBase_1.40.0          
+ [55] threejs_0.3.3               ape_5.6-2                  
+ [57] listenv_0.8.0               dendextend_1.16.0          
+ [59] future_1.28.0               Biostrings_2.60.2          
+ [61] png_0.1-7                   reshape_0.8.9              
+ [63] withr_2.5.0                 shinyBS_0.61.1             
+ [65] bitops_1.0-7                ggforce_0.3.4              
+ [67] RBGL_1.68.0                 plyr_1.8.7                 
+ [69] cellranger_1.1.0            GSEABase_1.54.0            
+ [71] AnnotationFilter_1.16.0     pillar_1.8.1               
+ [73] GlobalOptions_0.1.2         cachem_1.0.6               
+ [75] fs_1.5.2                    GetoptLong_1.0.5           
+ [77] vctrs_0.4.1                 ellipsis_0.3.2             
+ [79] generics_0.1.3              NMF_0.24.0                 
+ [81] tools_4.1.0                 foreign_0.8-82             
+ [83] munsell_0.5.0               tweenr_2.0.2               
+ [85] fgsea_1.18.0                DelayedArray_0.18.0        
+ [87] fastmap_1.1.0               compiler_4.1.0             
+ [89] httpuv_1.6.6                pkgmaker_0.32.2            
+ [91] plotly_4.10.0               GenomeInfoDbData_1.2.6     
+ [93] gridExtra_2.3               lattice_0.20-45            
+ [95] deldir_1.0-6                AnnotationForge_1.34.1     
+ [97] utf8_1.2.2                  later_1.3.0                
+ [99] BiocFileCache_2.0.0         jsonlite_1.8.0             
+[101] GGally_2.1.2                scales_1.2.1               
+[103] graph_1.70.0                tidytree_0.4.0             
+[105] genefilter_1.74.1           lazyeval_0.2.2             
+[107] promises_1.2.0.1            doParallel_1.0.17          
+[109] latticeExtra_0.6-30         checkmate_2.1.0            
+[111] rmarkdown_2.16              cowplot_1.1.1              
+[113] webshot_0.5.3               dichromat_2.0-0.1          
+[115] downloader_0.4              BSgenome_1.60.0            
+[117] igraph_1.3.4                survival_3.4-0             
+[119] yaml_2.3.5                  htmltools_0.5.3            
+[121] memoise_2.0.1               VariantAnnotation_1.38.0   
+[123] BiocIO_1.2.0                locfit_1.5-9.6             
+[125] seriation_1.3.6             graphlayouts_0.8.1         
+[127] viridisLite_0.4.1           digest_0.6.29              
+[129] assertthat_0.2.1            mime_0.12                  
+[131] rappdirs_0.3.3              registry_0.5-1             
+[133] RSQLite_2.2.17              yulab.utils_0.0.5          
+[135] data.table_1.14.2           blob_1.2.3                 
+[137] labeling_0.4.2              splines_4.1.0              
+[139] Formula_1.2-4               Cairo_1.6-0                
+[141] googledrive_2.0.0           OrganismDbi_1.34.0         
+[143] ProtGenerics_1.26.0         RCurl_1.98-1.8             
+[145] broom_1.0.1                 hms_1.1.2                  
+[147] modelr_0.1.9                colorspace_2.0-3           
+[149] base64enc_0.1-3             BiocManager_1.30.18        
+[151] shape_1.4.6                 aplot_0.1.7                
+[153] nnet_7.3-17                 sass_0.4.2                 
+[155] Rcpp_1.0.9                  fansi_1.0.3                
+[157] tzdb_0.3.0                  parallelly_1.32.1          
+[159] R6_2.5.1                    lifecycle_1.0.2            
+[161] zip_2.2.1                   curl_4.3.2                 
+[163] googlesheets4_1.0.1         jquerylib_0.1.4            
+[165] DO.db_2.9                   Matrix_1.4-1               
+[167] qvalue_2.24.0               RColorBrewer_1.1-3         
+[169] iterators_1.0.14            topGO_2.44.0               
+[171] htmlwidgets_1.5.4           bamsignals_1.24.0          
+[173] polyclip_1.10-0             biomaRt_2.48.3             
+[175] crosstalk_1.2.0             shadowtext_0.1.2           
+[177] gridGraphics_0.5-1          rvest_1.0.3                
+[179] globals_0.16.1              htmlTable_2.4.1            
+[181] patchwork_1.1.2             KEGGgraph_1.52.0           
+[183] codetools_0.2-18            matrixStats_0.62.0         
+[185] lubridate_1.8.0             GO.db_3.13.0               
+[187] getPass_0.2-2               prettyunits_1.1.1          
+[189] dbplyr_2.2.1                gridBase_0.4-7             
+[191] gtable_0.3.1                git2r_0.30.1               
+[193] highr_0.9                   ggfun_0.0.7                
+[195] httr_1.4.4                  stringi_1.7.8              
+[197] progress_1.2.2              reshape2_1.4.4             
+[199] farver_2.1.1                heatmaply_1.3.0            
+[201] annotate_1.70.0             viridis_0.6.2              
+[203] Rgraphviz_2.36.0            ggtree_3.0.4               
+[205] DT_0.25.1                   xml2_1.3.3                 
+[207] bezier_1.1.2                restfulr_0.0.15            
+[209] interp_1.1-3                geneplotter_1.70.0         
+[211] ggplotify_0.1.0             Category_2.58.0            
+[213] DESeq2_1.32.0               bit_4.0.4                  
+[215] scatterpie_0.1.8            jpeg_0.1-9                 
+[217] MatrixGenerics_1.4.3        ggraph_2.0.6               
+[219] pkgconfig_2.0.3             gargle_1.2.1               
+[221] knitr_1.40                 </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

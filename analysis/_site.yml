@@ -23,8 +23,6 @@ navbar:
     href: shiny-link.html
   - text: License
     href: license.html
-  - icon: fa-github
-    href: https://github.com/neurodevdisorder
   - icon: https://img.icons8.com/ios/250/000000/test-tube.png
     href: https://www.iit.it/people-details/-/people/laura-cancedda
   right:

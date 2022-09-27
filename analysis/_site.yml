@@ -5,7 +5,7 @@ navbar:
   icon: img src="https://img.icons8.com/ios/250/000000/brain.png"
   left:
   - text: Home
-    icon: https://img.icons8.com/ios/250/000000/home.png
+    icon: fa fa-home
     href: index.html
   - text: About
     icon: https://img.icons8.com/ios/250/000000/info.png
@@ -23,7 +23,7 @@ navbar:
     href: shiny-link.html
   - text: License
     href: license.html
-  - icon: fa-light fa-flask
+  - icon: fab-light fa-flask
     href: https://www.iit.it/people-details/-/people/laura-cancedda
   right:
   - icon: fab fa-github

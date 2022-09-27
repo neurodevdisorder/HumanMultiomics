@@ -1,7 +1,7 @@
 ---
 title: "hippo_DET"
-author: "neurodevdisorder"
-date: "2022-09-13"
+author: "Mohit Rastogi"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console

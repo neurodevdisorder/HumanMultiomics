@@ -1,6 +1,6 @@
 ---
 title: "Figure2"
-author: "neurodevdisorder"
+author: "Mohit Rastogi"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: workflowr::wflow_html
 editor_options:

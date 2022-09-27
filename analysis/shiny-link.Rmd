@@ -1,7 +1,7 @@
 ---
 title: "Explore Expression Data"
-author: "neurodevdisorder"
-date: "2022-09-15"
+author: "Mohit Rastogi"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: html_document
 ---
 </br></br>

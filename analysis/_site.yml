@@ -5,13 +5,13 @@ navbar:
   icon: fab fa-brain
   left:
   - text: Home
-    icon: fa fa-house
+    icon: fa-house
     href: index.html
   - text: About
     icon: fa-info
     href: about.html
   - text: Analyses
-    icon: fa-regular fa-chart-waterfall
+    icon: fa-chart-waterfall
     menu:
     - text: Gene
     - text: Run differential gene expression analysis
@@ -23,10 +23,10 @@ navbar:
     href: shiny-link.html
   - text: License
     href: license.html
-  - icon: fab fa-flask
+  - icon: fa-flask
     href: https://www.iit.it/people-details/-/people/laura-cancedda
   right:
-  - icon: fab fa-github
+  - icon: fa-github
     text: Source code
     href: https://github.com/neurodevdisorder/HumanMultiomics
 output:

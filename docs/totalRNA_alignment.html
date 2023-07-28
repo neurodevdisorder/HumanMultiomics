@@ -11,11 +11,11 @@
 
 <meta name="author" content="neurodevdisorder" />
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2023-07-27" />
 
 <title>totalRNA alignment</title>
 
-<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
@@ -37,8 +37,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -195,8 +195,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +204,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -381,12 +374,6 @@ div.tocify {
   <a href="license.html">License</a>
 </li>
 <li>
-  <a href="https://github.com/neurodevdisorder">
-    <span class="fa fa-github"></span>
-     
-  </a>
-</li>
-<li>
   <a href="https://www.iit.it/people-details/-/people/laura-cancedda">
     <span class="https://img.icons8.com/ios/250/000000/test https://img.icons8.com/ios/250/000000/test-tube.png"></span>
      
@@ -412,7 +399,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">totalRNA alignment</h1>
 <h4 class="author">neurodevdisorder</h4>
-<h4 class="date">September 23, 2022</h4>
+<h4 class="date">July 27, 2023</h4>
 
 </div>
 
@@ -420,7 +407,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -431,8 +418,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -441,13 +428,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-09-23
+<strong>Last updated:</strong> 2023-07-27
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>HumanMultiomics/</code> <span
@@ -470,21 +457,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -575,15 +559,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree1bb8357a8f9e8e5073f400bf1dfd47a667c9716atargetblank1bb8357a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/1bb8357a8f9e8e5073f400bf1dfd47a667c9716a" target="_blank">1bb8357</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79btargetblank3e9e5ada"
+id="strongRepositoryversionstrongahrefhttpsgithubcomneurodevdisorderHumanMultiomicstree1bb8357a8f9e8e5073f400bf1dfd47a667c9716atargetblank1bb8357a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -593,7 +577,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/3e9e5ad5c5d68d95688d9d2f2930f1893cd3e79b" target="_blank">3e9e5ad</a>.
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/tree/1bb8357a8f9e8e5073f400bf1dfd47a667c9716a" target="_blank">1bb8357</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -612,52 +596,16 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
-    Ignored:    analysis/figure/
+    Ignored:    analysis/.Rhistory
     Ignored:    data/.DS_Store
+    Ignored:    figure/.DS_Store
 
 Untracked files:
-    Untracked:  GABA_AMPA.Rmd
-    Untracked:  HumanMultiomics.R
-    Untracked:  WGCNA_hippo_genes.Rmd
-    Untracked:  analysis/Figure1.Rmd
-    Untracked:  analysis/Figure2.Rmd
-    Untracked:  analysis/totalRNA_alignment.Rmd
-    Untracked:  data/GABA_AMPA_family.xlsx
-    Untracked:  data/GO_terms_figure1E.xlsx
-    Untracked:  data/GeneAnnotation_hippo.csv
-    Untracked:  data/chr21_hippo_gene.txt
-    Untracked:  data/diff_gene_transcript_cortex.txt
-    Untracked:  data/diff_gene_transcript_hippo.txt
-    Untracked:  data/gene_protein_correlation.xlsx
-    Untracked:  data/hippo_cortex_RNA_protein.txt
-    Untracked:  data/human_cortex_samplesheet.xlsx
-    Untracked:  data/human_cortex_transcripts_protein_coding.txt
-    Untracked:  data/human_cortex_transcripts_protein_coding.xlsx
-    Untracked:  data/human_hippo_samplesheet.xlsx
-    Untracked:  data/human_hippo_transcripts_protein_coding.txt
-    Untracked:  data/human_hippo_transcripts_protein_coding.xlsx
-    Untracked:  data/non_chr21_hippo_gene.txt
-    Untracked:  data/raw_counts_human_cortex_matrix_coding.txt
-    Untracked:  data/raw_counts_human_hippo_matrix_coding.txt
-    Untracked:  figure/
-    Untracked:  output/cpm_y_cth_filt_coding22_after_PCA.txt
-    Untracked:  output/cpm_y_hth_filt_coding22_after_PCA.txt
-    Untracked:  output/geneInfo_cpm_y_hth_filt_coding22_after_PCA.csv
-    Untracked:  output/results_hippo_RNA.rds
-    Untracked:  results_cortex_RNA.rds
-    Untracked:  results_hippo_RNA.rds
-    Untracked:  sigGenes_cortex.rds
-    Untracked:  sigGenes_hippo.rds
-    Untracked:  topHitshuman_hippo.bed
-
-Unstaged changes:
-    Deleted:    analysis/GABA_AMPA.Rmd
-    Modified:   analysis/_site.yml
-    Modified:   analysis/about.Rmd
-    Modified:   analysis/cortex_DET.Rmd
-    Modified:   analysis/hippo_DET.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/shiny-link.Rmd
+    Untracked:  data/brain.png
+    Untracked:  data/combo-chart.png
+    Untracked:  data/home.png
+    Untracked:  data/info.png
+    Untracked:  data/test-tube.png
 
 </code></pre>
 <p>
@@ -672,10 +620,74 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/totalRNA_alignment.Rmd</code>)
+and HTML (<code>docs/totalRNA_alignment.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/neurodevdisorder/HumanMultiomics/blob/dd963a3aeb00790c0320cfc4dc6aad60cc3f4fc0/analysis/totalRNA_alignment.Rmd" target="_blank">dd963a3</a>
+</td>
+<td>
+mohit-rastogi
+</td>
+<td>
+2022-09-26
+</td>
+<td>
+Add existing project files prior to the push to GitHub.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/neurodevdisorder/HumanMultiomics/dd963a3aeb00790c0320cfc4dc6aad60cc3f4fc0/docs/totalRNA_alignment.html" target="_blank">dd963a3</a>
+</td>
+<td>
+mohit-rastogi
+</td>
+<td>
+2022-09-26
+</td>
+<td>
+Add existing project files prior to the push to GitHub.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -691,13 +703,13 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.0 (2021-05-18)
+<pre><code>R version 4.2.3 (2023-03-15)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur ... 10.16
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -705,17 +717,21 @@ locale:
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
+other attached packages:
+[1] workflowr_1.7.0
+
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.9       rstudioapi_0.14  knitr_1.40       magrittr_2.0.3  
- [5] workflowr_1.7.0  R6_2.5.1         rlang_1.0.5      fastmap_1.1.0   
- [9] fansi_1.0.3      stringr_1.4.1    tools_4.1.0      xfun_0.33       
-[13] utf8_1.2.2       cli_3.4.0        git2r_0.30.1     jquerylib_0.1.4 
-[17] htmltools_0.5.3  rprojroot_2.0.3  yaml_2.3.5       digest_0.6.29   
-[21] tibble_3.1.8     lifecycle_1.0.2  later_1.3.0      sass_0.4.2      
-[25] vctrs_0.4.1      promises_1.2.0.1 fs_1.5.2         cachem_1.0.6    
-[29] glue_1.6.2       evaluate_0.16    rmarkdown_2.16   stringi_1.7.8   
-[33] bslib_0.4.0      compiler_4.1.0   pillar_1.8.1     jsonlite_1.8.0  
-[37] httpuv_1.6.6     pkgconfig_2.0.3 </code></pre>
+ [1] Rcpp_1.0.10      compiler_4.2.3   pillar_1.9.0     bslib_0.4.2     
+ [5] later_1.3.0      git2r_0.32.0     jquerylib_0.1.4  tools_4.2.3     
+ [9] getPass_0.2-2    digest_0.6.31    jsonlite_1.8.4   evaluate_0.20   
+[13] lifecycle_1.0.3  tibble_3.2.1     pkgconfig_2.0.3  rlang_1.1.1     
+[17] cli_3.6.1        rstudioapi_0.14  yaml_2.3.7       xfun_0.39       
+[21] fastmap_1.1.1    httr_1.4.5       stringr_1.5.0    knitr_1.42      
+[25] fs_1.6.2         vctrs_0.6.2      sass_0.4.5       rprojroot_2.0.3 
+[29] glue_1.6.2       R6_2.5.1         processx_3.8.1   fansi_1.0.4     
+[33] rmarkdown_2.21   callr_3.7.3      magrittr_2.0.3   whisker_0.4.1   
+[37] ps_1.7.5         promises_1.2.0.1 htmltools_0.5.5  httpuv_1.6.9    
+[41] utf8_1.2.3       stringi_1.7.12   cachem_1.0.7    </code></pre>
 </div>
 
 

@@ -8,3 +8,9 @@
 [Interactive portal][] for exploring total RNA seq, proteomics, alternative splicing, and small RNA seq data.
 
 [Interactive portal]: https://canceddalab.shinyapps.io/DShuman/
+
+We prepared another website for the research community to follow all the [analysis steps][] we did to prepare the results.
+
+[analysis steps]: https://neurodevdisorder.github.io/HumanMultiomics/
+
+

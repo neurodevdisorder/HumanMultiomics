@@ -9,8 +9,14 @@
 
 [Interactive portal]: https://canceddalab.shinyapps.io/DShuman/
 
-We prepared another website for the research community to follow all the [analysis steps][] we did to prepare the results.
+We prepared another website for the research community to follow all the [analysis steps][] and reproduce our results.
 
 [analysis steps]: https://neurodevdisorder.github.io/HumanMultiomics/
+
+FASTQ files for both total and smallRNA sequencing can be found under GEO accession [GSEXXX][]
+
+[GSEXXX]: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=
+
+To view the scripts for each figure, 
 
 

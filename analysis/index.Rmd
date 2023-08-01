@@ -23,12 +23,11 @@ Please feel free to explore and share. Here are some useful links for the final 
 
 ### Abstract
 
+##### Down syndrome (DS) is the most common genetic cause of cognitive disability. However, it is largely unclear how triplication of a small gene subset may impinge on diverse aspects of DS brain physiopathology. Here, we took a multi-omic approach and simultaneously analyzed by RNA-seq and proteomics the expression signatures of two diverse regions of human postmortem DS brains. We found that the overexpression of triplicated genes triggered global expression dysregulation, differentially affecting transcripts, miRNAs, and proteins involved in both known and novel biological candidate pathways. Among the latter, we observed an alteration in RNA splicing, specifically modulating the expression of genes involved in cytoskeleton and axonal dynamics in DS brains. Accordingly, we found an alteration in axonal polarization in neurons from DS human induced pluripotent stem cells and mice. Thus, our study provides an integrated multilayer expression database capable of identifying new potential targets to aid in the design of future clinical interventions for DS.
+
 ### Data pre-processing
 
-Raw data is available at Gene Expression Omnibus (GEO, NCBI; accession number GSEXXX(https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE)).
-
-### Citation
-
+RNA-seq raw data is available at Gene Expression Omnibus (GEO, NCBI; accession number GSE221179 (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE221179)).
 
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/3281/3281142.png" width="60"/> Main results and code
@@ -57,4 +56,5 @@ Raw data is available at Gene Expression Omnibus (GEO, NCBI; accession number GS
 ## <img src= "https://cdn-icons-png.flaticon.com/512/2936/2936690.png" width="60"/> Figures
   * [Figure1](Figure1.html)
   * [Figure2](Figure2.html)
+  * [Figure7](Figure7A.html)
 

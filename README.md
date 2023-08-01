@@ -13,10 +13,12 @@ We prepared another website for the research community to follow all the [analys
 
 [analysis steps]: https://neurodevdisorder.github.io/HumanMultiomics/
 
-FASTQ files for both total and smallRNA sequencing can be found under GEO accession [GSEXXX][]
+FASTQ files for both total and smallRNA sequencing can be found under GEO accession [GSE221179][]
 
-[GSEXXX]: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=
+[GSE221179]: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE221179
 
-To view the scripts for each figure, 
+To view the scripts for each figure, please go to "code" folder and then in subsequent figure folders.
+
+Feel free to contact Andrea Contestabile (andrea.contestabile@iit.it) or Laura Cancedda (laura.cancedda@iit.it) for any additional questions or comments.
 
 

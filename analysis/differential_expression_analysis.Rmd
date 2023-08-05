@@ -187,8 +187,8 @@ mcols(top200)$DownRegulated <- mcols(top200)$logFC < 0
 autoplot(top200,layout="karyogram",aes(color=DownRegulated,fill=DownRegulated))
 results_hippo_RNA<-as_tibble(results_rna_annotated_hth_filt_coding2)
 row.names(results_hippo_RNA)<-results_hippo_RNA$ENSEMBL
-saveRDS(results_hippo_RNA, file = "results_hippo_RNA.rds")
-saveRDS(sigGenes,file="sigGenes_hippo.rds")
+saveRDS(results_hippo_RNA, file = "output/results_hippo_RNA.rds")
+saveRDS(sigGenes,file="output/sigGenes_hippo.rds")
 ```
 
 #### Results from differential expression analysis for hippocampus samples

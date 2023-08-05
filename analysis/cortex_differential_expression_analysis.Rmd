@@ -38,7 +38,7 @@ library(kableExtra)
 library(DT)
 ```
 
-#### Read the raw count matrix for hippocampus samples
+#### Read the raw count matrix for cortex samples
 
 The count matrix consists of 12 control samples (C12-C23) and 10 Down syndrome samples (Ds10-Ds19)
 
@@ -135,7 +135,7 @@ lrt_cth_filt_coding2<-glmLRT(fit_cth_filt_coding2,coef = 2)
 de_cth_filt_coding2 <- decideTestsDGE(lrt_cth_filt_coding2, adjust.method="BH", p.value = 0.05)
 ```
 
-#### Number of differentially expressed genes in the hippocampus
+#### Number of differentially expressed genes in the cortex
 ```{r, echo = FALSE, warning=FALSE,include=TRUE}
 summary(de_cth_filt_coding2)
 ```
@@ -185,8 +185,8 @@ mcols(top200)$DownRegulated <- mcols(top200)$logFC < 0
 autoplot(top200,layout="karyogram",aes(color=DownRegulated,fill=DownRegulated))
 results_cortex_RNA<-as_tibble(results_rna_annotated_cth_filt_coding2)
 row.names(results_cortex_RNA)<-results_cortex_RNA$ENSEMBL
-saveRDS(results_cortex_RNA, file = "results_cortex_RNA.rds")
-saveRDS(sigGenes,file="sigGenes_cortex.rds")
+saveRDS(results_cortex_RNA, file = "output/results_cortex_RNA.rds")
+saveRDS(sigGenes,file="output/sigGenes_cortex.rds")
 ```
 
 #### Results from differential expression analysis for cortex samples

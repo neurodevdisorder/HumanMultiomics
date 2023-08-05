@@ -80,12 +80,18 @@ diff_gene_transcript_cortex_density_plot
 ```
 
 #### Figure 1D
+```{r, echo = TRUE, warning=FALSE,include=TRUE}
+
+```
+
+
+#### Figure 1E
 
 We performed the cell type enrichment analysis using EWCE package in R using different set of gene lists such as upregulated genes in hippocampus etc. and the heatmap was generated using "superheat" package in R. 
 
-We are not showing the plotting scripts for this figure.
+We are not showing the plotting scripts for this figure but you can find them in the "code" folder on Github. 
 
-#### Figure 1E
+#### Figure 1F
 
 We will read the data for GO terms which has been already cleaned up by taking the terms for both gene and transcript expression profiles and preparing the table with -log10FDR values from DAVID analysis. 
 

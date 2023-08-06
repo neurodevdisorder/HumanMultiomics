@@ -1,3 +1,9 @@
+library(ggplot2)
+library(dplyr)
+library(ComplexHeatmap)
+library(circlize)
+library(openxlsx)
+
 #First find the optimum scale bar for the GO terms
 human_gene_transcript_DAVID_all<-read.xlsx("data/Figure1/GO_analysis_gene_transcript_hippocampus_cortex.xlsx",sheet=4)
 human_gene_transcript_DAVID_all_filt<-as.data.frame(human_gene_transcript_DAVID_all[,-c(1)])

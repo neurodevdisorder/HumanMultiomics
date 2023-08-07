@@ -1,7 +1,8 @@
 library(ComplexHeatmap)
 library(circlize)
 library(openxlsx)
-ineurons_DIV30_DAVID<-read.xlsx("data/DAVID_DIV30_iNeurons_compiled.xlsx",sheet=1)
+
+ineurons_DIV30_DAVID<-read.xlsx("data/Figure7/DAVID_DIV30_iNeurons_compiled.xlsx",sheet=1)
 row.names(ineurons_DIV30_DAVID)<-ineurons_DIV30_DAVID$Term
 ineurons_DIV30_DAVID_filt<-as.data.frame(ineurons_DIV30_DAVID[,-c(1)])
 f2 = colorRamp2(seq(min(ineurons_DIV30_DAVID_filt), max(ineurons_DIV30_DAVID_filt), length = 3), c("#EEEEEE","blue", "red"), space = "RGB")

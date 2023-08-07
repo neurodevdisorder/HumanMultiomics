@@ -1,0 +1,17 @@
+Sample	Group	Sex	Age	Race	RIN
+C13	Ctrl	F	45	Hispanic	4.8
+C14	Ctrl	M	46	W	4.7
+C17	Ctrl	F	41	B	5.9
+C19	Ctrl	F	19	W	5.6
+C20	Ctrl	F	29	B	5.8
+C21	Ctrl	F	28	B	6.2
+C22	Ctrl	M	44	B	6.5
+C23	Ctrl	M	44	W	6.5
+Ds11	Down	F	57	W	2.9
+Ds12	Down	M	43	W	6
+Ds13	Down	M	44	W	5.8
+Ds15	Down	F	40	B	4.4
+Ds16	Down	M	39	W	6.5
+Ds17	Down	M	19	W	2.9
+Ds18	Down	M	25	B	3.4
+Ds19	Down	F	25	W	4.2

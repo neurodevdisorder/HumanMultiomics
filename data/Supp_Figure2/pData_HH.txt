@@ -1,0 +1,13 @@
+Sample	Group	Sex	Age	Race	RIN
+C1	Ctrl	M	13	B	6.5
+C2	Ctrl	M	19	W	7.3
+C3	Ctrl	M	25	B	6.9
+C4	Ctrl	F	35	W	6.7
+C5	Ctrl	M	18	W	6.7
+C11	Ctrl	F	44	W	5.5
+Ds1	Down	M	13	B	6
+Ds3	Down	M	25	B	5.4
+Ds4	Down	F	39	W	6.3
+Ds5	Down	M	19	Asian	5.4
+Ds8	Down	F	43	W	6.5
+Ds9	Down	F	44	W	6

@@ -10,15 +10,12 @@ Down syndrome (DS) is the most common genetic cause of cognitive disability. How
 
 [Interactive portal]: https://canceddalab.shinyapps.io/DShuman/
 
-We prepared another website for the research community to follow all the [analysis steps][] and reproduce our results.
-
-[analysis steps]: https://neurodevdisorder.github.io/HumanMultiomics/
-
 FASTQ files for both total and smallRNA sequencing can be found under GEO accession [GSE221179][]
 
 [GSE221179]: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE221179
 
 To view the scripts for each figure, please go to "code" folder and then in subsequent figure folders.
+To download and use the data files for preparing each figure, please go to "data" folder.
 
 Feel free to contact Andrea Contestabile (andrea.contestabile@iit.it) or Laura Cancedda (laura.cancedda@iit.it) for any additional questions or comments.
 
